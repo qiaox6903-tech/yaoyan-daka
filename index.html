@@ -45,13 +45,13 @@ body {
   -webkit-tap-highlight-color: transparent;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 .app {
   width: 100%;
   max-width: var(--max-width);
-  min-height: 100vh;
-  padding-bottom: var(--nav-height);
+  min-height: 100dvh;
+  padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
   position: relative;
 }
 
@@ -95,6 +95,7 @@ body {
   width: 100%;
   max-width: var(--max-width);
   height: var(--nav-height);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--card);
   border-top: 1px solid var(--border);
   display: flex;
@@ -426,84 +427,211 @@ body {
 .memo-status.mastered { background: #d8f0e0; color: #589068; }
 
 /* ===== Word Management Buttons ===== */
-.word-toolbar {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
+.word-toolbar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
 .word-toolbar .btn { font-size: 0.72rem; padding: 5px 12px; border-radius: 14px; }
 
 /* ===== Import Preview ===== */
 .import-preview-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.75rem;
-  margin: 10px 0;
+  width: 100%; border-collapse: collapse; font-size: 0.75rem; margin: 10px 0;
 }
 .import-preview-table th, .import-preview-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
+  padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: left;
 }
-.import-preview-table th {
-  color: var(--text-light);
-  font-weight: 500;
-  font-size: 0.7rem;
-}
+.import-preview-table th { color: var(--text-light); font-weight: 500; font-size: 0.7rem; }
 .import-preview-table td { color: var(--text); }
-.import-summary {
-  background: var(--bg);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin: 10px 0;
-}
+.import-summary { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.8rem; color: var(--text-light); margin: 10px 0; }
 .import-summary strong { color: var(--primary); }
 
-/* ===== Word Flip Cards ===== */
+/* ===== Word Stats Pills ===== */
+.word-stats-pills {
+  display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;
+}
+.word-stat-pill {
+  background: var(--card); border-radius: 20px; padding: 4px 14px; font-size: 0.72rem;
+  color: var(--text-light); box-shadow: 0 1px 4px rgba(0,0,0,0.04); white-space: nowrap;
+}
+.word-stat-pill strong { color: var(--primary); font-size: 0.85rem; margin: 0 2px; }
+.word-stat-pill.danger strong { color: var(--accent); }
+
+/* ===== Immersive Word Card ===== */
+.word-review-area {
+  display: flex; flex-direction: column; min-height: calc(100dvh - 180px);
+}
+.word-flip-wrapper {
+  perspective: 1000px;
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  margin: 4px 0 10px 0;
+  cursor: pointer;
+  min-height: 280px;
+}
+.word-flip-inner {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: min(50dvh, 380px);
+  min-height: 260px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.word-flip-inner.flipped { transform: rotateY(180deg); }
+.word-card-face {
+  position: absolute; width: 100%; height: 100%;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 24px; padding: 28px 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: var(--card);
+  overflow: hidden;
+}
+.word-card-face::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--mint));
+  border-radius: 3px 3px 0 0;
+}
+.word-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, #fff, var(--primary-light));
+}
+.word-card-back::after {
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+}
+.word-card-word {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+.word-card-pos {
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.word-card-index {
+  font-size: 0.72rem;
+  color: var(--text-lighter);
+  margin-top: 2px;
+}
+.word-card-tap-hint {
+  position: absolute; bottom: 16px; font-size: 0.68rem; color: var(--text-lighter);
+  opacity: 0.6;
+}
+.word-card-meaning {
+  font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.word-card-source {
+  font-size: 0.75rem; color: var(--text-lighter);
+  text-align: center; line-height: 1.5;
+}
+.word-card-status-badge {
+  display: inline-block; padding: 3px 12px; border-radius: 10px;
+  font-size: 0.72rem; font-weight: 500; margin-top: 4px;
+}
+.status-badge-new { background: #e8e4ee; color: #8a80a0; }
+.status-badge-vague { background: #f5e0e0; color: #a06868; }
+.status-badge-basic { background: #d8e8f0; color: #5888a0; }
+.status-badge-done { background: #d8f0e0; color: #589068; }
+
+/* Word rating buttons */
+.word-rating-bar {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 8px 0;
+}
+.word-rating-btn {
+  flex: 1; min-width: 60px; max-width: 90px;
+  padding: 12px 8px; border-radius: 16px; border: none;
+  font-size: 0.75rem; font-family: var(--font); font-weight: 600;
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.word-rating-btn:active { transform: scale(0.94); }
+.word-rating-btn .wr-icon { font-size: 1.2rem; }
+.wr-new { background: #e8e4ee; color: #8a80a0; }
+.wr-vague { background: #f5e0e0; color: #a06868; }
+.wr-know { background: #d8e8f0; color: #5888a0; }
+.wr-master { background: #d8f0e0; color: #589068; }
+
+/* Word nav bar */
+.word-nav-bar {
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+  margin-top: 6px; margin-bottom: 4px;
+}
+.word-nav-btn {
+  background: none; border: none; font-size: 0.78rem; color: var(--text-light);
+  cursor: pointer; padding: 6px 12px; font-family: var(--font);
+  display: flex; align-items: center; gap: 4px;
+}
+.word-nav-btn:active { color: var(--primary); }
+.word-progress-text { font-size: 0.78rem; color: var(--text-light); min-width: 60px; text-align: center; }
+
+/* Manage drawer */
+.word-manage-bar {
+  text-align: center; margin-top: 4px;
+}
+.word-manage-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-lighter);
+  padding: 6px 20px; border-radius: 18px; font-size: 0.75rem; cursor: pointer;
+  font-family: var(--font);
+}
+
+/* Bottom drawer */
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.25);
+  z-index: 220; animation: fadeIn 0.2s ease;
+}
+.drawer-panel {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: var(--max-width);
+  background: var(--card); border-radius: 20px 20px 0 0;
+  max-height: 75dvh; overflow-y: auto;
+  padding: 20px 18px 28px;
+  z-index: 225;
+  animation: drawerUp 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+@keyframes drawerUp { from { transform: translateX(-50%) translateY(100%); } to { transform: translateX(-50%) translateY(0); } }
+.drawer-handle { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 14px; }
+.drawer-section { margin-bottom: 16px; }
+.drawer-section-title {
+  font-size: 0.7rem; color: var(--text-lighter); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+.drawer-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0; font-size: 0.82rem; border-bottom: 1px solid var(--border);
+}
+.drawer-row:last-child { border-bottom: none; }
+.drawer-row label { color: var(--text); }
+.drawer-row .val { color: var(--text-light); font-size: 0.78rem; }
+
+/* ===== Old word styles (kept for backwards compat) ===== */
 .word-count-bar {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 12px;
+  text-align: center; font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;
 }
 .word-count-bar strong { color: var(--primary); font-size: 1.2rem; }
 
 .flip-container {
-  perspective: 800px;
-  height: 220px;
-  margin-bottom: 14px;
-  cursor: pointer;
+  perspective: 800px; height: 220px; margin-bottom: 14px; cursor: pointer;
 }
 .flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease;
-  transform-style: preserve-3d;
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.5s ease; transform-style: preserve-3d;
 }
 .flip-inner.flipped { transform: rotateY(180deg); }
 .flip-front, .flip-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: var(--radius);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: var(--shadow);
-  background: var(--card);
+  position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+  border-radius: var(--radius); padding: 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; box-shadow: var(--shadow); background: var(--card);
 }
-.flip-back {
-  transform: rotateY(180deg);
-  background: var(--primary-light);
-}
+.flip-back { transform: rotateY(180deg); background: var(--primary-light); }
 .flip-front .word-en { font-size: 1.8rem; font-weight: 700; color: var(--text); }
 .flip-front .word-phonetic { font-size: 0.85rem; color: var(--text-light); margin: 4px 0; }
 .flip-front .word-pos { font-size: 0.85rem; color: var(--primary); margin: 4px 0; font-weight: 500; }
@@ -512,19 +640,8 @@ body {
 .flip-back .word-example { font-size: 0.82rem; color: var(--text-light); margin-top: 8px; line-height: 1.5; }
 .flip-back .word-source { font-size: 0.72rem; color: var(--text-lighter); margin-top: 10px; }
 
-.word-actions {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.word-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin: 10px 0;
-}
+.word-actions { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.word-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 10px 0; }
 
 /* ===== Reminder Page ===== */
 .reminder-section { margin-bottom: 20px; }
@@ -1000,53 +1117,60 @@ body {
 
   <!-- ====== Page 4: 单词 ====== -->
   <div class="page" id="page-words">
-    <div class="word-count-bar" id="wordCountBar">词库 <strong>0</strong> 词 · 今日已背 <strong>0</strong> 词 · 待复习 <strong>0</strong> 词</div>
+    <!-- Compact stats pills -->
+    <div class="word-stats-pills" id="wordStatsPills">
+      <span class="word-stat-pill">词库 <strong>0</strong></span>
+      <span class="word-stat-pill">今日 <strong>0</strong></span>
+      <span class="word-stat-pill danger">待复习 <strong>0</strong></span>
+    </div>
 
-    <div class="flip-container" id="flipContainer" onclick="App.flipWordCard()" style="display:none">
-      <div class="flip-inner" id="flipInner">
-        <div class="flip-front">
-          <div class="word-en" id="wordEn">--</div>
-          <div class="word-pos" id="wordPos"></div>
-          <div class="word-meta" id="wordMeta"></div>
+    <!-- Immersive review area -->
+    <div class="word-review-area" id="wordReviewArea">
+      <!-- Flip card -->
+      <div class="word-flip-wrapper" id="wordFlipWrap" onclick="App.flipWordCard()" style="display:none">
+        <div class="word-flip-inner" id="wordFlipInner">
+          <div class="word-card-face" id="wordCardFront">
+            <div class="word-card-word" id="wordCardWord">--</div>
+            <div class="word-card-pos" id="wordCardPos"></div>
+            <div class="word-card-index" id="wordCardIndex"></div>
+            <div class="word-card-tap-hint">点击翻面看释义</div>
+          </div>
+          <div class="word-card-face word-card-back" id="wordCardBack">
+            <div class="word-card-meaning" id="wordCardMeaning">--</div>
+            <div class="word-card-source" id="wordCardSource"></div>
+            <div class="word-card-status-badge" id="wordCardStatusBadge"></div>
+            <div class="word-card-tap-hint">点击翻面看单词</div>
+          </div>
         </div>
-        <div class="flip-back">
-          <div class="word-zh" id="wordZh">--</div>
-          <div class="word-source" id="wordSource"></div>
-        </div>
+      </div>
+
+      <!-- Rating buttons -->
+      <div class="word-rating-bar" id="wordRatingBar" style="display:none">
+        <button class="word-rating-btn wr-new" onclick="App.rateWord('不认识')">
+          <span class="wr-icon">😕</span>不认识
+        </button>
+        <button class="word-rating-btn wr-vague" onclick="App.rateWord('模糊')">
+          <span class="wr-icon">🤔</span>模糊
+        </button>
+        <button class="word-rating-btn wr-know" onclick="App.rateWord('认识')">
+          <span class="wr-icon">👍</span>认识
+        </button>
+        <button class="word-rating-btn wr-master" onclick="App.rateWord('熟练')">
+          <span class="wr-icon">✅</span>熟练
+        </button>
+      </div>
+
+      <!-- Nav bar -->
+      <div class="word-nav-bar" id="wordNavBar" style="display:none">
+        <button class="word-nav-btn" onclick="App.prevWord()">‹ 上一个</button>
+        <span class="word-progress-text" id="wordProgressText">0 / 0</span>
+        <button class="word-nav-btn" onclick="App.nextWord()">下一个 ›</button>
       </div>
     </div>
 
-    <div class="word-actions" id="wordActions" style="display:none">
-      <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.rateWord('不认识')">不认识</button>
-      <button class="btn btn-sm" style="background:#f5eed8;color:#a09058" onclick="App.rateWord('模糊')">模糊</button>
-      <button class="btn btn-sm" style="background:#d8e8f0;color:#5888a0" onclick="App.rateWord('认识')">认识</button>
-      <button class="btn btn-sm" style="background:#d8f0e0;color:#589068" onclick="App.rateWord('熟练')">熟练</button>
-    </div>
-
-    <div class="word-nav" id="wordNav" style="display:none">
-      <button class="btn btn-outline btn-sm" onclick="App.prevWord()">上一个</button>
-      <span style="font-size:0.8rem;color:var(--text-light)" id="wordIndexText"></span>
-      <button class="btn btn-outline btn-sm" onclick="App.nextWord()">下一个</button>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><span class="icon">🔤</span>单词管理</div>
-      <div class="word-toolbar">
-        <button class="btn btn-primary btn-sm" onclick="App.importFromRedbook()">导入红宝书词库</button>
-        <button class="btn btn-outline btn-sm" onclick="App.importLocalJSON()">导入本地 JSON</button>
-        <button class="btn btn-outline btn-sm" onclick="App.exportWords()">导出当前词库</button>
-        <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.clearWords()">清空词库</button>
-      </div>
-      <div class="filter-row" id="wordFilter">
-        <button class="filter-chip active" data-familiarity="all">全部</button>
-        <button class="filter-chip" data-familiarity="不认识">不认识</button>
-        <button class="filter-chip" data-familiarity="模糊">模糊</button>
-        <button class="filter-chip" data-familiarity="认识">认识</button>
-        <button class="filter-chip" data-familiarity="熟练">熟练</button>
-        <button class="filter-chip" data-familiarity="due">今日待复习</button>
-      </div>
-      <button class="btn btn-accent btn-sm" onclick="App.randomWord()">🎲 随机抽查</button>
-      <button class="btn btn-primary btn-block" style="margin-top:10px" onclick="App.showWordForm()">+ 手动添加单词</button>
+    <!-- Manage bar -->
+    <div class="word-manage-bar" id="wordManageBar" style="display:none">
+      <button class="word-manage-btn" onclick="App.showWordDrawer()">管理词库</button>
     </div>
   </div>
 
@@ -2547,64 +2671,107 @@ const App = {
   },
 
   // ---- Word Cards ----
-  initWordView() {
-    const filterEl = document.querySelector('#wordFilter .filter-chip.active');
-    this.currentWordFilter = filterEl?.dataset?.familiarity || 'all';
-    const cards = this.getFilteredWords();
-    this.bindFilterChips('wordFilter', 'familiarity', () => this.initWordView());
+  _wordMode: 'all',   // 'all' | '不认识' | '模糊' | '认识' | '熟练' | 'due'
+  _autoNext: true,
 
+  getWordAutoNext() {
+    const v = localStorage.getItem(STORAGE_KEY + 'wordAutoNext');
+    if (v === null) return true;
+    return v === 'true';
+  },
+  setWordAutoNext(val) {
+    localStorage.setItem(STORAGE_KEY + 'wordAutoNext', val ? 'true' : 'false');
+    this._autoNext = val;
+  },
+
+  initWordView() {
+    this._autoNext = this.getWordAutoNext();
+    const cards = this.getFilteredWords();
+    this._refreshWordStats();
+
+    if (cards.length === 0) {
+      document.getElementById('wordFlipWrap').style.display = 'none';
+      document.getElementById('wordRatingBar').style.display = 'none';
+      document.getElementById('wordNavBar').style.display = 'none';
+      document.getElementById('wordManageBar').style.display = 'none';
+      document.getElementById('wordReviewArea').innerHTML = '<div class="empty-state">这一组暂时没有单词啦<br>换个筛选试试 📖</div>';
+      return;
+    }
+
+    document.getElementById('wordFlipWrap').style.display = '';
+    document.getElementById('wordRatingBar').style.display = '';
+    document.getElementById('wordNavBar').style.display = '';
+    document.getElementById('wordManageBar').style.display = '';
+    // Restore review area if empty-state was inserted
+    if (!document.getElementById('wordFlipWrap').parentNode) {
+      const area = document.getElementById('wordReviewArea');
+      area.innerHTML = '';
+      // Rebuild would be complex, just re-init on next page visit
+    }
+    this.currentWordIndex = 0;
+    this.showWord(0);
+  },
+
+  _refreshWordStats() {
     const today = todayKey();
     const wsc = getWordStudyCount();
     const allCards = getWordCards();
     const dueCards = allCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
 
-    document.getElementById('wordCountBar').innerHTML =
-      '词库 <strong>' + allCards.length + '</strong> 词 · 今日已背 <strong>' + (wsc[today] || 0) + '</strong> 词 · 待复习 <strong>' + dueCards.length + '</strong> 词';
-
-    if (cards.length === 0) {
-      document.getElementById('flipContainer').style.display = 'none';
-      document.getElementById('wordActions').style.display = 'none';
-      document.getElementById('wordNav').style.display = 'none';
-      return;
-    }
-    document.getElementById('flipContainer').style.display = '';
-    document.getElementById('wordActions').style.display = '';
-    document.getElementById('wordNav').style.display = '';
-    this.currentWordIndex = 0;
-    this.showWord(0);
+    document.getElementById('wordStatsPills').innerHTML =
+      '<span class="word-stat-pill">词库 <strong>' + allCards.length + '</strong></span>' +
+      '<span class="word-stat-pill">今日 <strong>' + (wsc[today] || 0) + '</strong></span>' +
+      '<span class="word-stat-pill danger">待复习 <strong>' + dueCards.length + '</strong></span>';
   },
 
   getFilteredWords() {
-    const f = document.querySelector('#wordFilter .filter-chip.active')?.dataset?.familiarity || 'all';
     const today = todayKey();
     let cards = getWordCards();
-    if (f === 'due') {
+    if (this._wordMode === 'due') {
       cards = cards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
-    } else if (f !== 'all') {
-      cards = cards.filter(c => c.status === f);
+    } else if (this._wordMode !== 'all') {
+      cards = cards.filter(c => c.status === this._wordMode);
     }
     return cards;
   },
 
   showWord(idx) {
     const cards = this.getFilteredWords();
-    if (cards.length === 0) return;
+    if (cards.length === 0) {
+      this.initWordView();
+      return;
+    }
     this.currentWordIndex = ((idx % cards.length) + cards.length) % cards.length;
     const c = cards[this.currentWordIndex];
-    document.getElementById('wordEn').textContent = c.word;
-    document.getElementById('wordPos').textContent = c.pos || '';
-    document.getElementById('wordMeta').textContent =
-      (c.unit || '') + (c.originalIndex ? ' #' + c.originalIndex : '');
-    document.getElementById('wordZh').textContent = c.meaning;
-    document.getElementById('wordSource').textContent =
+
+    // Front
+    document.getElementById('wordCardWord').textContent = c.word;
+    document.getElementById('wordCardPos').textContent = c.pos || '';
+    const metaParts = [];
+    if (c.unit) metaParts.push(c.unit);
+    if (c.originalIndex) metaParts.push('#' + c.originalIndex);
+    document.getElementById('wordCardIndex').textContent = metaParts.join(' · ');
+
+    // Back
+    document.getElementById('wordCardMeaning').textContent = c.meaning || '';
+    document.getElementById('wordCardSource').textContent =
       [c.book, c.category, c.page ? 'P' + c.page : ''].filter(Boolean).join(' · ');
-    document.getElementById('flipInner').classList.remove('flipped');
-    document.getElementById('wordIndexText').textContent =
-      (this.currentWordIndex + 1) + ' / ' + cards.length;
+
+    // Status badge
+    const badge = document.getElementById('wordCardStatusBadge');
+    const statusMap = { '不认识': '未掌握', '模糊': '有点模糊', '认识': '基本认识', '熟练': '已掌握' };
+    const badgeClassMap = { '不认识': 'status-badge-new', '模糊': 'status-badge-vague', '认识': 'status-badge-basic', '熟练': 'status-badge-done' };
+    badge.textContent = statusMap[c.status] || c.status || '未学';
+    badge.className = 'word-card-status-badge ' + (badgeClassMap[c.status] || 'status-badge-new');
+
+    // Reset flip
+    document.getElementById('wordFlipInner').classList.remove('flipped');
+    // Progress
+    document.getElementById('wordProgressText').textContent = (this.currentWordIndex + 1) + ' / ' + cards.length;
   },
 
   flipWordCard() {
-    document.getElementById('flipInner').classList.toggle('flipped');
+    document.getElementById('wordFlipInner').classList.toggle('flipped');
   },
 
   prevWord() { this.showWord(this.currentWordIndex - 1); },
@@ -2620,7 +2787,6 @@ const App = {
       target.status = status;
       target.reviewCount = (target.reviewCount || 0) + 1;
       target.lastReviewDate = todayKey();
-      // Set next review date based on status
       const schedule = { '不认识': 1, '模糊': 3, '认识': 7, '熟练': 15 };
       const days = schedule[status] || 3;
       const nd = new Date();
@@ -2628,23 +2794,37 @@ const App = {
       target.nextReviewDate = nd.getFullYear() + '-' + String(nd.getMonth()+1).padStart(2,'0') + '-' + String(nd.getDate()).padStart(2,'0');
       saveWordCards(allCards);
     }
-    // Increment today's study count
+
     const today = todayKey();
     const wsc = getWordStudyCount();
     wsc[today] = (wsc[today] || 0) + 1;
     saveWordStudyCount(wsc);
 
-    this.toast('已标记: ' + status + ' · 下次复习: ' + (target ? target.nextReviewDate : ''));
-    const newCards = this.getFilteredWords();
-    if (newCards.length === 0) {
-      this.initWordView();
-      this.renderToday();
-      return;
-    }
-    document.getElementById('wordCountBar').innerHTML =
-      '词库 <strong>' + allCards.length + '</strong> 词 · 今日已背 <strong>' + (wsc[today] || 0) + '</strong> 词 · 待复习 <strong>' + allCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练').length + '</strong> 词';
-    this.showWord(this.currentWordIndex < newCards.length ? this.currentWordIndex : 0);
+    const nextDate = target ? target.nextReviewDate : '';
+    this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
+    this._refreshWordStats();
     this.renderToday();
+
+    // Auto-next if enabled
+    if (this._autoNext) {
+      const newCards = this.getFilteredWords();
+      if (newCards.length === 0) {
+        this.initWordView();
+        this.renderToday();
+        this.toast('今天这组背完啦 🎉');
+        return;
+      }
+      // Go to next, wrap if at end
+      if (this.currentWordIndex >= newCards.length - 1) {
+        this.toast('今天这组背完啦 🎉');
+        this.currentWordIndex = 0;
+      } else {
+        this.currentWordIndex++;
+      }
+      this.showWord(this.currentWordIndex);
+    } else {
+      this.showWord(this.currentWordIndex);
+    }
   },
 
   randomWord() {
@@ -2652,6 +2832,77 @@ const App = {
     if (cards.length === 0) return this.toast('当前筛选条件下没有单词');
     this.currentWordIndex = Math.floor(Math.random() * cards.length);
     this.showWord(this.currentWordIndex);
+  },
+
+  // ---- Word Drawer (Management) ----
+  showWordDrawer() {
+    const allCards = getWordCards();
+    const today = todayKey();
+    const wsc = getWordStudyCount();
+    const dueCards = allCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
+    const autoNext = this.getWordAutoNext();
+
+    const modeNames = { all: '全部', '不认识': '不认识', '模糊': '模糊', '认识': '认识', '熟练': '熟练', due: '今日待复习' };
+    const modeKeys = ['all', '不认识', '模糊', '认识', '熟练', 'due'];
+
+    const modeBtns = modeKeys.map(k =>
+      '<button class="filter-chip' + (this._wordMode === k ? ' active' : '') +
+      '" onclick="App._switchWordMode(\'' + k + '\')">' + modeNames[k] + '</button>'
+    ).join('');
+
+    const html = `
+      <div class="drawer-overlay" onclick="App.closeDrawer()"></div>
+      <div class="drawer-panel" id="wordDrawerPanel">
+        <div class="drawer-handle"></div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">词库概况</div>
+          <div class="drawer-row"><label>总词数</label><span class="val">${allCards.length}</span></div>
+          <div class="drawer-row"><label>今日已背</label><span class="val">${wsc[today] || 0}</span></div>
+          <div class="drawer-row"><label>今日待复习</label><span class="val" style="color:var(--accent)">${dueCards.length}</span></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">筛选模式</div>
+          <div class="filter-row" style="margin-bottom:0">${modeBtns}</div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">背词设置</div>
+          <div class="drawer-row">
+            <label>标记后自动下一个</label>
+            <button class="toggle ${autoNext ? 'on' : ''}" onclick="App._toggleAutoNext()"></button>
+          </div>
+          <button class="btn btn-accent btn-sm btn-block" style="margin-top:8px" onclick="App.randomWord();App.closeDrawer()">🎲 随机抽查</button>
+          <button class="btn btn-outline btn-sm btn-block" style="margin-top:4px" onclick="App.showWordForm();App.closeDrawer()">+ 手动添加单词</button>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">词库操作</div>
+          <button class="btn btn-primary btn-sm btn-block" style="margin-bottom:4px" onclick="App.importFromRedbook();App.closeDrawer()">导入红宝书词库</button>
+          <button class="btn btn-outline btn-sm btn-block" style="margin-bottom:4px" onclick="App.importLocalJSON();App.closeDrawer()">导入本地 JSON</button>
+          <button class="btn btn-outline btn-sm btn-block" style="margin-bottom:4px" onclick="App.exportWords();App.closeDrawer()">导出当前词库</button>
+          <button class="btn btn-sm btn-block" style="background:#f0e0e0;color:#a06868" onclick="App.clearWords();App.closeDrawer()">清空词库</button>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+  },
+
+  closeDrawer() {
+    document.getElementById('modalContainer').innerHTML = '';
+  },
+
+  _switchWordMode(mode) {
+    this._wordMode = mode;
+    this.closeDrawer();
+    this.initWordView();
+  },
+
+  _toggleAutoNext() {
+    this.setWordAutoNext(!this.getWordAutoNext());
+    // Update the toggle in drawer
+    const toggles = document.querySelectorAll('#wordDrawerPanel .toggle');
+    toggles.forEach(t => t.classList.toggle('on', this._autoNext));
   },
 
   showWordForm() {
