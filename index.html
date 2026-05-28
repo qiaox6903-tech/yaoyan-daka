@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>小淇专属药研打卡</title>
 <meta name="theme-color" content="#9b8ea8">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -58,6 +58,7 @@ body {
 /* ===== Header ===== */
 .header {
   padding: 12px 20px 6px;
+  padding-top: max(12px, env(safe-area-inset-top, 0px));
   text-align: center;
   position: sticky;
   top: 0;
@@ -65,6 +66,7 @@ body {
   background: linear-gradient(to bottom, var(--bg) 80%, transparent);
   backdrop-filter: blur(8px);
 }
+.is-capacitor .header { padding-top: 40px; }
 .header h1 {
   font-size: 1rem;
   font-weight: 700;
@@ -1150,16 +1152,8 @@ body {
         <button class="btn btn-outline" id="btnTimerPause" onclick="App.pauseTimer()" style="display:none">暂停</button>
         <button class="btn btn-accent" id="btnTimerStop" onclick="App.stopTimer()" style="display:none">结束</button>
       </div>
-      <div class="wn-player">
-        <button class="wn-btn" id="wnBtn" onclick="App.toggleWhiteNoise()">▶</button>
-        <span class="wn-label" id="wnLabel">白噪音 · 专注陪伴</span>
-        <select class="wn-select" id="wnSelect" onchange="App.changeWhiteNoise()">
-          <option value="">关闭</option>
-          <option value="rain">雨声</option>
-          <option value="cafe">咖啡馆</option>
-          <option value="forest">森林</option>
-          <option value="lofi">Lo-fi</option>
-        </select>
+      <div class="wn-player" id="wnPlayer">
+        <span class="wn-label">专注氛围：需要的话，可以放一点轻音乐或白噪音帮助集中注意力 🎧</span>
       </div>
     </div>
 
@@ -3378,45 +3372,9 @@ const App = {
     }
   },
 
-  // ---- White Noise ----
-  _wnAudio: null,
-  _wnPlaying: false,
-
-  toggleWhiteNoise() {
-    const sel = document.getElementById('wnSelect');
-    if (!sel.value) { this.toast('请先选择白噪音类型'); return; }
-    if (!this._wnAudio) { this.changeWhiteNoise(); return; }
-    if (this._wnPlaying) { this._wnAudio.pause(); this._wnPlaying = false; document.getElementById('wnBtn').textContent = '▶'; }
-    else { this._wnAudio.play().catch(() => {}); this._wnPlaying = true; document.getElementById('wnBtn').textContent = '⏸'; }
-  },
-
-  changeWhiteNoise() {
-    if (this._wnAudio) { this._wnAudio.pause(); this._wnAudio = null; }
-    const sel = document.getElementById('wnSelect');
-    if (!sel.value) { document.getElementById('wnLabel').textContent = '白噪音 · 专注陪伴'; document.getElementById('wnBtn').textContent = '▶'; this._wnPlaying = false; return; }
-
-    // Free ambient sound URLs (mp3 from mixkit or similar)
-    const tracks = {
-      rain: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8a73467.mp3',
-      cafe: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1c28.mp3',
-      forest: 'https://cdn.pixabay.com/download/audio/2021/10/25/audio_ab2d1d6d9e.mp3',
-      lofi: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808f1157f.mp3'
-    };
-    const labels = { rain: '雨声 · 安静舒缓', cafe: '咖啡馆 · 温暖背景', forest: '森林 · 清晨鸟鸣', lofi: 'Lo-fi · 轻节奏' };
-
-    this._wnAudio = new Audio(tracks[sel.value]);
-    this._wnAudio.loop = true;
-    this._wnAudio.volume = 0.25;
-    this._wnAudio.play().then(() => {
-      this._wnPlaying = true;
-      document.getElementById('wnBtn').textContent = '⏸';
-      document.getElementById('wnLabel').textContent = labels[sel.value] || '白噪音';
-    }).catch(() => {
-      this.toast('白噪音加载失败，请检查网络');
-      this._wnPlaying = false;
-      document.getElementById('wnBtn').textContent = '▶';
-    });
-  },
+  // ---- Focus Atmosphere (white noise) ----
+  // Audio playback removed: external URLs unreliable, device restrictions cause poor UX.
+  // Instead, a gentle hint reminds the user to set up their own focus music.
 
   // ---- Achievement Badges ----
   _badges: [
@@ -3738,6 +3696,10 @@ const App = {
 // Initialize
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
+  // Detect Capacitor native environment for status bar fix
+  if (typeof Capacitor !== 'undefined' && Capacitor.isNativePlatform && Capacitor.isNativePlatform()) {
+    document.body.classList.add('is-capacitor');
+  }
   App.init();
   // Register service worker for PWA
   if ('serviceWorker' in navigator) {
