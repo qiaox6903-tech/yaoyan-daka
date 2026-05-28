@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>药研陪伴打卡</title>
+<title>小淇专属药研打卡</title>
 <meta name="theme-color" content="#9b8ea8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="药研打卡">
+<meta name="apple-mobile-web-app-title" content="小淇药研">
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
@@ -168,13 +168,41 @@ body {
   color: var(--text-light);
   margin-top: 2px;
 }
-.encouragement {
+.today-message {
   text-align: center;
-  font-size: 0.9rem;
-  color: var(--accent);
-  padding: 10px 0;
-  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.55;
+  padding: 14px 18px;
+  margin: 10px auto;
+  max-width: var(--max-width);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(160,147,199,0.12), rgba(245,210,220,0.16));
+  box-shadow: 0 8px 24px rgba(160, 147, 199, 0.1);
+  transition: opacity 0.28s ease, transform 0.28s ease;
 }
+.today-message .tm-prefix {
+  font-size: 0.9rem;
+  margin-right: 4px;
+  opacity: 0.7;
+}
+.today-message .tm-text {
+  background: linear-gradient(90deg, #8B7BAE, #C58AA0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 1px 6px rgba(160, 147, 199, 0.14);
+}
+@supports not (-webkit-background-clip: text) {
+  .today-message .tm-text { color: #8B7BAE; -webkit-text-fill-color: #8B7BAE; }
+}
+.today-message.updated { animation: fadeSoftIn 0.28s ease; }
+@keyframes fadeSoftIn {
+  from { opacity: 0.5; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.encouragement { display: none; }
 
 .progress-bar-wrap {
   background: var(--border);
@@ -1009,7 +1037,7 @@ body {
 <div class="app" id="app">
   <!-- Header -->
   <div class="header">
-    <h1>药研陪伴打卡</h1>
+    <h1>小淇专属药研打卡</h1>
     <div class="subtitle" id="pageTitle">今日</div>
   </div>
 
@@ -1023,7 +1051,10 @@ body {
       <div class="days" id="countdownDays">--</div>
       <div class="label">距离考研还有</div>
     </div>
-    <div class="encouragement" id="encouragement"></div>
+    <div class="today-message" id="todayMessage">
+      <span class="tm-prefix" id="tmPrefix"></span>
+      <span class="tm-text" id="tmText">每一步都算数，慢慢来</span>
+    </div>
 
     <div class="card">
       <div class="card-title"><span class="icon">📊</span>今日学习完成度</div>
@@ -1306,21 +1337,113 @@ const DEFAULTS = {
   periodDuration: 5
 };
 
-// Encouragement messages
-const ENCOURAGEMENTS = [
-  '每一步都算数，慢慢来 ✨',
-  '药学生的坚持，真的很酷',
-  '今天的努力是明天的底气',
-  '累了就休息一下，没关系的',
-  '你已经比昨天更厉害了',
-  '专心当下，未来自然会来',
-  '学习是给自己的礼物',
-  '做自己最好的陪伴者',
-  '每一个认真背书的夜晚都值得',
-  '药理药剂，都会拿下的',
-  '保持自己的节奏就好',
-  '今天的你也辛苦啦'
+// ===== Today Message: time + progress based encouragement =====
+const MORNING_MSGS = [
+  '早安，小淇，今天也稳稳推进一点点。',
+  '新的一天开始啦，先完成一个小目标。',
+  '今天的努力，会在上岸那天被看见。',
+  '早上适合背新内容，先从一个知识点开始吧。'
 ];
+const AFTERNOON_MSGS = [
+  '已经坚持到现在啦，休息一下再继续。',
+  '下午容易疲惫，先完成一个最小任务。',
+  '不用一下子学很多，持续推进就很厉害。',
+  '今天还没结束，现在开始也不晚。'
+];
+const EVENING_MSGS = [
+  '晚上适合复盘，把今天学过的再过一遍。',
+  '今天的任务完成多少，都值得认真记录。',
+  '睡前复习一个知识点，明天会轻松一点。',
+  '辛苦啦，今晚把重点收个尾。'
+];
+const NIGHT_MSGS = [
+  '已经很晚啦，身体也需要复习和恢复。',
+  '熬夜不是长久办法，早点休息也是备考的一部分。',
+  '如果还没睡，先保存进度，明天继续。',
+  '今天已经很努力了，别忘了照顾自己。'
+];
+const ZERO_MSGS = [
+  '小淇，先开始 10 分钟就很好。',
+  '今天还没开始，先点一个最容易完成的任务。',
+  '不用等状态完美，开始就赢了一半。',
+  '今天先完成一个小目标，慢慢进入状态。'
+];
+const LOW_MSGS = [
+  '已经开始了，今天会越来越顺。',
+  '你已经迈出第一步了，再推进一点点。',
+  '当前进度不错，先把一个小任务收尾。',
+  '一点点积累，也是在认真靠近上岸。'
+];
+const MID_MSGS = [
+  '今天已经很稳了，继续保持节奏。',
+  '进度已经过半不远啦，再坚持一下。',
+  '你正在把计划一点点变成结果。',
+  '保持这个节奏，今天会很漂亮。'
+];
+const HIGH_MSGS = [
+  '快完成今天目标啦，最后收个尾。',
+  '今天已经很厉害了，再补一个小点就圆满。',
+  '离今日目标很近了，稳住。',
+  '小淇，今天差一点就满分收工啦。'
+];
+const DONE_MSGS = [
+  '今日任务完成啦，安心休息也很重要。',
+  '今天圆满收工，明天继续稳稳上岸。',
+  '今日目标达成，给自己一个小奖励吧。',
+  '小淇今天真的很棒，记得早点休息。'
+];
+
+function pickOne(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function getTodayProgress() {
+  const today = todayKey();
+  const wsc = getWordStudyCount();
+  const wordCount = wsc[today] || 0;
+  const proCount = load('proReviewCount') || {};
+  const proToday = proCount[today] || 0;
+  const records = getStudyRecords().filter(r => r.date === today);
+  let studySec = 0;
+  records.forEach(r => { studySec += r.duration; });
+  const settings = getSettings();
+  const water = getWater();
+  const waterToday = water[today] || 0;
+  const todos = getTodos().filter(t => t.date === today);
+  const todosDone = todos.filter(t => t.done).length;
+
+  // Composite progress similar to renderToday
+  const studyTarget = 6 * 3600;
+  const wordTarget = 50;
+  const studyPct = Math.min(100, Math.round((studySec / studyTarget) * 100));
+  const wordPct = Math.min(100, Math.round((wordCount / wordTarget) * 100));
+  const waterPct = Math.min(100, Math.round((waterToday / (settings.waterGoal || 8)) * 100));
+  const avgPct = Math.round((studyPct + wordPct + waterPct) / 3);
+
+  return { studySec, wordCount, proToday, waterToday, todosDone, avgPct };
+}
+
+function getDailyEncouragement() {
+  const { avgPct } = getTodayProgress();
+  const hour = new Date().getHours();
+
+  // Priority 1: 100% complete
+  if (avgPct >= 100) return { text: pickOne(DONE_MSGS), prefix: '🎉' };
+
+  // Priority 2: late night 0-5 AM → rest reminder
+  if (hour >= 0 && hour < 5) return { text: pickOne(NIGHT_MSGS), prefix: '🌙' };
+
+  // Priority 3: progress > 0
+  if (avgPct >= 71) return { text: pickOne(HIGH_MSGS), prefix: '🔥' };
+  if (avgPct >= 31) return { text: pickOne(MID_MSGS), prefix: '✦' };
+  if (avgPct >= 1) return { text: pickOne(LOW_MSGS), prefix: '♡' };
+
+  // Priority 4: 0% → time-based or startup
+  if (hour >= 5 && hour < 12) return { text: pickOne(ZERO_MSGS), prefix: '☀️' };
+  if (hour >= 12 && hour < 18) return { text: pickOne(ZERO_MSGS), prefix: '✦' };
+  if (hour >= 18 && hour < 24) return { text: pickOne(ZERO_MSGS), prefix: '🌅' };
+  return { text: pickOne(ZERO_MSGS), prefix: '♡' };
+}
 
 // ===========================
 // Data helpers
@@ -1890,6 +2013,7 @@ const App = {
 
     this._renderProDetail(pointId);
     this.renderToday();
+    this.updateTodayMessage(true);
     this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
   },
 
@@ -1936,9 +2060,8 @@ const App = {
     const diff = Math.ceil((exam - now) / (1000 * 60 * 60 * 24));
     document.getElementById('countdownDays').textContent = diff > 0 ? diff : '0';
 
-    // Encouragement - pick based on day of year
-    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000*60*60*24));
-    document.getElementById('encouragement').textContent = ENCOURAGEMENTS[dayOfYear % ENCOURAGEMENTS.length];
+    // Today message
+    this.updateTodayMessage(false);
 
     // Study data
     const today = todayKey();
@@ -2137,6 +2260,7 @@ const App = {
     saveStudyRecords(records);
     this.renderStudyRecords();
     this.toast('学习记录已保存');
+    this.updateTodayMessage(true);
     this.renderToday();
   },
 
@@ -2451,6 +2575,7 @@ const App = {
     this.renderMemoCards();
     this.renderToday();
     this.toast('已标记复习，下次复习: ' + (c ? c.reviewDate : ''));
+    this.updateTodayMessage(true);
   },
 
   // ---- POS Extraction ----
@@ -2667,6 +2792,7 @@ const App = {
     localStorage.removeItem(STORAGE_KEY + 'redbookAutoImported');
     this.initWordView();
     this.renderToday();
+    this.updateTodayMessage(true);
     this.toast('词库已清空');
   },
 
@@ -2802,6 +2928,7 @@ const App = {
 
     const nextDate = target ? target.nextReviewDate : '';
     this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
+    this.updateTodayMessage(true);
     this._refreshWordStats();
     this.renderToday();
 
@@ -3152,6 +3279,22 @@ const App = {
       const el = document.getElementById(id);
       if (el) el.remove();
     }, 15000);
+  },
+
+  // ---- Today Message ----
+  updateTodayMessage(animate) {
+    const msg = getDailyEncouragement();
+    const prefixEl = document.getElementById('tmPrefix');
+    const textEl = document.getElementById('tmText');
+    const container = document.getElementById('todayMessage');
+    if (!textEl || !container) return;
+    prefixEl.textContent = msg.prefix;
+    textEl.textContent = msg.text;
+    if (animate) {
+      container.classList.remove('updated');
+      void container.offsetWidth; // force reflow
+      container.classList.add('updated');
+    }
   },
 
   // ---- Settings ----

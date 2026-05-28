@@ -1,7 +1,7 @@
 {
-  "name": "药研陪伴打卡",
-  "short_name": "药研打卡",
-  "description": "药学考研陪伴打卡 — 学习计时、单词背诵、健康提醒 PWA",
+  "name": "小淇专属药研打卡",
+  "short_name": "小淇药研",
+  "description": "小淇专属药研打卡 — 学习计时、单词背诵、健康提醒 PWA",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
