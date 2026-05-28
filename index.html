@@ -31,7 +31,7 @@
   --radius-sm: 10px;
   --nav-height: 68px;
   --header-height: 56px;
-  --max-width: 520px;
+  --max-width: 480px;
   --danger: #d4a0a0;
   --warning: #d4c0a0;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -57,21 +57,22 @@ body {
 
 /* ===== Header ===== */
 .header {
-  padding: 16px 20px 8px;
+  padding: 12px 20px 6px;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 10;
   background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+  backdrop-filter: blur(8px);
 }
 .header h1 {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--primary);
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 .header .subtitle {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-lighter);
 }
 
@@ -80,6 +81,7 @@ body {
   display: none;
   padding: 0 16px;
   animation: fadeIn 0.25s ease;
+  padding-bottom: 8px;
 }
 .page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
@@ -715,107 +717,160 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-lighter);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 .pro-breadcrumb span { cursor: pointer; color: var(--primary); }
-.pro-breadcrumb .sep { color: var(--text-lighter); cursor: default; }
+.pro-breadcrumb .sep { color: var(--text-lighter); cursor: default; margin: 0 2px; }
 .pro-breadcrumb .current { color: var(--text); font-weight: 500; cursor: default; }
 
-.pro-subject-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.pro-subject-card {
+/* Subject home cards */
+.pro-home-cards { display: flex; flex-direction: column; gap: 14px; }
+.pro-home-card {
   background: var(--card);
-  border-radius: var(--radius);
-  padding: 24px 16px;
-  text-align: center;
-  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 20px 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid transparent;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative;
+  overflow: hidden;
 }
-.pro-subject-card:active { transform: scale(0.97); }
-.pro-subject-card.pharma { border-color: var(--primary-light); }
-.pro-subject-card.pharmaceu { border-color: var(--mint-light); }
-.pro-subject-card .pro-icon { font-size: 2rem; margin-bottom: 8px; }
-.pro-subject-card .pro-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
-.pro-subject-card .pro-count { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; }
+.pro-home-card:active { transform: scale(0.975); }
+.pro-home-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+.pro-home-card.pharma::before { background: var(--primary); }
+.pro-home-card.pharmaceu::before { background: var(--mint); }
+.pro-home-card .ph-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pro-home-card .ph-icon { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+.ph-icon.pharma { background: var(--primary-light); }
+.ph-icon.pharmaceu { background: var(--mint-light); }
+.pro-home-card .ph-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+.pro-home-card .ph-subtitle { font-size: 0.75rem; color: var(--text-light); margin-top: 1px; }
+.pro-home-card .ph-desc { font-size: 0.72rem; color: var(--text-lighter); line-height: 1.5; margin-bottom: 10px; }
+.pro-home-card .ph-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+.ph-stat { display: flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--text-light); }
+.ph-stat .ph-num { font-weight: 700; font-size: 0.85rem; color: var(--text); }
+.ph-stat.danger .ph-num { color: var(--accent); }
+.ph-stat.success .ph-num { color: var(--mint); }
 
-.pro-chapter-list { list-style: none; }
-.pro-chapter-item {
-  padding: 12px 14px;
+/* Chapter cards */
+.pro-chapter-card {
   background: var(--card);
-  border-radius: var(--radius-sm);
-  margin-bottom: 8px;
-  box-shadow: var(--shadow);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.04);
   cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.15s;
-  border-left: 3px solid transparent;
+  gap: 10px;
 }
-.pro-chapter-item:active { transform: scale(0.98); }
-.pro-chapter-item .ch-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
-.pro-chapter-item .ch-count { font-size: 0.72rem; color: var(--text-lighter); flex-shrink: 0; }
+.pro-chapter-card:active { transform: scale(0.98); }
+.pro-chapter-card .cc-body { flex: 1; min-width: 0; }
+.pro-chapter-card .cc-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pro-chapter-card .cc-stats { display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.7rem; color: var(--text-lighter); margin-bottom: 4px; }
+.pro-chapter-card .cc-stats .cc-stat { white-space: nowrap; }
+.pro-chapter-card .cc-stats .cc-stat.due { color: var(--accent); font-weight: 500; }
+.pro-chapter-card .cc-preview { font-size: 0.72rem; color: var(--text-lighter); line-height: 1.5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pro-chapter-card .cc-arrow { font-size: 1.1rem; color: var(--text-lighter); flex-shrink: 0; }
 
-.pro-point-item {
-  padding: 12px 14px;
+/* Point cards */
+.pro-point-card {
   background: var(--card);
-  border-radius: var(--radius-sm);
+  border-radius: 16px;
+  padding: 14px 16px;
   margin-bottom: 8px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.03);
   cursor: pointer;
   transition: transform 0.15s;
-}
-.pro-point-item:active { transform: scale(0.98); }
-.pro-point-item .pt-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
-.pro-point-item .pt-meta {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 4px;
+  align-items: center;
+  gap: 12px;
+}
+.pro-point-card:active { transform: scale(0.98); }
+.pro-point-card .pc-left { flex: 1; min-width: 0; }
+.pro-point-card .pc-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.pro-point-card .pc-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.pro-point-card .pc-tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 500;
+}
+.pc-tag-importance-high { background: #fce8e8; color: #b06060; }
+.pc-tag-importance-mid { background: #faf3e0; color: #a08848; }
+.pc-tag-exam { background: var(--primary-light); color: var(--primary); }
+.pc-tag-status-new { background: #e8e4ee; color: #8a80a0; }
+.pc-tag-status-vague { background: #f5e0e0; color: #a06868; }
+.pc-tag-status-basic { background: #d8e8f0; color: #5888a0; }
+.pc-tag-status-done { background: #d8f0e0; color: #589068; }
+.pro-point-card .pc-arrow { font-size: 1.1rem; color: var(--text-lighter); flex-shrink: 0; }
+
+/* Detail cards */
+.pro-detail-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.pro-detail-card .pd-label {
   font-size: 0.7rem;
   color: var(--text-lighter);
-}
-.pro-point-item .pt-tag {
-  padding: 1px 8px;
-  border-radius: 8px;
-  font-size: 0.68rem;
-}
-.pt-tag.high { background: #f5e0e0; color: #a06868; }
-.pt-tag.mid { background: #f5eed8; color: #a09058; }
-.pt-tag.due { background: var(--accent-light); color: var(--accent); }
-.pt-tag.done { background: var(--mint-light); color: #6b9b7e; }
-
-.pro-detail-section {
-  margin-bottom: 12px;
-}
-.pro-detail-label {
-  font-size: 0.72rem;
-  color: var(--text-lighter);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
-.pro-detail-content {
+.pro-detail-card .pd-text {
   font-size: 0.85rem;
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.75;
 }
-.pro-detail-list {
-  list-style: disc;
-  padding-left: 18px;
+.pro-detail-card .pd-list {
+  list-style: none;
+  padding: 0;
+}
+.pro-detail-card .pd-list li {
   font-size: 0.82rem;
   color: var(--text);
   line-height: 1.7;
+  padding: 4px 0 4px 16px;
+  position: relative;
 }
-.pro-detail-list li { margin-bottom: 2px; }
+.pro-detail-card .pd-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+.pro-detail-card.mistake { border-left: 3px solid var(--accent); }
+.pro-detail-card.mnemonic { border-left: 3px solid var(--primary); background: linear-gradient(135deg, #fff, var(--primary-light)); }
+.pro-detail-card.status-card { background: var(--bg); }
+
+/* Add-to-home tip */
+.home-tip-card {
+  background: linear-gradient(135deg, var(--primary-light), #f0e8f5);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+.home-tip-card .ht-title { font-weight: 600; margin-bottom: 4px; font-size: 0.85rem; }
+.home-tip-card .ht-platform { font-size: 0.72rem; color: var(--text-light); margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(0,0,0,0.06); }
 
 /* Empty state */
 .empty-state {
@@ -997,6 +1052,13 @@ body {
 
   <!-- ====== Page 4: 提醒 ====== -->
   <div class="page" id="page-reminders">
+    <!-- Add to home screen tip -->
+    <div class="home-tip-card" id="homeTipCard">
+      <div class="ht-title">添加到手机桌面</div>
+      <div style="font-size:0.78rem;color:var(--text-light);margin-bottom:4px">添加到主屏幕后，可以像 App 一样打开</div>
+      <div class="ht-platform" id="htPlatform"></div>
+    </div>
+
     <!-- 喝水提醒 -->
     <div class="card reminder-section">
       <div class="card-title"><span class="icon">💧</span>喝水提醒</div>
@@ -1321,7 +1383,7 @@ const App = {
 
   // ---- Professional Course Data ----
   _proData: null,
-  _proNavStack: [],  // Stack: [{view:'subjects'|'chapters'|'points'|'detail', ...}]
+  _proNavStack: [],
 
   getProReviewState() {
     return load('proReviewState') || {};
@@ -1342,7 +1404,6 @@ const App = {
         pharmacology: await pharmaResp.json(),
         pharmaceutics: await pharmaceuResp.json()
       };
-      // Index all knowledge points for quick lookup
       this._proPointIndex = {};
       for (const key of ['pharmacology', 'pharmaceutics']) {
         const data = this._proData[key];
@@ -1365,7 +1426,6 @@ const App = {
     const container = document.getElementById('proContent');
     const breadcrumb = document.getElementById('proBreadcrumb');
 
-    // If no nav stack, show subject selection
     if (this._proNavStack.length === 0) {
       container.innerHTML = '<div class="empty-state">加载中...</div>';
       breadcrumb.innerHTML = '';
@@ -1378,10 +1438,8 @@ const App = {
       return;
     }
 
-    // Restore view from stack
     const top = this._proNavStack[this._proNavStack.length - 1];
     this._renderProBreadcrumb();
-
     switch (top.view) {
       case 'subjects': this.showProSubjects(); break;
       case 'chapters': this.showProChapters(top.subject); break;
@@ -1393,38 +1451,30 @@ const App = {
   _renderProBreadcrumb() {
     const bc = document.getElementById('proBreadcrumb');
     if (this._proNavStack.length === 0) { bc.innerHTML = ''; return; }
-
     const top = this._proNavStack[this._proNavStack.length - 1];
     const parts = [];
     parts.push('<span onclick="App._proNavTo(0)">专业课</span>');
-
     if (top.view === 'chapters' || top.view === 'points' || top.view === 'detail') {
       parts.push('<span class="sep">›</span>');
-      const subjLabel = top.subject === 'pharmacology' ? '药理学' : '药剂学 / 工业药剂学';
+      const subjLabel = top.subject === 'pharmacology' ? '药理学' : '药剂学';
       parts.push('<span onclick="App._proNavTo(1)">' + subjLabel + '</span>');
     }
-
     if (top.view === 'points' || top.view === 'detail') {
       parts.push('<span class="sep">›</span>');
-      // Find chapter title
       const chTitle = this._findChapterTitle(top.subject, top.chapterId);
       parts.push('<span onclick="App._proNavTo(2)">' + (chTitle || '章节') + '</span>');
     }
-
     if (top.view === 'detail') {
       parts.push('<span class="sep">›</span>');
       const pt = this._proPointIndex && this._proPointIndex[top.pointId];
       parts.push('<span class="current">' + (pt ? pt.title : '知识点') + '</span>');
     }
-
     bc.innerHTML = parts.join('');
   },
 
   _proNavTo(level) {
-    // Truncate stack to given level
     this._proNavStack = this._proNavStack.slice(0, level + 1);
     const top = this._proNavStack[this._proNavStack.length - 1];
-    // Ensure top view is consistent
     if (level === 0) top.view = 'subjects';
     if (level === 1) top.view = 'chapters';
     if (level === 2) top.view = 'points';
@@ -1441,49 +1491,64 @@ const App = {
     return ch ? ch.title : '';
   },
 
+  _proChapterStats(chapters) {
+    const reviewState = this.getProReviewState();
+    const today = todayKey();
+    let total = 0, due = 0, done = 0;
+    for (const ch of chapters) {
+      for (const pt of (ch.knowledgePoints || [])) {
+        total++;
+        const rs = reviewState[pt.id];
+        const status = rs ? rs.status : (pt.status || '未学');
+        const nextDate = rs ? rs.nextReviewDate : (pt.nextReviewDate || '');
+        if (status === '已熟练' || status === '熟练') done++;
+        else if (nextDate && nextDate <= today) due++;
+      }
+    }
+    return { total, due, done };
+  },
+
   showProSubjects() {
     this._proNavStack = [{ view: 'subjects' }];
     this._renderProBreadcrumb();
     const container = document.getElementById('proContent');
-    const data = this._proData;
-    const reviewState = this.getProReviewState();
-    const today = todayKey();
 
-    const pharmaChapters = data.pharmacology.chapters || [];
-    const pharmaceuChapters = data.pharmaceutics.chapters || [];
-
-    const pharmaPoints = pharmaChapters.reduce((s, c) => s + (c.knowledgePoints || []).length, 0);
-    const pharmaceuPoints = pharmaceuChapters.reduce((s, c) => s + (c.knowledgePoints || []).length, 0);
-
-    // Count due points
-    const countDue = (chapters) => {
-      let due = 0;
-      for (const ch of chapters) {
-        for (const pt of (ch.knowledgePoints || [])) {
-          const rs = reviewState[pt.id];
-          const nextDate = rs ? rs.nextReviewDate : today;
-          const status = rs ? rs.status : '未学';
-          if (status !== '熟练' && nextDate <= today) due++;
-        }
-      }
-      return due;
-    };
-    const pharmaDue = countDue(pharmaChapters);
-    const pharmaceuDue = countDue(pharmaceuChapters);
+    const pharmaChs = (this._proData.pharmacology.chapters || []);
+    const pharmChs = (this._proData.pharmaceutics.chapters || []);
+    const ps = this._proChapterStats(pharmaChs);
+    const ms = this._proChapterStats(pharmChs);
 
     container.innerHTML = `
-      <div class="pro-subject-grid">
-        <div class="pro-subject-card pharma" onclick="App.showProChapters('pharmacology')">
-          <div class="pro-icon">💊</div>
-          <div class="pro-name">药理学</div>
-          <div class="pro-count">${pharmaChapters.length} 章 · ${pharmaPoints} 个知识点</div>
-          ${pharmaDue > 0 ? '<div class="pro-count" style="color:var(--accent)">' + pharmaDue + ' 个待复习</div>' : ''}
+      <div class="pro-home-cards">
+        <div class="pro-home-card pharma" onclick="App.showProChapters('pharmacology')">
+          <div class="ph-top">
+            <div class="ph-icon pharma">💊</div>
+            <div>
+              <div class="ph-title">药理学</div>
+              <div class="ph-subtitle">42 章 · 核心考点</div>
+            </div>
+          </div>
+          <div class="ph-desc">药代、药效、外周神经、中枢、心血管、抗菌、抗肿瘤等</div>
+          <div class="ph-stats">
+            <div class="ph-stat"><span class="ph-num">${ps.total}</span> 知识点</div>
+            <div class="ph-stat danger"><span class="ph-num">${ps.due}</span> 待复习</div>
+            <div class="ph-stat success"><span class="ph-num">${ps.done}</span> 已掌握</div>
+          </div>
         </div>
-        <div class="pro-subject-card pharmaceu" onclick="App.showProChapters('pharmaceutics')">
-          <div class="pro-icon">🧪</div>
-          <div class="pro-name">药剂学 / 工业药剂学</div>
-          <div class="pro-count">${pharmaceuChapters.length} 章 · ${pharmaceuPoints} 个知识点</div>
-          ${pharmaceuDue > 0 ? '<div class="pro-count" style="color:var(--accent)">' + pharmaceuDue + ' 个待复习</div>' : ''}
+        <div class="pro-home-card pharmaceu" onclick="App.showProChapters('pharmaceutics')">
+          <div class="ph-top">
+            <div class="ph-icon pharmaceu">🧪</div>
+            <div>
+              <div class="ph-title">药剂学 / 工业药剂学</div>
+              <div class="ph-subtitle">制剂理论 · 处方工艺 · 辅料专题</div>
+            </div>
+          </div>
+          <div class="ph-desc">液体制剂、片剂、注射剂、辅料、缓控释、处方设计等</div>
+          <div class="ph-stats">
+            <div class="ph-stat"><span class="ph-num">${ms.total}</span> 知识点</div>
+            <div class="ph-stat danger"><span class="ph-num">${ms.due}</span> 待复习</div>
+            <div class="ph-stat success"><span class="ph-num">${ms.done}</span> 已掌握</div>
+          </div>
         </div>
       </div>`;
   },
@@ -1500,29 +1565,38 @@ const App = {
       return;
     }
 
-    const subjLabel = subject === 'pharmacology' ? '药理学' : '药剂学 / 工业药剂学';
     const reviewState = this.getProReviewState();
     const today = todayKey();
 
     const items = chapters.map(ch => {
-      const ptCount = (ch.knowledgePoints || []).length;
-      let due = 0;
-      for (const pt of (ch.knowledgePoints || [])) {
+      const pts = ch.knowledgePoints || [];
+      let due = 0, done = 0;
+      for (const pt of pts) {
         const rs = reviewState[pt.id];
-        const nextDate = rs ? rs.nextReviewDate : today;
-        const status = rs ? rs.status : '未学';
-        if (status !== '熟练' && nextDate <= today) due++;
+        const st = rs ? rs.status : (pt.status || '未学');
+        const nd = rs ? rs.nextReviewDate : (pt.nextReviewDate || '');
+        if (st === '已熟练' || st === '熟练') done++;
+        else if (nd && nd <= today) due++;
       }
+      // Preview: up to 3 point titles
+      const preview = pts.slice(0, 3).map(p => this.escHtml(p.title)).join(' / ');
+
       return `
-        <li class="pro-chapter-item" onclick="App.showProPoints('${subject}', '${ch.id}')">
-          <span class="ch-title">${this.escHtml(ch.title)}</span>
-          <span class="ch-count">${ptCount} 点${due > 0 ? ' · <span style=\\"color:var(--accent)\\">' + due + ' 待复习</span>' : ''}</span>
-        </li>`;
+        <div class="pro-chapter-card" onclick="App.showProPoints('${subject}', '${ch.id}')">
+          <div class="cc-body">
+            <div class="cc-title">${this.escHtml(ch.title)}</div>
+            <div class="cc-stats">
+              <span class="cc-stat">${pts.length} 知识点</span>
+              ${due > 0 ? '<span class="cc-stat due">' + due + ' 待复习</span>' : ''}
+              ${done > 0 ? '<span class="cc-stat" style="color:var(--mint)">' + done + ' 已掌握</span>' : ''}
+            </div>
+            ${preview ? '<div class="cc-preview">' + preview + '</div>' : ''}
+          </div>
+          <span class="cc-arrow">›</span>
+        </div>`;
     }).join('');
 
-    container.innerHTML = `
-      <div style="font-size:0.8rem;color:var(--text-lighter);margin-bottom:10px">${subjLabel} — 共 ${chapters.length} 章</div>
-      <ul class="pro-chapter-list">${items}</ul>`;
+    container.innerHTML = items;
   },
 
   showProPoints(subject, chapterId) {
@@ -1542,49 +1616,54 @@ const App = {
     const today = todayKey();
     const points = ch.knowledgePoints || [];
 
+    const importanceClass = { '高频': 'pc-tag-importance-high', '重要': 'pc-tag-importance-mid' };
+    const statusLabels = { '未学': '未学', '仍然模糊': '模糊', '基本会了': '基本会', '已熟练': '熟练', '熟练': '熟练' };
+    const statusClass = { '未学': 'pc-tag-status-new', '仍然模糊': 'pc-tag-status-vague', '基本会了': 'pc-tag-status-basic', '已熟练': 'pc-tag-status-done', '熟练': 'pc-tag-status-done' };
+
     const items = points.map(pt => {
       const rs = reviewState[pt.id];
-      const status = rs ? rs.status : pt.status || '未学';
-      const nextDate = rs ? rs.nextReviewDate : '';
-      const isDue = status !== '熟练' && nextDate && nextDate <= today;
-      const tagClass = status === '熟练' ? 'done' : (isDue ? 'due' : (pt.importance === '高频' ? 'high' : 'mid'));
-      const tagLabel = status !== '未学' ? status : (isDue ? '待复习' : pt.importance);
+      const status = rs ? rs.status : (pt.status || '未学');
+      const nextDate = rs ? rs.nextReviewDate : (pt.nextReviewDate || '');
+      const isDue = (status !== '已熟练' && status !== '熟练') && nextDate && nextDate <= today;
+      const rCount = rs ? (rs.reviewCount || 0) : (pt.reviewCount || 0);
+      const showStatus = statusLabels[status] || '未学';
+
       return `
-        <div class="pro-point-item" onclick="App.showProDetail('${pt.id}')">
-          <div class="pt-title">${this.escHtml(pt.title)}</div>
-          <div class="pt-meta">
-            <span class="pt-tag ${tagClass}">${this.escHtml(tagLabel)}</span>
-            <span>${pt.examType || ''}</span>
+        <div class="pro-point-card" onclick="App.showProDetail('${pt.id}')">
+          <div class="pc-left">
+            <div class="pc-title">${this.escHtml(pt.title)}</div>
+            <div class="pc-tags">
+              <span class="pc-tag ${importanceClass[pt.importance] || 'pc-tag-importance-mid'}">${this.escHtml(pt.importance || '')}</span>
+              ${pt.examType ? pt.examType.split('/').slice(0,2).map(t => '<span class="pc-tag pc-tag-exam">' + this.escHtml(t.trim()) + '</span>').join('') : ''}
+              <span class="pc-tag ${statusClass[status] || 'pc-tag-status-new'}">${showStatus}</span>
+              ${rCount > 0 ? '<span style="font-size:0.66rem;color:var(--text-lighter)">复习' + rCount + '次</span>' : ''}
+              ${isDue ? '<span style="font-size:0.66rem;color:var(--accent);font-weight:500">待复习</span>' : ''}
+            </div>
           </div>
+          <span class="pc-arrow">›</span>
         </div>`;
     }).join('');
 
-    container.innerHTML = `
-      <div style="font-size:0.8rem;color:var(--text-lighter);margin-bottom:10px">${this.escHtml(ch.title)} — ${points.length} 个知识点</div>
-      ${items}`;
+    container.innerHTML = `<div style="font-size:0.78rem;color:var(--text-lighter);margin-bottom:8px">${this.escHtml(ch.title)} · ${points.length} 个知识点</div>${items}`;
   },
 
   showProDetail(pointId) {
-    this._proNavStack = [{ view: 'detail', pointId,
-      subject: this._proNavStack.length > 0 ? this._proNavStack[this._proNavStack.length-1].subject : '',
-      chapterId: this._proNavStack.length > 0 ? this._proNavStack[this._proNavStack.length-1].chapterId : ''
-    }];
-    // Try to get subject/chapter from index
     const pt = this._proPointIndex && this._proPointIndex[pointId];
+    let subject = '', chapterId = '';
     if (pt) {
-      const subjectKey = pt.subject === '药理学' ? 'pharmacology' : 'pharmaceutics';
-      // Find chapter
       const data = this._proData;
       for (const key of ['pharmacology', 'pharmaceutics']) {
         for (const ch of (data[key] && data[key].chapters || [])) {
           if (ch.knowledgePoints && ch.knowledgePoints.some(p => p.id === pointId)) {
-            this._proNavStack[0].subject = key;
-            this._proNavStack[0].chapterId = ch.id;
+            subject = key;
+            chapterId = ch.id;
             break;
           }
         }
+        if (subject) break;
       }
     }
+    this._proNavStack = [{ view: 'detail', pointId, subject, chapterId }];
     this._renderProBreadcrumb();
     this._renderProDetail(pointId);
   },
@@ -1599,65 +1678,72 @@ const App = {
 
     const reviewState = this.getProReviewState();
     const rs = reviewState[pointId];
-    const status = rs ? rs.status : pt.status || '未学';
+    const status = rs ? rs.status : (pt.status || '未学');
     const reviewCount = rs ? (rs.reviewCount || 0) : (pt.reviewCount || 0);
     const lastReviewDate = rs ? (rs.lastReviewDate || '') : (pt.lastReviewDate || '');
     const nextReviewDate = rs ? (rs.nextReviewDate || '') : (pt.nextReviewDate || '');
 
     const keyPointsHtml = (pt.keyPoints && pt.keyPoints.length > 0)
-      ? '<ul class="pro-detail-list">' + pt.keyPoints.map(k => '<li>' + this.escHtml(k) + '</li>').join('') + '</ul>'
+      ? `<div class="pro-detail-card">
+           <div class="pd-label">关键要点</div>
+           <ul class="pd-list">${pt.keyPoints.map(k => '<li>' + this.escHtml(k) + '</li>').join('')}</ul>
+         </div>`
       : '';
 
+    const mistakesHtml = pt.mistakes
+      ? `<div class="pro-detail-card mistake">
+           <div class="pd-label">常见错误</div>
+           <div class="pd-text" style="color:var(--accent)">${this.escHtml(pt.mistakes)}</div>
+         </div>`
+      : '';
+
+    const mnemonicHtml = pt.mnemonic
+      ? `<div class="pro-detail-card mnemonic">
+           <div class="pd-label">记忆口诀</div>
+           <div class="pd-text" style="font-weight:500">${this.escHtml(pt.mnemonic)}</div>
+         </div>`
+      : '';
+
+    const statusLabel = status === '已熟练' ? '已掌握' : (status === '基本会了' ? '基本掌握' : status);
+
     container.innerHTML = `
-      <div class="card">
-        <div class="pro-detail-section">
-          <div class="pro-detail-label">知识点</div>
-          <div class="pro-detail-content" style="font-size:1rem;font-weight:600;color:var(--text)">${this.escHtml(pt.title)}</div>
+      <div class="pro-detail-card">
+        <div style="font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:8px">${this.escHtml(pt.title)}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:0.75rem">
+          <span style="color:var(--text-light)">${this.escHtml(pt.examType || '')}</span>
+          <span style="color:var(--primary);font-weight:500">${this.escHtml(pt.importance || '')}</span>
         </div>
+      </div>
 
-        <div class="pro-detail-section">
-          <div class="pro-detail-label">考查形式</div>
-          <div class="pro-detail-content">${this.escHtml(pt.examType || '')}</div>
+      <div class="pro-detail-card">
+        <div class="pd-label">核心内容</div>
+        <div class="pd-text">${this.escHtml(pt.content || '')}</div>
+      </div>
+
+      ${keyPointsHtml}
+      ${mistakesHtml}
+      ${mnemonicHtml}
+
+      <div class="pro-detail-card status-card">
+        <div class="pd-label">学习状态</div>
+        <div class="pd-text">
+          当前状态：<strong style="color:var(--primary)">${this.escHtml(statusLabel)}</strong><br>
+          已复习 <strong>${reviewCount}</strong> 次 ·
+          上次复习：${lastReviewDate || '尚未复习'}<br>
+          下次复习：${nextReviewDate || '今天'}
         </div>
+      </div>
 
-        <div class="pro-detail-section">
-          <div class="pro-detail-label">重要程度</div>
-          <div class="pro-detail-content">${this.escHtml(pt.importance || '')}</div>
-        </div>
-
-        <div class="pro-detail-section">
-          <div class="pro-detail-label">核心内容</div>
-          <div class="pro-detail-content">${this.escHtml(pt.content || '')}</div>
-        </div>
-
-        ${keyPointsHtml ? '<div class="pro-detail-section"><div class="pro-detail-label">关键要点</div>' + keyPointsHtml + '</div>' : ''}
-
-        ${pt.mistakes ? '<div class="pro-detail-section"><div class="pro-detail-label">常见错误</div><div class="pro-detail-content" style="color:var(--accent)">' + this.escHtml(pt.mistakes) + '</div></div>' : ''}
-
-        ${pt.mnemonic ? '<div class="pro-detail-section"><div class="pro-detail-label">记忆口诀</div><div class="pro-detail-content" style="color:var(--primary)">' + this.escHtml(pt.mnemonic) + '</div></div>' : ''}
-
-        <div class="pro-detail-section" style="margin-top:14px">
-          <div class="pro-detail-label">学习状态</div>
-          <div class="pro-detail-content">
-            状态：<strong>${this.escHtml(status)}</strong> ·
-            已复习 <strong>${reviewCount}</strong> 次 ·
-            上次：${lastReviewDate || '-'} ·
-            下次：${nextReviewDate || '-'}
-          </div>
-        </div>
-
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
-          <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.markProPoint('${pointId}', '仍然模糊')">仍然模糊</button>
-          <button class="btn btn-sm" style="background:#d8e8f0;color:#5888a0" onclick="App.markProPoint('${pointId}', '基本会了')">基本会了</button>
-          <button class="btn btn-sm" style="background:#d8f0e0;color:#589068" onclick="App.markProPoint('${pointId}', '已熟练')">已熟练</button>
-        </div>
+      <div style="display:flex;gap:8px;margin-top:8px;margin-bottom:20px">
+        <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868;flex:1" onclick="App.markProPoint('${pointId}', '仍然模糊')">仍然模糊</button>
+        <button class="btn btn-sm" style="background:#d8e8f0;color:#5888a0;flex:1" onclick="App.markProPoint('${pointId}', '基本会了')">基本会了</button>
+        <button class="btn btn-sm" style="background:#d8f0e0;color:#589068;flex:1" onclick="App.markProPoint('${pointId}', '已熟练')">已熟练</button>
       </div>`;
   },
 
   markProPoint(pointId, status) {
     const reviewState = this.getProReviewState();
     const today = todayKey();
-    const now = new Date().toISOString();
 
     const schedule = { '仍然模糊': 1, '基本会了': 7, '已熟练': 30 };
     const days = schedule[status] || 3;
@@ -1674,7 +1760,6 @@ const App = {
 
     this.saveProReviewState(reviewState);
 
-    // Also increment today's pro review count
     const proCount = load('proReviewCount') || {};
     proCount[today] = (proCount[today] || 0) + 1;
     save('proReviewCount', proCount);
@@ -2633,6 +2718,24 @@ const App = {
 
     this.renderWaterDots();
     this.renderPeriodPredict();
+    this.renderHomeTip();
+  },
+
+  renderHomeTip() {
+    const el = document.getElementById('htPlatform');
+    if (!el) return;
+    const ua = navigator.userAgent.toLowerCase();
+    let msg = '';
+    if (ua.includes('iphone') || ua.includes('ipad')) {
+      msg = 'Safari 浏览器：点击底部 <strong>分享按钮</strong> → <strong>添加到主屏幕</strong>';
+    } else if (ua.includes('android')) {
+      msg = 'Chrome 浏览器：点击右上角 <strong>⋮</strong> → <strong>添加到主屏幕</strong>';
+    } else if (ua.includes('micromessenger') || ua.includes('qq/')) {
+      msg = '微信/QQ 内置浏览器不支持直接添加。<br>请点击右上角 <strong>···</strong>，选择<strong>在浏览器中打开</strong>后再添加';
+    } else {
+      msg = '在手机浏览器中打开此页面，即可添加到主屏幕';
+    }
+    el.innerHTML = msg;
   },
 
   renderWaterDots() {

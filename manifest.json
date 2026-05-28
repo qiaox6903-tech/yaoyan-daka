@@ -1,17 +1,25 @@
 {
   "name": "药研陪伴打卡",
   "short_name": "药研打卡",
-  "description": "药学考研陪伴打卡 — 学习计时、单词背诵、健康提醒",
+  "description": "药学考研陪伴打卡 — 学习计时、单词背诵、健康提醒 PWA",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#9b8ea8",
   "background_color": "#faf7f4",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%239b8ea8'/%3E%3Ccircle cx='70' cy='96' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='42' y='78' width='56' height='36' rx='18' fill='%23ffffff33'/%3E%3Crect x='100' y='78' width='56' height='36' rx='18' fill='%23ffffff33'/%3E%3Ccircle cx='128' cy='96' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Ctext x='96' y='155' text-anchor='middle' font-size='24' fill='white' font-family='system-ui'%3E药学%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%239b8ea8'/%3E%3Ccircle cx='180' cy='240' r='70' fill='none' stroke='white' stroke-width='12'/%3E%3Crect x='110' y='195' width='140' height='90' rx='45' fill='%23ffffff33'/%3E%3Crect x='260' y='195' width='140' height='90' rx='45' fill='%23ffffff33'/%3E%3Ccircle cx='330' cy='240' r='70' fill='none' stroke='white' stroke-width='12'/%3E%3Ctext x='256' y='370' text-anchor='middle' font-size='56' fill='white' font-family='system-ui'%3E药学%3C/text%3E%3Ctext x='256' y='430' text-anchor='middle' font-size='32' fill='white' opacity='0.7' font-family='system-ui'%3E陪伴打卡%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "categories": ["education", "health", "productivity"]
