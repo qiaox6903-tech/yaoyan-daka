@@ -1,0 +1,10 @@
+# PDF files (too large for git)
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+/tmp/

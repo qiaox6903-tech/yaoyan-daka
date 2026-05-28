@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>药研陪伴打卡</title>
+<meta name="theme-color" content="#9b8ea8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="药研打卡">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+<style>
+/* ===== CSS Variables & Reset ===== */
+:root {
+  --bg: #faf7f4;
+  --card: #ffffff;
+  --primary: #9b8ea8;
+  --primary-light: #e8e0f0;
+  --accent: #c9a9a9;
+  --accent-light: #f5e8e8;
+  --mint: #a8c8b8;
+  --mint-light: #e0f0e8;
+  --text: #5a5560;
+  --text-light: #8a8590;
+  --text-lighter: #b0aab5;
+  --border: #ede8e4;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --nav-height: 68px;
+  --header-height: 56px;
+  --max-width: 520px;
+  --danger: #d4a0a0;
+  --warning: #d4c0a0;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+.app {
+  width: 100%;
+  max-width: var(--max-width);
+  min-height: 100vh;
+  padding-bottom: var(--nav-height);
+  position: relative;
+}
+
+/* ===== Header ===== */
+.header {
+  padding: 16px 20px 8px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+}
+.header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+.header .subtitle {
+  font-size: 0.75rem;
+  color: var(--text-lighter);
+}
+
+/* ===== Page Sections ===== */
+.page {
+  display: none;
+  padding: 0 16px;
+  animation: fadeIn 0.25s ease;
+}
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Bottom Nav ===== */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  height: var(--nav-height);
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-lighter);
+  transition: color 0.2s;
+  font-size: 0.68rem;
+  gap: 3px;
+  border: none;
+  background: none;
+  font-family: var(--font);
+}
+.nav-item .nav-icon { font-size: 1.3rem; }
+.nav-item.active { color: var(--primary); font-weight: 600; }
+
+/* ===== Cards ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.card-title .icon { font-size: 1.1rem; }
+
+/* ===== Today Page ===== */
+.date-display {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.date-display .date-main {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.date-display .date-weekday {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.countdown {
+  text-align: center;
+  padding: 10px 0;
+}
+.countdown .days {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+.countdown .label {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+.encouragement {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 10px 0;
+  font-style: italic;
+}
+
+.progress-bar-wrap {
+  background: var(--border);
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+  margin: 8px 0 4px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), var(--primary));
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+.progress-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  text-align: right;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.stat-item {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+.stat-item .val {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.stat-item .lbl {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+.stat-item.water .val { color: #7ba4b8; }
+.stat-item.break .val { color: var(--mint); }
+
+.todo-list { list-style: none; }
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.todo-item:last-child { border-bottom: none; }
+.todo-item.done .todo-text { text-decoration: line-through; color: var(--text-lighter); }
+.todo-check {
+  width: 22px; height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  background: none;
+  font-size: 0.8rem;
+  color: transparent;
+}
+.todo-item.done .todo-check {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: #fff;
+}
+.todo-text { flex:1; font-size: 0.85rem; }
+.todo-del {
+  background: none; border: none;
+  color: var(--text-lighter);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: none;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.btn:active { transform: scale(0.96); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-mint { background: var(--mint); color: #fff; }
+.btn-outline { background: none; border: 1.5px solid var(--primary); color: var(--primary); }
+.btn-sm { padding: 6px 14px; font-size: 0.75rem; border-radius: 16px; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-block { width: 100%; }
+
+/* ===== Timer ===== */
+.timer-display {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  padding: 16px 0;
+}
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.subject-select {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.subject-chip {
+  padding: 6px 16px;
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--font);
+  color: var(--text);
+  transition: all 0.2s;
+}
+.subject-chip.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ===== Study Records ===== */
+.record-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+.record-item:last-child { border-bottom: none; }
+.record-subject {
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.record-subject.pharmacology { background: var(--primary-light); color: var(--primary); }
+.record-subject.pharmaceutics { background: var(--mint-light); color: #6b9b7e; }
+.record-subject.english { background: #e0e8f5; color: #6b7ea0; }
+.record-subject.politics { background: #f5e0e0; color: #a06b6b; }
+.record-subject.other { background: var(--border); color: var(--text-light); }
+.record-info { flex:1; min-width: 0; }
+.record-time { color: var(--text-light); font-size: 0.72rem; }
+.record-dur { font-weight: 600; color: var(--text); flex-shrink: 0; }
+.record-del {
+  background: none; border: none;
+  color: var(--text-lighter);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+}
+
+/* ===== Memo Cards ===== */
+.filter-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.filter-chip {
+  padding: 5px 12px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: var(--font);
+  color: var(--text);
+  transition: all 0.2s;
+}
+.filter-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.memo-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary);
+  position: relative;
+}
+.memo-card.review-due { border-left-color: var(--accent); background: var(--accent-light); }
+.memo-card .memo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+.memo-card .memo-title { font-weight: 600; font-size: 0.9rem; }
+.memo-card .memo-subject {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.memo-card .memo-content {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin: 8px 0;
+  line-height: 1.5;
+}
+.memo-card .memo-meta {
+  font-size: 0.7rem;
+  color: var(--text-lighter);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.memo-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+.memo-status.none { background: #f0e0e0; color: #a06868; }
+.memo-status.vague { background: #f5eed8; color: #a09058; }
+.memo-status.basic { background: #d8e8f0; color: #5888a0; }
+.memo-status.mastered { background: #d8f0e0; color: #589068; }
+
+/* ===== Word Management Buttons ===== */
+.word-toolbar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.word-toolbar .btn { font-size: 0.72rem; padding: 5px 12px; border-radius: 14px; }
+
+/* ===== Import Preview ===== */
+.import-preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  margin: 10px 0;
+}
+.import-preview-table th, .import-preview-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.import-preview-table th {
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+.import-preview-table td { color: var(--text); }
+.import-summary {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin: 10px 0;
+}
+.import-summary strong { color: var(--primary); }
+
+/* ===== Word Flip Cards ===== */
+.word-count-bar {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+.word-count-bar strong { color: var(--primary); font-size: 1.2rem; }
+
+.flip-container {
+  perspective: 800px;
+  height: 220px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+.flip-inner.flipped { transform: rotateY(180deg); }
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+.flip-back {
+  transform: rotateY(180deg);
+  background: var(--primary-light);
+}
+.flip-front .word-en { font-size: 1.8rem; font-weight: 700; color: var(--text); }
+.flip-front .word-phonetic { font-size: 0.85rem; color: var(--text-light); margin: 4px 0; }
+.flip-front .word-pos { font-size: 0.85rem; color: var(--primary); margin: 4px 0; font-weight: 500; }
+.flip-front .word-meta { font-size: 0.72rem; color: var(--text-lighter); margin-top: 6px; }
+.flip-back .word-zh { font-size: 1.15rem; font-weight: 600; color: var(--text); line-height: 1.6; }
+.flip-back .word-example { font-size: 0.82rem; color: var(--text-light); margin-top: 8px; line-height: 1.5; }
+.flip-back .word-source { font-size: 0.72rem; color: var(--text-lighter); margin-top: 10px; }
+
+.word-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.word-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 10px 0;
+}
+
+/* ===== Reminder Page ===== */
+.reminder-section { margin-bottom: 20px; }
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.setting-row label { font-size: 0.85rem; }
+.setting-row input[type="number"] {
+  width: 70px;
+  padding: 6px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-family: var(--font);
+  color: var(--text);
+}
+.setting-row input[type="date"] {
+  padding: 6px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  color: var(--text);
+}
+.water-progress {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.water-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.water-dot.filled { background: #7ba4b8; }
+
+.period-predict {
+  background: var(--accent-light);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+.period-predict .next-date {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.period-warning {
+  color: var(--accent);
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toggle {
+  width: 48px; height: 28px;
+  background: var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+  border: none;
+}
+.toggle.on { background: var(--mint); }
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 22px; height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: left 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.toggle.on::after { left: 23px; }
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+.modal {
+  background: var(--card);
+  border-radius: var(--radius) var(--radius) 0 0;
+  width: 100%;
+  max-width: var(--max-width);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal h3 { font-size: 1rem; margin-bottom: 14px; color: var(--primary); }
+.modal .form-group { margin-bottom: 12px; }
+.modal label { display: block; font-size: 0.8rem; color: var(--text-light); margin-bottom: 4px; }
+.modal input, .modal select, .modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  resize: vertical;
+}
+.modal textarea { min-height: 60px; }
+.modal .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 300;
+  animation: toastIn 0.3s ease, toastOut 0.3s ease 1.7s forwards;
+  pointer-events: none;
+}
+@keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(-10px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+@keyframes toastOut { from { opacity:1; } to { opacity:0; } }
+
+/* ===== Reminder Toast ===== */
+.reminder-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card);
+  padding: 28px 24px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  z-index: 250;
+  text-align: center;
+  max-width: 320px;
+  animation: fadeIn 0.3s ease;
+}
+.reminder-toast .reminder-emoji { font-size: 2.5rem; margin-bottom: 10px; }
+.reminder-toast .reminder-msg { font-size: 0.95rem; color: var(--text); line-height: 1.6; }
+.reminder-toast .reminder-close {
+  margin-top: 14px;
+  padding: 8px 28px;
+  border-radius: 20px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+/* ===== Settings Gear ===== */
+.settings-trigger {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 50;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-lighter);
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (min-width: 521px) {
+  .app { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+  .modal { border-radius: var(--radius); }
+}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+  <!-- Header -->
+  <div class="header">
+    <h1>药研陪伴打卡</h1>
+    <div class="subtitle" id="pageTitle">今日</div>
+  </div>
+
+  <!-- ====== Page 0: 今日 ====== -->
+  <div class="page active" id="page-today">
+    <div class="date-display">
+      <div class="date-main" id="todayDate"></div>
+      <div class="date-weekday" id="todayWeekday"></div>
+    </div>
+    <div class="countdown card">
+      <div class="days" id="countdownDays">--</div>
+      <div class="label">距离考研还有</div>
+    </div>
+    <div class="encouragement" id="encouragement"></div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>今日学习完成度</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📝</span>今日数据</div>
+      <div class="stat-grid">
+        <div class="stat-item"><div class="val" id="statPharma">0h</div><div class="lbl">药理学</div></div>
+        <div class="stat-item"><div class="val" id="statPharmaceut">0h</div><div class="lbl">药剂学</div></div>
+        <div class="stat-item"><div class="val" id="statWords">0</div><div class="lbl">英语单词</div></div>
+        <div class="stat-item water"><div class="val" id="statWater">0</div><div class="lbl">今日喝水 / 杯</div></div>
+        <div class="stat-item break"><div class="val" id="statBreak">0</div><div class="lbl">今日休息 / 次</div></div>
+        <div class="stat-item"><div class="val" id="statMemoReview">0</div><div class="lbl">待复习卡片</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">✅</span>今日待办</div>
+      <ul class="todo-list" id="todoList"></ul>
+      <div style="display:flex;gap:6px;margin-top:10px">
+        <input type="text" id="todoInput" placeholder="添加待办..." style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:0.82rem;font-family:var(--font);background:var(--bg);">
+        <button class="btn btn-primary btn-sm" onclick="App.addTodo()">添加</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Page 1: 学习 ====== -->
+  <div class="page" id="page-study">
+    <div class="card">
+      <div class="card-title"><span class="icon">⏱️</span>学习计时</div>
+      <div class="subject-select" id="subjectSelect">
+        <button class="subject-chip" data-subject="药理学">药理学</button>
+        <button class="subject-chip" data-subject="药剂学">药剂学</button>
+        <button class="subject-chip" data-subject="英语">英语</button>
+        <button class="subject-chip" data-subject="政治">政治</button>
+        <button class="subject-chip" data-subject="其他">其他</button>
+      </div>
+      <div class="timer-display" id="timerDisplay">00:00:00</div>
+      <div class="timer-controls">
+        <button class="btn btn-primary" id="btnTimerStart" onclick="App.startTimer()">开始</button>
+        <button class="btn btn-outline" id="btnTimerPause" onclick="App.pauseTimer()" style="display:none">暂停</button>
+        <button class="btn btn-accent" id="btnTimerStop" onclick="App.stopTimer()" style="display:none">结束</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span>今日学习记录</div>
+      <div id="studyRecords"><div class="empty-state">还没有学习记录<br>开始计时吧 ✨</div></div>
+      <button class="btn btn-outline btn-sm" style="margin-top:10px" onclick="App.showManualRecord()">+ 手动添加</button>
+    </div>
+  </div>
+
+  <!-- ====== Page 2: 背诵 ====== -->
+  <div class="page" id="page-memo">
+    <div class="card" id="dueReviewCard" style="display:none;background:var(--accent-light);border:1.5px solid var(--accent)">
+      <div class="card-title"><span class="icon">🔔</span>今日待复习 (<span id="dueReviewCount">0</span>)</div>
+      <div id="dueReviewList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🗂️</span>背诵卡片</div>
+      <div class="filter-row" id="memoFilterStatus">
+        <button class="filter-chip active" data-status="all">全部</button>
+        <button class="filter-chip" data-status="未背">未背</button>
+        <button class="filter-chip" data-status="模糊">模糊</button>
+        <button class="filter-chip" data-status="基本会">基本会</button>
+        <button class="filter-chip" data-status="熟练">熟练</button>
+      </div>
+      <div class="filter-row" id="memoFilterSubject">
+        <button class="filter-chip active" data-subject="all">全部科目</button>
+        <button class="filter-chip" data-subject="药理学">药理学</button>
+        <button class="filter-chip" data-subject="药剂学">药剂学</button>
+      </div>
+      <div id="memoCardList"><div class="empty-state">还没有背诵卡片<br>点击下方按钮添加</div></div>
+      <button class="btn btn-primary btn-block" style="margin-top:10px" onclick="App.showMemoForm()">+ 添加背诵卡片</button>
+    </div>
+  </div>
+
+  <!-- ====== Page 3: 单词 ====== -->
+  <div class="page" id="page-words">
+    <div class="word-count-bar" id="wordCountBar">词库 <strong>0</strong> 词 · 今日已背 <strong>0</strong> 词 · 待复习 <strong>0</strong> 词</div>
+
+    <div class="flip-container" id="flipContainer" onclick="App.flipWordCard()" style="display:none">
+      <div class="flip-inner" id="flipInner">
+        <div class="flip-front">
+          <div class="word-en" id="wordEn">--</div>
+          <div class="word-pos" id="wordPos"></div>
+          <div class="word-meta" id="wordMeta"></div>
+        </div>
+        <div class="flip-back">
+          <div class="word-zh" id="wordZh">--</div>
+          <div class="word-source" id="wordSource"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="word-actions" id="wordActions" style="display:none">
+      <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.rateWord('不认识')">不认识</button>
+      <button class="btn btn-sm" style="background:#f5eed8;color:#a09058" onclick="App.rateWord('模糊')">模糊</button>
+      <button class="btn btn-sm" style="background:#d8e8f0;color:#5888a0" onclick="App.rateWord('认识')">认识</button>
+      <button class="btn btn-sm" style="background:#d8f0e0;color:#589068" onclick="App.rateWord('熟练')">熟练</button>
+    </div>
+
+    <div class="word-nav" id="wordNav" style="display:none">
+      <button class="btn btn-outline btn-sm" onclick="App.prevWord()">上一个</button>
+      <span style="font-size:0.8rem;color:var(--text-light)" id="wordIndexText"></span>
+      <button class="btn btn-outline btn-sm" onclick="App.nextWord()">下一个</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔤</span>单词管理</div>
+      <div class="word-toolbar">
+        <button class="btn btn-primary btn-sm" onclick="App.importFromRedbook()">导入红宝书词库</button>
+        <button class="btn btn-outline btn-sm" onclick="App.importLocalJSON()">导入本地 JSON</button>
+        <button class="btn btn-outline btn-sm" onclick="App.exportWords()">导出当前词库</button>
+        <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.clearWords()">清空词库</button>
+      </div>
+      <div class="filter-row" id="wordFilter">
+        <button class="filter-chip active" data-familiarity="all">全部</button>
+        <button class="filter-chip" data-familiarity="不认识">不认识</button>
+        <button class="filter-chip" data-familiarity="模糊">模糊</button>
+        <button class="filter-chip" data-familiarity="认识">认识</button>
+        <button class="filter-chip" data-familiarity="熟练">熟练</button>
+        <button class="filter-chip" data-familiarity="due">今日待复习</button>
+      </div>
+      <button class="btn btn-accent btn-sm" onclick="App.randomWord()">🎲 随机抽查</button>
+      <button class="btn btn-primary btn-block" style="margin-top:10px" onclick="App.showWordForm()">+ 手动添加单词</button>
+    </div>
+  </div>
+
+  <!-- ====== Page 4: 提醒 ====== -->
+  <div class="page" id="page-reminders">
+    <!-- 喝水提醒 -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">💧</span>喝水提醒</div>
+      <div class="setting-row">
+        <label>每日目标</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="waterGoal" value="8" min="1" max="20" onchange="App.updateWaterGoal()">
+          <span style="font-size:0.8rem;color:var(--text-light)">杯</span>
+        </div>
+      </div>
+      <div class="water-progress" id="waterDots"></div>
+      <div style="text-align:center;font-size:0.85rem;color:var(--text-light);margin:6px 0" id="waterText"></div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button class="btn btn-primary" onclick="App.addWater()">💧 喝了一杯</button>
+        <button class="btn btn-outline btn-sm" onclick="App.resetWater()">重置</button>
+      </div>
+    </div>
+
+    <!-- 久坐休息提醒 -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">🧘</span>久坐休息提醒</div>
+      <div class="setting-row">
+        <label>学习多久提醒休息</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="studyReminder" value="45" min="10" max="120" onchange="App.updateReminderSetting()">
+          <span style="font-size:0.8rem;color:var(--text-light)">分钟</span>
+        </div>
+      </div>
+      <div class="setting-row">
+        <label>久坐提醒站立活动</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="sedentaryReminder" value="60" min="15" max="180" onchange="App.updateReminderSetting()">
+          <span style="font-size:0.8rem;color:var(--text-light)">分钟</span>
+        </div>
+      </div>
+      <div class="setting-row">
+        <label>开启提醒</label>
+        <button class="toggle on" id="toggleReminders" onclick="App.toggleReminders()"></button>
+      </div>
+      <div style="text-align:center;font-size:0.78rem;color:var(--text-lighter)">
+        提醒会在页面内温柔弹出，不会打扰你
+      </div>
+    </div>
+
+    <!-- 生理期提醒 -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">🌸</span>生理期提醒</div>
+      <div style="font-size:0.75rem;color:var(--text-lighter);margin-bottom:8px">
+        数据仅保存在本地浏览器，不上传任何隐私信息。本功能仅做生活提醒，不提供医学诊断。
+      </div>
+      <div class="setting-row">
+        <label>上次开始日期</label>
+        <input type="date" id="periodLastStart" onchange="App.updatePeriod()">
+      </div>
+      <div class="setting-row">
+        <label>平均周期</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="periodCycle" value="28" min="20" max="45" onchange="App.updatePeriod()">
+          <span style="font-size:0.8rem;color:var(--text-light)">天</span>
+        </div>
+      </div>
+      <div class="setting-row">
+        <label>持续天数</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="number" id="periodDuration" value="5" min="2" max="10" onchange="App.updatePeriod()">
+          <span style="font-size:0.8rem;color:var(--text-light)">天</span>
+        </div>
+      </div>
+      <div class="period-predict" id="periodPredict"></div>
+    </div>
+  </div>
+
+  <!-- ====== Bottom Nav ====== -->
+  <nav class="nav">
+    <button class="nav-item active" data-tab="0">
+      <span class="nav-icon">🏠</span>今日
+    </button>
+    <button class="nav-item" data-tab="1">
+      <span class="nav-icon">📚</span>学习
+    </button>
+    <button class="nav-item" data-tab="2">
+      <span class="nav-icon">🧠</span>背诵
+    </button>
+    <button class="nav-item" data-tab="3">
+      <span class="nav-icon">🔤</span>单词
+    </button>
+    <button class="nav-item" data-tab="4">
+      <span class="nav-icon">🔔</span>提醒
+    </button>
+  </nav>
+
+  <!-- Settings button -->
+  <button class="settings-trigger" onclick="App.showSettings()" title="设置">⚙️</button>
+
+  <!-- Modal container -->
+  <div id="modalContainer"></div>
+
+  <!-- Reminder toast container -->
+  <div id="reminderToastContainer"></div>
+</div>
+
+<script>
+// ===========================
+// 药研陪伴打卡 — App Logic
+// ===========================
+
+const STORAGE_KEY = 'yaoyan_daka_';
+
+// Default settings
+const DEFAULTS = {
+  examDate: '2026-12-20',
+  waterGoal: 8,
+  studyReminderMinutes: 45,
+  sedentaryReminderMinutes: 60,
+  remindersEnabled: true,
+  periodLastStart: '',
+  periodCycle: 28,
+  periodDuration: 5
+};
+
+// Encouragement messages
+const ENCOURAGEMENTS = [
+  '每一步都算数，慢慢来 ✨',
+  '药学生的坚持，真的很酷',
+  '今天的努力是明天的底气',
+  '累了就休息一下，没关系的',
+  '你已经比昨天更厉害了',
+  '专心当下，未来自然会来',
+  '学习是给自己的礼物',
+  '做自己最好的陪伴者',
+  '每一个认真背书的夜晚都值得',
+  '药理药剂，都会拿下的',
+  '保持自己的节奏就好',
+  '今天的你也辛苦啦'
+];
+
+// ===========================
+// Data helpers
+// ===========================
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function load(key) {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY + key)); } catch(e) { return null; }
+}
+function save(key, val) {
+  localStorage.setItem(STORAGE_KEY + key, JSON.stringify(val));
+}
+
+// Settings
+function getSettings() {
+  const s = load('settings') || {};
+  return Object.assign({}, DEFAULTS, s);
+}
+function saveSettings(s) {
+  save('settings', s);
+}
+
+// Study records: array of {id, subject, startTime, endTime, duration, note, date}
+function getStudyRecords() {
+  return load('studyRecords') || [];
+}
+function saveStudyRecords(records) {
+  save('studyRecords', records);
+}
+
+// Memo cards: array of {id, title, subject, content, status, firstDate, reviewDates, lastReviewed, notes}
+function getMemoCards() {
+  return load('memoCards') || [];
+}
+function saveMemoCards(cards) {
+  save('memoCards', cards);
+}
+
+// Word cards: array of {id, word, phonetic, pos, meaning, example, book, category, unit, page, originalIndex, status, reviewCount, lastReviewDate, nextReviewDate, createdAt, source}
+function getWordCards() {
+  return load('wordCards') || [];
+}
+function saveWordCards(cards) {
+  save('wordCards', cards);
+}
+
+// Water: {date: count}
+function getWater() {
+  return load('water') || {};
+}
+function saveWater(w) {
+  save('water', w);
+}
+
+// Breaks: {date: count}
+function getBreaks() {
+  return load('breaks') || {};
+}
+function saveBreaks(b) {
+  save('breaks', b);
+}
+
+// Todos: array of {id, text, done, date}
+function getTodos() {
+  return load('todos') || [];
+}
+function saveTodos(todos) {
+  save('todos', todos);
+}
+
+// Word study count for today
+function getWordStudyCount() {
+  return load('wordStudyCount') || {};
+}
+function saveWordStudyCount(c) {
+  save('wordStudyCount', c);
+}
+
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+// ===========================
+// App Controller
+// ===========================
+const App = {
+  currentTab: 0,
+  timerInterval: null,
+  timerSeconds: 0,
+  timerSubject: '',
+  timerRunning: false,
+  timerPaused: false,
+  currentWordIndex: -1,
+  currentWordFilter: 'all',
+  reminderCheckInterval: null,
+  lastBreakTime: null,
+  lastSedentaryTime: null,
+
+  init() {
+    this.lastBreakTime = new Date();
+    this.lastSedentaryTime = new Date();
+    this.bindNav();
+    this.bindSubjectChips();
+    this.renderToday();
+    this.renderStudyRecords();
+    this.renderMemoCards();
+    this.initWordView();
+    this.renderReminders();
+    this.startReminderChecker();
+    // Refresh today every minute for timer displays
+    setInterval(() => {
+      if (this.currentTab === 0) this.renderToday();
+    }, 60000);
+    // Auto-import redbook on first visit
+    this.initAutoImport();
+  },
+
+  // ---- Auto-import redbook on first load ----
+  async initAutoImport() {
+    // Check if already imported
+    const alreadyImported = localStorage.getItem(STORAGE_KEY + 'redbookAutoImported');
+    const existingCards = getWordCards();
+    if (alreadyImported === 'true' || existingCards.length > 0) {
+      // Already imported, refresh views
+      this.initWordView();
+      this.renderToday();
+      return;
+    }
+
+    // Try to fetch and auto-import
+    try {
+      const resp = await fetch('./data/words.json');
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const rawWords = await resp.json();
+      if (!Array.isArray(rawWords) || rawWords.length === 0) return;
+
+      const existingSet = new Set();
+      const cards = [];
+      const today = todayKey();
+      const now = new Date().toISOString();
+
+      for (const rw of rawWords) {
+        const w = rw.word.toLowerCase();
+        if (existingSet.has(w)) continue;
+        existingSet.add(w);
+        const extracted = this.extractPos(rw.meaning);
+        cards.push({
+          id: uid(),
+          word: rw.word,
+          phonetic: '',
+          pos: extracted.pos,
+          meaning: extracted.meaning,
+          example: '',
+          book: '红宝书',
+          category: '考研英语词汇',
+          unit: 'Page ' + rw.page,
+          page: rw.page,
+          originalIndex: rw.index,
+          status: '不认识',
+          reviewCount: 0,
+          lastReviewDate: '',
+          nextReviewDate: today,
+          createdAt: now,
+          source: 'redbook-json'
+        });
+      }
+
+      saveWordCards(cards);
+      localStorage.setItem(STORAGE_KEY + 'redbookAutoImported', 'true');
+      this.initWordView();
+      this.renderToday();
+      this.toast('红宝书词库已准备好，共导入 ' + cards.length + ' 词');
+    } catch (err) {
+      // Auto-import failed — don't break anything
+      console.warn('Auto-import failed:', err.message);
+      this.toast('自动加载词库失败，可点击「导入本地 JSON」手动选择 words.json');
+    }
+  },
+
+  // ---- Navigation ----
+  bindNav() {
+    document.querySelectorAll('.nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const tab = parseInt(el.dataset.tab);
+        this.switchTab(tab);
+      });
+    });
+  },
+
+  switchTab(tab) {
+    this.currentTab = tab;
+    document.querySelectorAll('.nav-item').forEach((el, i) => {
+      el.classList.toggle('active', i === tab);
+    });
+    document.querySelectorAll('.page').forEach((el, i) => {
+      el.classList.toggle('active', i === tab);
+    });
+    const titles = ['今日', '学习', '背诵', '单词', '提醒'];
+    document.getElementById('pageTitle').textContent = titles[tab];
+    // Refresh content on switch
+    if (tab === 0) this.renderToday();
+    if (tab === 1) this.renderStudyRecords();
+    if (tab === 2) this.renderMemoCards();
+    if (tab === 3) this.initWordView();
+    if (tab === 4) this.renderReminders();
+  },
+
+  // ---- Today Page ----
+  renderToday() {
+    const now = new Date();
+    const days = ['日','一','二','三','四','五','六'];
+    document.getElementById('todayDate').textContent =
+      now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日';
+    document.getElementById('todayWeekday').textContent = '星期' + days[now.getDay()];
+
+    // Countdown
+    const settings = getSettings();
+    const exam = new Date(settings.examDate);
+    const diff = Math.ceil((exam - now) / (1000 * 60 * 60 * 24));
+    document.getElementById('countdownDays').textContent = diff > 0 ? diff : '0';
+
+    // Encouragement - pick based on day of year
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / (1000*60*60*24));
+    document.getElementById('encouragement').textContent = ENCOURAGEMENTS[dayOfYear % ENCOURAGEMENTS.length];
+
+    // Study data
+    const today = todayKey();
+    const records = getStudyRecords().filter(r => r.date === today);
+    let pharmaSec = 0, pharmSec = 0;
+    records.forEach(r => {
+      if (r.subject === '药理学') pharmaSec += r.duration;
+      else if (r.subject === '药剂学') pharmSec += r.duration;
+    });
+    document.getElementById('statPharma').textContent = this.fmtHours(pharmaSec);
+    document.getElementById('statPharmaceut').textContent = this.fmtHours(pharmSec);
+
+    // Word stats
+    const allWordCards = getWordCards();
+    const wsc = getWordStudyCount();
+    const wordCount = wsc[today] || 0;
+    const dueWordCards = allWordCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
+    document.getElementById('statWords').textContent = wordCount;
+
+    // Water
+    const water = getWater();
+    document.getElementById('statWater').textContent = water[today] || 0;
+
+    // Breaks
+    const breaks = getBreaks();
+    document.getElementById('statBreak').textContent = breaks[today] || 0;
+
+    // Memo review count
+    const dueCards = this.getDueMemoCards();
+    document.getElementById('statMemoReview').textContent = dueCards.length;
+
+    // Progress - based on study time (target 6h), words (target 50), water (target from settings)
+    const studyTarget = 6 * 3600;
+    const wordTarget = 50;
+    const studyPct = Math.min(100, Math.round(((pharmaSec + pharmSec) / studyTarget) * 100));
+    const wordPct = Math.min(100, Math.round((wordCount / wordTarget) * 100));
+    const waterPct = Math.min(100, Math.round(((water[today] || 0) / (settings.waterGoal || 8)) * 100));
+    const avgPct = Math.round((studyPct + wordPct + waterPct) / 3);
+    document.getElementById('progressBar').style.width = avgPct + '%';
+    document.getElementById('progressLabel').textContent = avgPct + '%';
+
+    // Todos
+    this.renderTodos();
+  },
+
+  fmtHours(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    if (h > 0) return h + 'h' + (m > 0 ? ' ' + m + 'm' : '');
+    return m + 'm';
+  },
+
+  // ---- Todos ----
+  renderTodos() {
+    const today = todayKey();
+    const todos = getTodos().filter(t => t.date === today);
+    const list = document.getElementById('todoList');
+    if (todos.length === 0) {
+      list.innerHTML = '<div class="empty-state">今天还没有待办事项</div>';
+      return;
+    }
+    list.innerHTML = todos.map(t => `
+      <li class="todo-item ${t.done ? 'done' : ''}">
+        <button class="todo-check" onclick="App.toggleTodo('${t.id}')">✓</button>
+        <span class="todo-text">${this.escHtml(t.text)}</span>
+        <button class="todo-del" onclick="App.delTodo('${t.id}')">×</button>
+      </li>
+    `).join('');
+  },
+
+  addTodo() {
+    const input = document.getElementById('todoInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const todos = getTodos();
+    todos.push({ id: uid(), text, done: false, date: todayKey() });
+    saveTodos(todos);
+    input.value = '';
+    this.renderTodos();
+  },
+
+  toggleTodo(id) {
+    const todos = getTodos();
+    const t = todos.find(t => t.id === id);
+    if (t) { t.done = !t.done; saveTodos(todos); }
+    this.renderTodos();
+    this.renderToday();
+  },
+
+  delTodo(id) {
+    let todos = getTodos();
+    todos = todos.filter(t => t.id !== id);
+    saveTodos(todos);
+    this.renderTodos();
+  },
+
+  // ---- Timer ----
+  bindSubjectChips() {
+    document.querySelectorAll('#subjectSelect .subject-chip').forEach(el => {
+      el.addEventListener('click', () => {
+        if (this.timerRunning) return;
+        document.querySelectorAll('#subjectSelect .subject-chip').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        this.timerSubject = el.dataset.subject;
+      });
+    });
+    // Default selection
+    const firstChip = document.querySelector('#subjectSelect .subject-chip');
+    if (firstChip) { firstChip.classList.add('selected'); this.timerSubject = firstChip.dataset.subject; }
+  },
+
+  startTimer() {
+    if (this.timerRunning && !this.timerPaused) return;
+    if (!this.timerSubject) return this.toast('请先选择科目');
+    if (this.timerPaused) {
+      // Resume
+      this.timerPaused = false;
+      this.lastBreakTime = new Date();
+      document.getElementById('btnTimerPause').style.display = '';
+      document.getElementById('btnTimerStart').style.display = 'none';
+    } else {
+      this.timerSeconds = 0;
+      this.lastBreakTime = new Date();
+    }
+    this.timerRunning = true;
+    document.getElementById('btnTimerPause').style.display = '';
+    document.getElementById('btnTimerStop').style.display = '';
+    document.getElementById('btnTimerStart').style.display = 'none';
+    // Disable subject selection
+    document.querySelectorAll('#subjectSelect .subject-chip').forEach(c => c.style.pointerEvents = 'none');
+
+    this.timerInterval = setInterval(() => {
+      this.timerSeconds++;
+      this.updateTimerDisplay();
+    }, 1000);
+  },
+
+  pauseTimer() {
+    if (!this.timerRunning || this.timerPaused) return;
+    this.timerPaused = true;
+    clearInterval(this.timerInterval);
+    document.getElementById('btnTimerPause').style.display = 'none';
+    document.getElementById('btnTimerStart').style.display = '';
+    document.getElementById('btnTimerStart').textContent = '继续';
+  },
+
+  stopTimer() {
+    if (!this.timerRunning) return;
+    clearInterval(this.timerInterval);
+    this.timerRunning = false;
+    this.timerPaused = false;
+    const elapsed = this.timerSeconds;
+    this.timerSeconds = 0;
+    this.updateTimerDisplay();
+
+    // Reset UI
+    document.getElementById('btnTimerStart').style.display = '';
+    document.getElementById('btnTimerStart').textContent = '开始';
+    document.getElementById('btnTimerPause').style.display = 'none';
+    document.getElementById('btnTimerStop').style.display = 'none';
+    document.querySelectorAll('#subjectSelect .subject-chip').forEach(c => c.style.pointerEvents = '');
+
+    if (elapsed < 60) return this.toast('学习时间太短，未保存');
+
+    // Save record
+    const now = new Date();
+    const startTime = new Date(now - elapsed * 1000);
+    const record = {
+      id: uid(),
+      subject: this.timerSubject,
+      startTime: startTime.toISOString(),
+      endTime: now.toISOString(),
+      duration: elapsed,
+      note: '',
+      date: todayKey()
+    };
+    const records = getStudyRecords();
+    records.unshift(record);
+    saveStudyRecords(records);
+    this.renderStudyRecords();
+    this.toast('学习记录已保存');
+    this.renderToday();
+  },
+
+  updateTimerDisplay() {
+    const h = Math.floor(this.timerSeconds / 3600);
+    const m = Math.floor((this.timerSeconds % 3600) / 60);
+    const s = this.timerSeconds % 60;
+    document.getElementById('timerDisplay').textContent =
+      String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  },
+
+  // ---- Study Records ----
+  renderStudyRecords() {
+    const today = todayKey();
+    const records = getStudyRecords().filter(r => r.date === today);
+    const container = document.getElementById('studyRecords');
+    if (records.length === 0) {
+      container.innerHTML = '<div class="empty-state">还没有学习记录<br>开始计时吧 ✨</div>';
+      return;
+    }
+    container.innerHTML = records.map(r => `
+      <div class="record-item">
+        <span class="record-subject ${this.subjectClass(r.subject)}">${r.subject}</span>
+        <div class="record-info">
+          <div>${this.fmtTime(r.startTime)} - ${this.fmtTime(r.endTime)}</div>
+          ${r.note ? '<div class="record-time">' + this.escHtml(r.note) + '</div>' : ''}
+        </div>
+        <span class="record-dur">${this.fmtDuration(r.duration)}</span>
+        <button class="record-del" onclick="App.delStudyRecord('${r.id}')">×</button>
+      </div>
+    `).join('');
+  },
+
+  subjectClass(subject) {
+    const map = { '药理学': 'pharmacology', '药剂学': 'pharmaceutics', '英语': 'english', '政治': 'politics' };
+    return map[subject] || 'other';
+  },
+
+  fmtTime(iso) {
+    const d = new Date(iso);
+    return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  },
+
+  fmtDuration(sec) {
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  },
+
+  delStudyRecord(id) {
+    let records = getStudyRecords();
+    records = records.filter(r => r.id !== id);
+    saveStudyRecords(records);
+    this.renderStudyRecords();
+    this.renderToday();
+    this.toast('记录已删除');
+  },
+
+  showManualRecord() {
+    const html = `
+      <div class="modal-overlay" onclick="if(event.target===this)App.closeModal()">
+        <div class="modal">
+          <h3>手动添加学习记录</h3>
+          <div class="form-group">
+            <label>科目</label>
+            <select id="manSubject">
+              <option>药理学</option><option>药剂学</option><option>英语</option><option>政治</option><option>其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>学习时长（分钟）</label>
+            <input type="number" id="manDuration" value="30" min="1" max="600">
+          </div>
+          <div class="form-group">
+            <label>备注（可选）</label>
+            <input type="text" id="manNote" placeholder="例如：复习第三章">
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-outline btn-sm" onclick="App.closeModal()">取消</button>
+            <button class="btn btn-primary btn-sm" onclick="App.saveManualRecord()">保存</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+  },
+
+  saveManualRecord() {
+    const subject = document.getElementById('manSubject').value;
+    const minutes = parseInt(document.getElementById('manDuration').value) || 30;
+    const note = document.getElementById('manNote').value.trim();
+    const now = new Date();
+    const startTime = new Date(now - minutes * 60000);
+    const record = {
+      id: uid(),
+      subject,
+      startTime: startTime.toISOString(),
+      endTime: now.toISOString(),
+      duration: minutes * 60,
+      note,
+      date: todayKey()
+    };
+    const records = getStudyRecords();
+    records.unshift(record);
+    saveStudyRecords(records);
+    this.closeModal();
+    this.renderStudyRecords();
+    this.renderToday();
+    this.toast('记录已添加');
+  },
+
+  // ---- Memo Cards ----
+  getDueMemoCards() {
+    const today = todayKey();
+    return getMemoCards().filter(c => {
+      if (c.status === '熟练') return false;
+      if (!c.reviewDate) return true;
+      return c.reviewDate <= today;
+    });
+  },
+
+  renderMemoCards() {
+    const statusFilter = document.querySelector('#memoFilterStatus .filter-chip.active')?.dataset?.status || 'all';
+    const subjectFilter = document.querySelector('#memoFilterSubject .filter-chip.active')?.dataset?.subject || 'all';
+    let cards = getMemoCards();
+    if (statusFilter !== 'all') cards = cards.filter(c => c.status === statusFilter);
+    if (subjectFilter !== 'all') cards = cards.filter(c => c.subject === subjectFilter);
+
+    // Render due review section
+    const dueCards = this.getDueMemoCards();
+    const dueSection = document.getElementById('dueReviewCard');
+    if (dueCards.length > 0) {
+      dueSection.style.display = '';
+      document.getElementById('dueReviewCount').textContent = dueCards.length;
+      document.getElementById('dueReviewList').innerHTML = dueCards.map(c => `
+        <div class="memo-card review-due" style="margin-top:8px">
+          <div class="memo-header">
+            <span class="memo-title">${this.escHtml(c.title)}</span>
+            <span class="memo-subject">${c.subject}</span>
+          </div>
+          <div class="memo-content">${this.escHtml(c.content).substring(0, 80)}${c.content.length > 80 ? '...' : ''}</div>
+          <div class="memo-meta">
+            <span>复习日期: ${c.reviewDate || '今天'}</span>
+            <span class="memo-status ${this.statusClass(c.status)}">${c.status}</span>
+          </div>
+          <button class="btn btn-mint btn-sm" style="margin-top:8px" onclick="App.markReviewed('${c.id}')">✓ 今日已复习</button>
+        </div>
+      `).join('');
+    } else {
+      dueSection.style.display = 'none';
+    }
+
+    // Render main card list
+    const container = document.getElementById('memoCardList');
+    if (cards.length === 0) {
+      container.innerHTML = '<div class="empty-state">还没有背诵卡片<br>点击下方按钮添加</div>';
+    } else {
+      container.innerHTML = cards.map(c => `
+        <div class="memo-card">
+          <div class="memo-header">
+            <span class="memo-title">${this.escHtml(c.title)}</span>
+            <span class="memo-subject">${c.subject}</span>
+          </div>
+          <div class="memo-content">${this.escHtml(c.content)}</div>
+          <div class="memo-meta">
+            <span>首次: ${c.firstDate || '-'}</span>
+            <span>下次复习: ${c.reviewDate || '-'}</span>
+            <span class="memo-status ${this.statusClass(c.status)}">${c.status}</span>
+          </div>
+          ${c.notes ? '<div class="memo-meta">备注: ' + this.escHtml(c.notes) + '</div>' : ''}
+          <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
+            <select onchange="App.updateMemoStatus('${c.id}', this.value)" style="font-size:0.75rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border)">
+              <option ${c.status==='未背'?'selected':''}>未背</option>
+              <option ${c.status==='模糊'?'selected':''}>模糊</option>
+              <option ${c.status==='基本会'?'selected':''}>基本会</option>
+              <option ${c.status==='熟练'?'selected':''}>熟练</option>
+            </select>
+            <button class="btn btn-outline btn-sm" onclick="App.editMemo('${c.id}')">编辑</button>
+            <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.delMemo('${c.id}')">删除</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Bind filter chips
+    this.bindFilterChips('memoFilterStatus', 'status', () => this.renderMemoCards());
+    this.bindFilterChips('memoFilterSubject', 'subject', () => this.renderMemoCards());
+  },
+
+  statusClass(status) {
+    const map = { '未背': 'none', '模糊': 'vague', '基本会': 'basic', '熟练': 'mastered' };
+    return map[status] || '';
+  },
+
+  getNextReviewDate(reviewCount) {
+    // Ebbinghaus-based: 1, 3, 7, 15, 30 days
+    const intervals = [1, 3, 7, 15, 30];
+    const days = intervals[Math.min(reviewCount, intervals.length - 1)];
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  },
+
+  showMemoForm(editId) {
+    let card = null;
+    if (editId) {
+      card = getMemoCards().find(c => c.id === editId);
+      if (!card) return;
+    }
+    const html = `
+      <div class="modal-overlay" onclick="if(event.target===this)App.closeModal()">
+        <div class="modal">
+          <h3>${editId ? '编辑' : '添加'}背诵卡片</h3>
+          <div class="form-group">
+            <label>标题</label>
+            <input type="text" id="memoTitle" value="${card ? this.escHtml(card.title) : ''}" placeholder="例如：药物代谢动力学">
+          </div>
+          <div class="form-group">
+            <label>科目</label>
+            <select id="memoSubject">
+              <option ${card && card.subject==='药理学'?'selected':''}>药理学</option>
+              <option ${card && card.subject==='药剂学'?'selected':''}>药剂学</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>知识点内容</label>
+            <textarea id="memoContent" placeholder="输入需要背诵的知识点...">${card ? this.escHtml(card.content) : ''}</textarea>
+          </div>
+          <div class="form-group">
+            <label>记忆状态</label>
+            <select id="memoStatus">
+              <option ${card && card.status==='未背'?'selected':''}>未背</option>
+              <option ${card && card.status==='模糊'?'selected':''}>模糊</option>
+              <option ${card && card.status==='基本会'?'selected':''}>基本会</option>
+              <option ${card && card.status==='熟练'?'selected':''}>熟练</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>备注（可选）</label>
+            <input type="text" id="memoNotes" value="${card ? this.escHtml(card.notes || '') : ''}">
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-outline btn-sm" onclick="App.closeModal()">取消</button>
+            <button class="btn btn-primary btn-sm" onclick="App.saveMemo('${editId || ''}')">保存</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+  },
+
+  saveMemo(editId) {
+    const title = document.getElementById('memoTitle').value.trim();
+    const subject = document.getElementById('memoSubject').value;
+    const content = document.getElementById('memoContent').value.trim();
+    const status = document.getElementById('memoStatus').value;
+    const notes = document.getElementById('memoNotes').value.trim();
+    if (!title || !content) return this.toast('请填写标题和内容');
+
+    if (editId) {
+      const cards = getMemoCards();
+      const c = cards.find(c => c.id === editId);
+      if (c) {
+        c.title = title; c.subject = subject; c.content = content;
+        c.status = status; c.notes = notes;
+        saveMemoCards(cards);
+      }
+    } else {
+      const cards = getMemoCards();
+      cards.push({
+        id: uid(),
+        title, subject, content, status,
+        firstDate: todayKey(),
+        reviewDate: this.getNextReviewDate(0),
+        reviewCount: 0,
+        lastReviewed: null,
+        notes
+      });
+      saveMemoCards(cards);
+    }
+    this.closeModal();
+    this.renderMemoCards();
+    this.toast(editId ? '卡片已更新' : '卡片已添加');
+  },
+
+  editMemo(id) { this.showMemoForm(id); },
+
+  delMemo(id) {
+    if (!confirm('确定删除这张背诵卡片吗？')) return;
+    let cards = getMemoCards();
+    cards = cards.filter(c => c.id !== id);
+    saveMemoCards(cards);
+    this.renderMemoCards();
+    this.toast('卡片已删除');
+  },
+
+  updateMemoStatus(id, status) {
+    const cards = getMemoCards();
+    const c = cards.find(c => c.id === id);
+    if (c) { c.status = status; saveMemoCards(cards); }
+    this.renderMemoCards();
+  },
+
+  markReviewed(id) {
+    const cards = getMemoCards();
+    const c = cards.find(c => c.id === id);
+    if (c) {
+      c.reviewCount = (c.reviewCount || 0) + 1;
+      c.reviewDate = this.getNextReviewDate(c.reviewCount);
+      c.lastReviewed = todayKey();
+      saveMemoCards(cards);
+    }
+    this.renderMemoCards();
+    this.renderToday();
+    this.toast('已标记复习，下次复习: ' + (c ? c.reviewDate : ''));
+  },
+
+  // ---- POS Extraction ----
+  extractPos(meaning) {
+    // Known POS markers sorted by length (longest first for greedy match)
+    const posMarkers = [
+      'vlink.', 'interj.', 'modal', 'adv.', 'adj.', 'prep.', 'pron.', 'conj.', 'vt.', 'vi.',
+      'num.', 'det.', 'ord.', 'aux.', 'n.', 'v.', 'art.',
+    ];
+    let remaining = meaning.trim();
+    let posParts = [];
+
+    // Keep extracting POS markers from the beginning
+    let matched = true;
+    while (matched && remaining.length > 0) {
+      matched = false;
+      for (const marker of posMarkers) {
+        // Check if remaining starts with the marker (case insensitive, allowing optional space after)
+        const prefix = remaining.slice(0, marker.length).toLowerCase();
+        if (prefix === marker) {
+          posParts.push(marker);
+          remaining = remaining.slice(marker.length).trim();
+          matched = true;
+          break;
+        }
+      }
+    }
+
+    // Clean up meaning: remove any leading POS fragments that were not matched
+    // e.g. "vt. vi. 散发" → pos: "vt. vi.", meaning: "散发"
+    remaining = remaining.replace(/^[;；,.\s]+/, '').trim();
+
+    return {
+      pos: posParts.join(' '),
+      meaning: remaining
+    };
+  },
+
+  // ---- Import from Redbook JSON ----
+  async importFromRedbook() {
+    try {
+      const resp = await fetch('./data/words.json');
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const rawWords = await resp.json();
+      if (!Array.isArray(rawWords) || rawWords.length === 0) {
+        return this.toast('JSON 数据为空或格式不正确');
+      }
+      this.showImportPreview(rawWords);
+    } catch (err) {
+      this.toast('导入失败: ' + err.message);
+      console.error(err);
+    }
+  },
+
+  showImportPreview(rawWords) {
+    const total = rawWords.length;
+    const preview = rawWords.slice(0, 20);
+    const existingCards = getWordCards();
+    const existingWords = new Set(existingCards.map(c => c.word.toLowerCase()));
+
+    let dupes = 0;
+    const newWords = [];
+    for (const rw of rawWords) {
+      if (existingWords.has(rw.word.toLowerCase())) {
+        dupes++;
+      } else {
+        newWords.push(rw);
+      }
+    }
+
+    const convertPreview = (rw) => {
+      const extracted = this.extractPos(rw.meaning);
+      return {
+        word: rw.word,
+        pos: extracted.pos,
+        meaning: extracted.meaning,
+        page: rw.page,
+        index: rw.index
+      };
+    };
+
+    const previewRows = preview.map(rw => {
+      const cp = convertPreview(rw);
+      return `<tr>
+        <td>${cp.word}</td>
+        <td>${this.escHtml(cp.pos)}</td>
+        <td>${this.escHtml(cp.meaning).substring(0, 40)}${cp.meaning.length > 40 ? '...' : ''}</td>
+        <td>P${cp.page}</td>
+      </tr>`;
+    }).join('');
+
+    const html = `
+      <div class="modal-overlay" onclick="if(event.target===this)App.closeModal()">
+        <div class="modal">
+          <h3>导入红宝书词库</h3>
+          <div class="import-summary">
+            共 <strong>${total}</strong> 个单词 ·
+            新增 <strong>${newWords.length}</strong> 个 ·
+            跳过重复 <strong>${dupes}</strong> 个
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-lighter);margin-bottom:8px">预览前 20 条（仅作展示，不会直接写入）：</div>
+          <div style="max-height:300px;overflow-y:auto">
+            <table class="import-preview-table">
+              <thead><tr><th>单词</th><th>词性</th><th>释义</th><th>页码</th></tr></thead>
+              <tbody>${previewRows}</tbody>
+            </table>
+          </div>
+          <div class="btn-row" style="margin-top:14px">
+            <button class="btn btn-outline btn-sm" onclick="App.closeModal()">取消</button>
+            <button class="btn btn-primary btn-sm" onclick="App.confirmImport()">确认导入 (${newWords.length} 个新词)</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+    // Store raw data for later use
+    this._importData = rawWords;
+  },
+
+  confirmImport() {
+    if (!this._importData) return;
+    const rawWords = this._importData;
+    const existingCards = getWordCards();
+    const existingWords = new Set(existingCards.map(c => c.word.toLowerCase()));
+    const today = todayKey();
+    const now = new Date().toISOString();
+
+    let imported = 0;
+    let skipped = 0;
+
+    for (const rw of rawWords) {
+      if (existingWords.has(rw.word.toLowerCase())) {
+        skipped++;
+        continue;
+      }
+      const extracted = this.extractPos(rw.meaning);
+      const card = {
+        id: uid(),
+        word: rw.word,
+        phonetic: '',
+        pos: extracted.pos,
+        meaning: extracted.meaning,
+        example: '',
+        book: '红宝书',
+        category: '考研英语词汇',
+        unit: 'Page ' + rw.page,
+        page: rw.page,
+        originalIndex: rw.index,
+        status: '不认识',
+        reviewCount: 0,
+        lastReviewDate: '',
+        nextReviewDate: today,
+        createdAt: now,
+        source: 'redbook-json'
+      };
+      existingCards.push(card);
+      existingWords.add(rw.word.toLowerCase());
+      imported++;
+    }
+
+    saveWordCards(existingCards);
+    localStorage.setItem(STORAGE_KEY + 'redbookAutoImported', 'true');
+    this._importData = null;
+    this.closeModal();
+    this.initWordView();
+    this.renderToday();
+    this.toast(`导入完成：新增 ${imported} 个，跳过 ${skipped} 个重复，词库共 ${existingCards.length} 词`);
+  },
+
+  // ---- Import Local JSON ----
+  importLocalJSON() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const data = JSON.parse(ev.target.result);
+          if (!Array.isArray(data)) return this.toast('JSON 必须是数组格式');
+          this.showImportPreview(data);
+        } catch (err) {
+          this.toast('JSON 解析失败: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  },
+
+  // ---- Export Current Words ----
+  exportWords() {
+    const cards = getWordCards();
+    if (cards.length === 0) return this.toast('词库为空，没有可导出的数据');
+    const json = JSON.stringify(cards, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'words_export_' + todayKey() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    this.toast('已导出 ' + cards.length + ' 个单词');
+  },
+
+  // ---- Clear All Words ----
+  clearWords() {
+    const cards = getWordCards();
+    if (cards.length === 0) return this.toast('词库已为空');
+    if (!confirm(`确定清空全部 ${cards.length} 个单词吗？此操作不可恢复！`)) return;
+    saveWordCards([]);
+    saveWordStudyCount({});
+    localStorage.removeItem(STORAGE_KEY + 'redbookAutoImported');
+    this.initWordView();
+    this.renderToday();
+    this.toast('词库已清空');
+  },
+
+  // ---- Word Cards ----
+  initWordView() {
+    const filterEl = document.querySelector('#wordFilter .filter-chip.active');
+    this.currentWordFilter = filterEl?.dataset?.familiarity || 'all';
+    const cards = this.getFilteredWords();
+    this.bindFilterChips('wordFilter', 'familiarity', () => this.initWordView());
+
+    const today = todayKey();
+    const wsc = getWordStudyCount();
+    const allCards = getWordCards();
+    const dueCards = allCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
+
+    document.getElementById('wordCountBar').innerHTML =
+      '词库 <strong>' + allCards.length + '</strong> 词 · 今日已背 <strong>' + (wsc[today] || 0) + '</strong> 词 · 待复习 <strong>' + dueCards.length + '</strong> 词';
+
+    if (cards.length === 0) {
+      document.getElementById('flipContainer').style.display = 'none';
+      document.getElementById('wordActions').style.display = 'none';
+      document.getElementById('wordNav').style.display = 'none';
+      return;
+    }
+    document.getElementById('flipContainer').style.display = '';
+    document.getElementById('wordActions').style.display = '';
+    document.getElementById('wordNav').style.display = '';
+    this.currentWordIndex = 0;
+    this.showWord(0);
+  },
+
+  getFilteredWords() {
+    const f = document.querySelector('#wordFilter .filter-chip.active')?.dataset?.familiarity || 'all';
+    const today = todayKey();
+    let cards = getWordCards();
+    if (f === 'due') {
+      cards = cards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
+    } else if (f !== 'all') {
+      cards = cards.filter(c => c.status === f);
+    }
+    return cards;
+  },
+
+  showWord(idx) {
+    const cards = this.getFilteredWords();
+    if (cards.length === 0) return;
+    this.currentWordIndex = ((idx % cards.length) + cards.length) % cards.length;
+    const c = cards[this.currentWordIndex];
+    document.getElementById('wordEn').textContent = c.word;
+    document.getElementById('wordPos').textContent = c.pos || '';
+    document.getElementById('wordMeta').textContent =
+      (c.unit || '') + (c.originalIndex ? ' #' + c.originalIndex : '');
+    document.getElementById('wordZh').textContent = c.meaning;
+    document.getElementById('wordSource').textContent =
+      [c.book, c.category, c.page ? 'P' + c.page : ''].filter(Boolean).join(' · ');
+    document.getElementById('flipInner').classList.remove('flipped');
+    document.getElementById('wordIndexText').textContent =
+      (this.currentWordIndex + 1) + ' / ' + cards.length;
+  },
+
+  flipWordCard() {
+    document.getElementById('flipInner').classList.toggle('flipped');
+  },
+
+  prevWord() { this.showWord(this.currentWordIndex - 1); },
+  nextWord() { this.showWord(this.currentWordIndex + 1); },
+
+  rateWord(status) {
+    const cards = this.getFilteredWords();
+    if (cards.length === 0) return;
+    const c = cards[this.currentWordIndex];
+    const allCards = getWordCards();
+    const target = allCards.find(w => w.id === c.id);
+    if (target) {
+      target.status = status;
+      target.reviewCount = (target.reviewCount || 0) + 1;
+      target.lastReviewDate = todayKey();
+      // Set next review date based on status
+      const schedule = { '不认识': 1, '模糊': 3, '认识': 7, '熟练': 15 };
+      const days = schedule[status] || 3;
+      const nd = new Date();
+      nd.setDate(nd.getDate() + days);
+      target.nextReviewDate = nd.getFullYear() + '-' + String(nd.getMonth()+1).padStart(2,'0') + '-' + String(nd.getDate()).padStart(2,'0');
+      saveWordCards(allCards);
+    }
+    // Increment today's study count
+    const today = todayKey();
+    const wsc = getWordStudyCount();
+    wsc[today] = (wsc[today] || 0) + 1;
+    saveWordStudyCount(wsc);
+
+    this.toast('已标记: ' + status + ' · 下次复习: ' + (target ? target.nextReviewDate : ''));
+    const newCards = this.getFilteredWords();
+    if (newCards.length === 0) {
+      this.initWordView();
+      this.renderToday();
+      return;
+    }
+    document.getElementById('wordCountBar').innerHTML =
+      '词库 <strong>' + allCards.length + '</strong> 词 · 今日已背 <strong>' + (wsc[today] || 0) + '</strong> 词 · 待复习 <strong>' + allCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练').length + '</strong> 词';
+    this.showWord(this.currentWordIndex < newCards.length ? this.currentWordIndex : 0);
+    this.renderToday();
+  },
+
+  randomWord() {
+    const cards = this.getFilteredWords();
+    if (cards.length === 0) return this.toast('当前筛选条件下没有单词');
+    this.currentWordIndex = Math.floor(Math.random() * cards.length);
+    this.showWord(this.currentWordIndex);
+  },
+
+  showWordForm() {
+    const html = `
+      <div class="modal-overlay" onclick="if(event.target===this)App.closeModal()">
+        <div class="modal">
+          <h3>手动添加单词</h3>
+          <div class="form-group"><label>英文单词</label><input type="text" id="wordEnInput" placeholder="pharmacology"></div>
+          <div class="form-group"><label>音标（可选）</label><input type="text" id="wordPhoneticInput" placeholder="/ˌfɑːrməˈkɑːlədʒi/"></div>
+          <div class="form-group"><label>词性（可选）</label><input type="text" id="wordPosInput" placeholder="n."></div>
+          <div class="form-group"><label>中文释义</label><input type="text" id="wordZhInput" placeholder="药理学"></div>
+          <div class="form-group"><label>例句（可选）</label><input type="text" id="wordExampleInput" placeholder="She studied pharmacology."></div>
+          <div class="btn-row">
+            <button class="btn btn-outline btn-sm" onclick="App.closeModal()">取消</button>
+            <button class="btn btn-primary btn-sm" onclick="App.saveWord()">保存</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+  },
+
+  saveWord() {
+    const word = document.getElementById('wordEnInput').value.trim();
+    if (!word) return this.toast('请输入英文单词');
+    const today = todayKey();
+    const cards = getWordCards();
+    cards.push({
+      id: uid(),
+      word,
+      phonetic: document.getElementById('wordPhoneticInput').value.trim(),
+      pos: document.getElementById('wordPosInput').value.trim(),
+      meaning: document.getElementById('wordZhInput').value.trim() || word,
+      example: document.getElementById('wordExampleInput').value.trim(),
+      book: '',
+      category: '',
+      unit: '',
+      page: 0,
+      originalIndex: 0,
+      status: '不认识',
+      reviewCount: 0,
+      lastReviewDate: '',
+      nextReviewDate: today,
+      createdAt: new Date().toISOString(),
+      source: 'manual'
+    });
+    saveWordCards(cards);
+    this.closeModal();
+    this.initWordView();
+    this.toast('单词已添加');
+  },
+
+  // ---- Reminders ----
+  renderReminders() {
+    const settings = getSettings();
+    document.getElementById('waterGoal').value = settings.waterGoal;
+    document.getElementById('studyReminder').value = settings.studyReminderMinutes;
+    document.getElementById('sedentaryReminder').value = settings.sedentaryReminderMinutes;
+    document.getElementById('periodLastStart').value = settings.periodLastStart;
+    document.getElementById('periodCycle').value = settings.periodCycle;
+    document.getElementById('periodDuration').value = settings.periodDuration;
+
+    const toggle = document.getElementById('toggleReminders');
+    toggle.classList.toggle('on', settings.remindersEnabled);
+
+    this.renderWaterDots();
+    this.renderPeriodPredict();
+  },
+
+  renderWaterDots() {
+    const settings = getSettings();
+    const goal = settings.waterGoal || 8;
+    const today = todayKey();
+    const water = getWater();
+    const count = water[today] || 0;
+    const dots = document.getElementById('waterDots');
+    let html = '';
+    for (let i = 0; i < goal; i++) {
+      html += '<div class="water-dot' + (i < count ? ' filled' : '') + '"></div>';
+    }
+    dots.innerHTML = html;
+    document.getElementById('waterText').textContent = count + ' / ' + goal + ' 杯';
+  },
+
+  addWater() {
+    const today = todayKey();
+    const water = getWater();
+    water[today] = (water[today] || 0) + 1;
+    saveWater(water);
+    this.renderWaterDots();
+    this.renderToday();
+    const settings = getSettings();
+    if (water[today] >= (settings.waterGoal || 8)) {
+      this.toast('太棒了！今天喝水目标达成啦 💧');
+    }
+  },
+
+  resetWater() {
+    const today = todayKey();
+    const water = getWater();
+    water[today] = 0;
+    saveWater(water);
+    this.renderWaterDots();
+    this.renderToday();
+  },
+
+  updateWaterGoal() {
+    const settings = getSettings();
+    settings.waterGoal = parseInt(document.getElementById('waterGoal').value) || 8;
+    saveSettings(settings);
+    this.renderWaterDots();
+    this.renderToday();
+  },
+
+  updateReminderSetting() {
+    const settings = getSettings();
+    settings.studyReminderMinutes = parseInt(document.getElementById('studyReminder').value) || 45;
+    settings.sedentaryReminderMinutes = parseInt(document.getElementById('sedentaryReminder').value) || 60;
+    saveSettings(settings);
+    // Reset timers
+    this.lastBreakTime = new Date();
+    this.lastSedentaryTime = new Date();
+  },
+
+  toggleReminders() {
+    const settings = getSettings();
+    settings.remindersEnabled = !settings.remindersEnabled;
+    saveSettings(settings);
+    document.getElementById('toggleReminders').classList.toggle('on', settings.remindersEnabled);
+  },
+
+  // ---- Period Prediction ----
+  updatePeriod() {
+    const settings = getSettings();
+    settings.periodLastStart = document.getElementById('periodLastStart').value;
+    settings.periodCycle = parseInt(document.getElementById('periodCycle').value) || 28;
+    settings.periodDuration = parseInt(document.getElementById('periodDuration').value) || 5;
+    saveSettings(settings);
+    this.renderPeriodPredict();
+  },
+
+  renderPeriodPredict() {
+    const settings = getSettings();
+    const container = document.getElementById('periodPredict');
+    if (!settings.periodLastStart) {
+      container.innerHTML = '<div style="color:var(--text-lighter)">请设置上次生理期开始日期</div>';
+      return;
+    }
+    const lastStart = new Date(settings.periodLastStart);
+    const cycle = settings.periodCycle || 28;
+    const duration = settings.periodDuration || 5;
+
+    // Predict next
+    const nextStart = new Date(lastStart);
+    nextStart.setDate(nextStart.getDate() + cycle);
+    const nextEnd = new Date(nextStart);
+    nextEnd.setDate(nextEnd.getDate() + duration);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Also predict the one after
+    const followingStart = new Date(nextStart);
+    followingStart.setDate(followingStart.getDate() + cycle);
+
+    const fmtDate = (d) => d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+
+    let html = '<div class="next-date">下次预计: ' + fmtDate(nextStart) + '</div>';
+    html += '<div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">持续约 ' + duration + ' 天，再下次: ' + fmtDate(followingStart) + '</div>';
+
+    // Check if we're in the warning zone (3 days before)
+    const warnStart = new Date(nextStart);
+    warnStart.setDate(warnStart.getDate() - 3);
+    const periodEndActual = new Date(nextStart);
+    periodEndActual.setDate(periodEndActual.getDate() + duration);
+
+    if (today >= warnStart && today <= periodEndActual) {
+      if (today < nextStart) {
+        const daysUntil = Math.ceil((nextStart - today) / (1000*60*60*24));
+        html += '<div class="period-warning">🌸 生理期预计 ' + daysUntil + ' 天后到来，注意休息，准备好用品哦</div>';
+      } else if (today <= periodEndActual) {
+        html += '<div class="period-warning">🌸 现在是生理期期间，记得多喝温水，注意保暖，别太累</div>';
+      }
+    }
+
+    container.innerHTML = html;
+  },
+
+  // ---- Reminder Checker ----
+  startReminderChecker() {
+    this.lastBreakTime = new Date();
+    this.lastSedentaryTime = new Date();
+    this.reminderCheckInterval = setInterval(() => {
+      const settings = getSettings();
+      if (!settings.remindersEnabled) return;
+      const now = new Date();
+
+      // Check study break reminder
+      const studyMinutes = (now - this.lastBreakTime) / 60000;
+      if (studyMinutes >= settings.studyReminderMinutes) {
+        this.showReminderToast('🧘', '已经学习 ' + Math.round(studyMinutes) + ' 分钟啦\n起来走动一下，喝杯水\n让眼睛和身体都休息一会儿吧');
+        this.lastBreakTime = now;
+        // Record break
+        const today = todayKey();
+        const breaks = getBreaks();
+        breaks[today] = (breaks[today] || 0) + 1;
+        saveBreaks(breaks);
+      }
+
+      // Check sedentary reminder
+      const sedentaryMinutes = (now - this.lastSedentaryTime) / 60000;
+      if (sedentaryMinutes >= settings.sedentaryReminderMinutes) {
+        this.showReminderToast('🚶', '坐了很久了\n站起来活动一下筋骨吧\n哪怕只是伸个懒腰也好');
+        this.lastSedentaryTime = now;
+      }
+    }, 30000); // Check every 30s
+  },
+
+  showReminderToast(emoji, msg) {
+    const container = document.getElementById('reminderToastContainer');
+    const id = 'rt' + Date.now();
+    container.innerHTML = `
+      <div class="reminder-toast" id="${id}">
+        <div class="reminder-emoji">${emoji}</div>
+        <div class="reminder-msg">${msg.replace(/\n/g, '<br>')}</div>
+        <button class="reminder-close" onclick="document.getElementById('${id}').remove()">知道啦</button>
+      </div>`;
+    // Auto dismiss
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }, 15000);
+  },
+
+  // ---- Settings ----
+  showSettings() {
+    const settings = getSettings();
+    const html = `
+      <div class="modal-overlay" onclick="if(event.target===this)App.closeModal()">
+        <div class="modal">
+          <h3>设置</h3>
+          <div class="form-group">
+            <label>考研日期</label>
+            <input type="date" id="setExamDate" value="${settings.examDate}">
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.72rem;color:var(--text-lighter)">
+              所有数据仅保存在本地浏览器 localStorage 中，不会上传到任何服务器。
+            </label>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-outline btn-sm" onclick="App.closeModal()">取消</button>
+            <button class="btn btn-primary btn-sm" onclick="App.saveSettingsForm()">保存</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('modalContainer').innerHTML = html;
+  },
+
+  saveSettingsForm() {
+    const settings = getSettings();
+    settings.examDate = document.getElementById('setExamDate').value;
+    saveSettings(settings);
+    this.closeModal();
+    this.renderToday();
+    this.toast('设置已保存');
+  },
+
+  // ---- Helpers ----
+  closeModal() {
+    document.getElementById('modalContainer').innerHTML = '';
+  },
+
+  bindFilterChips(containerId, attr, callback) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.querySelectorAll('.filter-chip').forEach(chip => {
+      // Remove old listeners by cloning
+      const clone = chip.cloneNode(true);
+      chip.parentNode.replaceChild(clone, chip);
+      clone.addEventListener('click', () => {
+        container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        clone.classList.add('active');
+        callback();
+      });
+    });
+  },
+
+  toast(msg) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2000);
+  },
+
+  escHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+};
+
+// ===========================
+// Initialize
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+  App.init();
+  // Register service worker for PWA
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  }
+});
+</script>
+
+</body>
+</html>

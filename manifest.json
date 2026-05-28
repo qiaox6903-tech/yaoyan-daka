@@ -1,0 +1,18 @@
+{
+  "name": "药研陪伴打卡",
+  "short_name": "药研打卡",
+  "description": "药学考研陪伴打卡 — 学习计时、单词背诵、健康提醒",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#9b8ea8",
+  "background_color": "#faf7f4",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["education", "health", "productivity"]
+}
