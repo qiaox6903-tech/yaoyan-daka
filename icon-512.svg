@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9B8EA8"/>
+      <stop offset="100%" stop-color="#BBA8C8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#6B5E7A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- Rounded background -->
+  <rect width="512" height="512" rx="88" fill="url(#bg)"/>
+
+  <!-- Capsule shadow -->
+  <rect x="126" y="178" width="260" height="164" rx="82" fill="none" filter="url(#shadow)"/>
+
+  <!-- Capsule / Pill body -->
+  <rect x="126" y="178" width="260" height="164" rx="82" fill="white" fill-opacity="0.96"/>
+
+  <!-- Capsule divider -->
+  <line x1="256" y1="195" x2="256" y2="325" stroke="#9B8EA8" stroke-width="3" stroke-opacity="0.2"/>
+
+  <!-- Left half subtle fill -->
+  <rect x="126" y="178" width="130" height="164" rx="82" fill="#E8DCF0" fill-opacity="0.35"/>
+
+  <!-- Checkmark -->
+  <path d="M210 262 L240 292 L300 232" fill="none" stroke="#9B8EA8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Tiny sparkle top-right -->
+  <circle cx="350" cy="195" r="6" fill="white" fill-opacity="0.5"/>
+  <circle cx="360" cy="180" r="3" fill="white" fill-opacity="0.25"/>
+</svg>

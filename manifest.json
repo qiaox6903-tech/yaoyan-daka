@@ -10,17 +10,21 @@
   "background_color": "#faf7f4",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%239b8ea8'/%3E%3Ccircle cx='70' cy='96' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='42' y='78' width='56' height='36' rx='18' fill='%23ffffff33'/%3E%3Crect x='100' y='78' width='56' height='36' rx='18' fill='%23ffffff33'/%3E%3Ccircle cx='128' cy='96' r='28' fill='none' stroke='white' stroke-width='5'/%3E%3Ctext x='96' y='155' text-anchor='middle' font-size='24' fill='white' font-family='system-ui'%3E药学%3C/text%3E%3C/svg%3E",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5QjhFQTgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjQkJBOEM4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8IS0tIFJvdW5kZWQgYmFja2dyb3VuZCAtLT4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSJ1cmwoI2JnKSIvPgoKICA8IS0tIENhcHN1bGUgLyBQaWxsIGJvZHkgLS0+CiAgPHJlY3QgeD0iNTEiIHk9IjcyIiB3aWR0aD0iOTAiIGhlaWdodD0iNTYiIHJ4PSIyOCIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC45NSIvPgoKICA8IS0tIENhcHN1bGUgZGl2aWRlciBsaW5lIC0tPgogIDxsaW5lIHgxPSI5NiIgeTE9Ijc4IiB4Mj0iOTYiIHkyPSIxMjIiIHN0cm9rZT0iIzlCOEVBOCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjI1Ii8+CgogIDwhLS0gTGVmdCBoYWxmIGZpbGwgKHN1YnRsZSkgLS0+CiAgPHJlY3QgeD0iNTEiIHk9IjcyIiB3aWR0aD0iNDUiIGhlaWdodD0iNTYiIHJ4PSIyOCIgZmlsbD0iI0U4RENGMCIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KCiAgPCEtLSBDaGVja21hcmsgLS0+CiAgPHBhdGggZD0iTTgyIDEwMCBMOTAgMTA4IEwxMDggOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzlCOEVBOCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%239b8ea8'/%3E%3Ccircle cx='180' cy='240' r='70' fill='none' stroke='white' stroke-width='12'/%3E%3Crect x='110' y='195' width='140' height='90' rx='45' fill='%23ffffff33'/%3E%3Crect x='260' y='195' width='140' height='90' rx='45' fill='%23ffffff33'/%3E%3Ccircle cx='330' cy='240' r='70' fill='none' stroke='white' stroke-width='12'/%3E%3Ctext x='256' y='370' text-anchor='middle' font-size='56' fill='white' font-family='system-ui'%3E药学%3C/text%3E%3Ctext x='256' y='430' text-anchor='middle' font-size='32' fill='white' opacity='0.7' font-family='system-ui'%3E陪伴打卡%3C/text%3E%3C/svg%3E",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5QjhFQTgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjQkJBOEM4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGZpbHRlciBpZD0ic2hhZG93IiB4PSItMTAlIiB5PSItMTAlIiB3aWR0aD0iMTIwJSIgaGVpZ2h0PSIxMzAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iMTIiIGZsb29kLWNvbG9yPSIjNkI1RTdBIiBmbG9vZC1vcGFjaXR5PSIwLjIiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8IS0tIFJvdW5kZWQgYmFja2dyb3VuZCAtLT4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9Ijg4IiBmaWxsPSJ1cmwoI2JnKSIvPgoKICA8IS0tIENhcHN1bGUgc2hhZG93IC0tPgogIDxyZWN0IHg9IjEyNiIgeT0iMTc4IiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjE2NCIgcng9IjgyIiBmaWxsPSJub25lIiBmaWx0ZXI9InVybCgjc2hhZG93KSIvPgoKICA8IS0tIENhcHN1bGUgLyBQaWxsIGJvZHkgLS0+CiAgPHJlY3QgeD0iMTI2IiB5PSIxNzgiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTY0IiByeD0iODIiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOTYiLz4KCiAgPCEtLSBDYXBzdWxlIGRpdmlkZXIgLS0+CiAgPGxpbmUgeDE9IjI1NiIgeTE9IjE5NSIgeDI9IjI1NiIgeTI9IjMyNSIgc3Ryb2tlPSIjOUI4RUE4IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1vcGFjaXR5PSIwLjIiLz4KCiAgPCEtLSBMZWZ0IGhhbGYgc3VidGxlIGZpbGwgLS0+CiAgPHJlY3QgeD0iMTI2IiB5PSIxNzgiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTY0IiByeD0iODIiIGZpbGw9IiNFOERDRjAiIGZpbGwtb3BhY2l0eT0iMC4zNSIvPgoKICA8IS0tIENoZWNrbWFyayAtLT4KICA8cGF0aCBkPSJNMjEwIDI2MiBMMjQwIDI5MiBMMzAwIDIzMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOUI4RUE4IiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KCiAgPCEtLSBUaW55IHNwYXJrbGUgdG9wLXJpZ2h0IC0tPgogIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjE5NSIgcj0iNiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC41Ii8+CiAgPGNpcmNsZSBjeD0iMzYwIiBjeT0iMTgwIiByPSIzIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjI1Ii8+Cjwvc3ZnPg==",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["education", "health", "productivity"]
+  "categories": [
+    "education",
+    "health",
+    "productivity"
+  ]
 }

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9B8EA8"/>
+      <stop offset="100%" stop-color="#BBA8C8"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded background -->
+  <rect width="192" height="192" rx="36" fill="url(#bg)"/>
+
+  <!-- Capsule / Pill body -->
+  <rect x="51" y="72" width="90" height="56" rx="28" fill="white" fill-opacity="0.95"/>
+
+  <!-- Capsule divider line -->
+  <line x1="96" y1="78" x2="96" y2="122" stroke="#9B8EA8" stroke-width="1.5" stroke-opacity="0.25"/>
+
+  <!-- Left half fill (subtle) -->
+  <rect x="51" y="72" width="45" height="56" rx="28" fill="#E8DCF0" fill-opacity="0.4"/>
+
+  <!-- Checkmark -->
+  <path d="M82 100 L90 108 L108 90" fill="none" stroke="#9B8EA8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
