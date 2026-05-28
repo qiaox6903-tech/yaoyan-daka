@@ -27,7 +27,7 @@
   --text-lighter: #b0aab5;
   --border: #ede8e4;
   --shadow: 0 2px 12px rgba(0,0,0,0.06);
-  --radius: 16px;
+  --radius: 16px;x
   --radius-sm: 10px;
   --nav-height: 68px;
   --header-height: 56px;
@@ -710,6 +710,113 @@ body {
   opacity: 0.5;
 }
 
+/* ===== Professional Course Page ===== */
+.pro-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--text-lighter);
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.pro-breadcrumb span { cursor: pointer; color: var(--primary); }
+.pro-breadcrumb .sep { color: var(--text-lighter); cursor: default; }
+.pro-breadcrumb .current { color: var(--text); font-weight: 500; cursor: default; }
+
+.pro-subject-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pro-subject-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+.pro-subject-card:active { transform: scale(0.97); }
+.pro-subject-card.pharma { border-color: var(--primary-light); }
+.pro-subject-card.pharmaceu { border-color: var(--mint-light); }
+.pro-subject-card .pro-icon { font-size: 2rem; margin-bottom: 8px; }
+.pro-subject-card .pro-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.pro-subject-card .pro-count { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; }
+
+.pro-chapter-list { list-style: none; }
+.pro-chapter-item {
+  padding: 12px 14px;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.15s;
+  border-left: 3px solid transparent;
+}
+.pro-chapter-item:active { transform: scale(0.98); }
+.pro-chapter-item .ch-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+.pro-chapter-item .ch-count { font-size: 0.72rem; color: var(--text-lighter); flex-shrink: 0; }
+
+.pro-point-item {
+  padding: 12px 14px;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.pro-point-item:active { transform: scale(0.98); }
+.pro-point-item .pt-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+.pro-point-item .pt-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: var(--text-lighter);
+}
+.pro-point-item .pt-tag {
+  padding: 1px 8px;
+  border-radius: 8px;
+  font-size: 0.68rem;
+}
+.pt-tag.high { background: #f5e0e0; color: #a06868; }
+.pt-tag.mid { background: #f5eed8; color: #a09058; }
+.pt-tag.due { background: var(--accent-light); color: var(--accent); }
+.pt-tag.done { background: var(--mint-light); color: #6b9b7e; }
+
+.pro-detail-section {
+  margin-bottom: 12px;
+}
+.pro-detail-label {
+  font-size: 0.72rem;
+  color: var(--text-lighter);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.pro-detail-content {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+.pro-detail-list {
+  list-style: disc;
+  padding-left: 18px;
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+.pro-detail-list li { margin-bottom: 2px; }
+
 /* Empty state */
 .empty-state {
   text-align: center;
@@ -761,6 +868,8 @@ body {
         <div class="stat-item water"><div class="val" id="statWater">0</div><div class="lbl">今日喝水 / 杯</div></div>
         <div class="stat-item break"><div class="val" id="statBreak">0</div><div class="lbl">今日休息 / 次</div></div>
         <div class="stat-item"><div class="val" id="statMemoReview">0</div><div class="lbl">待复习卡片</div></div>
+        <div class="stat-item"><div class="val" id="statProReview">0</div><div class="lbl">专业课待复习</div></div>
+        <div class="stat-item break"><div class="val" id="statProDone">0</div><div class="lbl">今日已复习</div></div>
       </div>
     </div>
 
@@ -826,7 +935,15 @@ body {
     </div>
   </div>
 
-  <!-- ====== Page 3: 单词 ====== -->
+  <!-- ====== Page 3: 专业课 ====== -->
+  <div class="page" id="page-pro">
+    <div class="pro-breadcrumb" id="proBreadcrumb"></div>
+    <div id="proContent">
+      <div class="empty-state">加载中...</div>
+    </div>
+  </div>
+
+  <!-- ====== Page 4: 单词 ====== -->
   <div class="page" id="page-words">
     <div class="word-count-bar" id="wordCountBar">词库 <strong>0</strong> 词 · 今日已背 <strong>0</strong> 词 · 待复习 <strong>0</strong> 词</div>
 
@@ -964,9 +1081,12 @@ body {
       <span class="nav-icon">🧠</span>背诵
     </button>
     <button class="nav-item" data-tab="3">
-      <span class="nav-icon">🔤</span>单词
+      <span class="nav-icon">💊</span>专业课
     </button>
     <button class="nav-item" data-tab="4">
+      <span class="nav-icon">🔤</span>单词
+    </button>
+    <button class="nav-item" data-tab="5">
       <span class="nav-icon">🔔</span>提醒
     </button>
   </nav>
@@ -1133,6 +1253,8 @@ const App = {
     }, 60000);
     // Auto-import redbook on first visit
     this.initAutoImport();
+    // Preload professional course data for homepage stats
+    this.loadProData().then(() => { this.renderToday(); });
   },
 
   // ---- Auto-import redbook on first load ----
@@ -1197,6 +1319,371 @@ const App = {
     }
   },
 
+  // ---- Professional Course Data ----
+  _proData: null,
+  _proNavStack: [],  // Stack: [{view:'subjects'|'chapters'|'points'|'detail', ...}]
+
+  getProReviewState() {
+    return load('proReviewState') || {};
+  },
+  saveProReviewState(state) {
+    save('proReviewState', state);
+  },
+
+  async loadProData() {
+    if (this._proData) return this._proData;
+    try {
+      const [pharmaResp, pharmaceuResp] = await Promise.all([
+        fetch('./data/pharmacology.json'),
+        fetch('./data/pharmaceutics.json')
+      ]);
+      if (!pharmaResp.ok || !pharmaceuResp.ok) throw new Error('Failed to fetch pro data');
+      this._proData = {
+        pharmacology: await pharmaResp.json(),
+        pharmaceutics: await pharmaceuResp.json()
+      };
+      // Index all knowledge points for quick lookup
+      this._proPointIndex = {};
+      for (const key of ['pharmacology', 'pharmaceutics']) {
+        const data = this._proData[key];
+        if (!data || !data.chapters) continue;
+        for (const ch of data.chapters) {
+          for (const pt of (ch.knowledgePoints || [])) {
+            this._proPointIndex[pt.id] = pt;
+          }
+        }
+      }
+      return this._proData;
+    } catch (err) {
+      console.warn('Failed to load professional course data:', err.message);
+      return null;
+    }
+  },
+
+  // ---- Professional Course Rendering ----
+  async renderProCourse() {
+    const container = document.getElementById('proContent');
+    const breadcrumb = document.getElementById('proBreadcrumb');
+
+    // If no nav stack, show subject selection
+    if (this._proNavStack.length === 0) {
+      container.innerHTML = '<div class="empty-state">加载中...</div>';
+      breadcrumb.innerHTML = '';
+      const data = await this.loadProData();
+      if (!data) {
+        container.innerHTML = '<div class="empty-state">专业课数据加载失败<br>请检查网络连接后刷新页面</div>';
+        return;
+      }
+      this.showProSubjects();
+      return;
+    }
+
+    // Restore view from stack
+    const top = this._proNavStack[this._proNavStack.length - 1];
+    this._renderProBreadcrumb();
+
+    switch (top.view) {
+      case 'subjects': this.showProSubjects(); break;
+      case 'chapters': this.showProChapters(top.subject); break;
+      case 'points': this.showProPoints(top.subject, top.chapterId); break;
+      case 'detail': this.showProDetail(top.pointId); break;
+    }
+  },
+
+  _renderProBreadcrumb() {
+    const bc = document.getElementById('proBreadcrumb');
+    if (this._proNavStack.length === 0) { bc.innerHTML = ''; return; }
+
+    const top = this._proNavStack[this._proNavStack.length - 1];
+    const parts = [];
+    parts.push('<span onclick="App._proNavTo(0)">专业课</span>');
+
+    if (top.view === 'chapters' || top.view === 'points' || top.view === 'detail') {
+      parts.push('<span class="sep">›</span>');
+      const subjLabel = top.subject === 'pharmacology' ? '药理学' : '药剂学 / 工业药剂学';
+      parts.push('<span onclick="App._proNavTo(1)">' + subjLabel + '</span>');
+    }
+
+    if (top.view === 'points' || top.view === 'detail') {
+      parts.push('<span class="sep">›</span>');
+      // Find chapter title
+      const chTitle = this._findChapterTitle(top.subject, top.chapterId);
+      parts.push('<span onclick="App._proNavTo(2)">' + (chTitle || '章节') + '</span>');
+    }
+
+    if (top.view === 'detail') {
+      parts.push('<span class="sep">›</span>');
+      const pt = this._proPointIndex && this._proPointIndex[top.pointId];
+      parts.push('<span class="current">' + (pt ? pt.title : '知识点') + '</span>');
+    }
+
+    bc.innerHTML = parts.join('');
+  },
+
+  _proNavTo(level) {
+    // Truncate stack to given level
+    this._proNavStack = this._proNavStack.slice(0, level + 1);
+    const top = this._proNavStack[this._proNavStack.length - 1];
+    // Ensure top view is consistent
+    if (level === 0) top.view = 'subjects';
+    if (level === 1) top.view = 'chapters';
+    if (level === 2) top.view = 'points';
+    this.renderProCourse();
+  },
+
+  _findChapterTitle(subject, chapterId) {
+    const data = this._proData;
+    if (!data) return '';
+    const key = subject === 'pharmacology' ? 'pharmacology' : 'pharmaceutics';
+    const chapters = data[key] && data[key].chapters;
+    if (!chapters) return '';
+    const ch = chapters.find(c => c.id === chapterId);
+    return ch ? ch.title : '';
+  },
+
+  showProSubjects() {
+    this._proNavStack = [{ view: 'subjects' }];
+    this._renderProBreadcrumb();
+    const container = document.getElementById('proContent');
+    const data = this._proData;
+    const reviewState = this.getProReviewState();
+    const today = todayKey();
+
+    const pharmaChapters = data.pharmacology.chapters || [];
+    const pharmaceuChapters = data.pharmaceutics.chapters || [];
+
+    const pharmaPoints = pharmaChapters.reduce((s, c) => s + (c.knowledgePoints || []).length, 0);
+    const pharmaceuPoints = pharmaceuChapters.reduce((s, c) => s + (c.knowledgePoints || []).length, 0);
+
+    // Count due points
+    const countDue = (chapters) => {
+      let due = 0;
+      for (const ch of chapters) {
+        for (const pt of (ch.knowledgePoints || [])) {
+          const rs = reviewState[pt.id];
+          const nextDate = rs ? rs.nextReviewDate : today;
+          const status = rs ? rs.status : '未学';
+          if (status !== '熟练' && nextDate <= today) due++;
+        }
+      }
+      return due;
+    };
+    const pharmaDue = countDue(pharmaChapters);
+    const pharmaceuDue = countDue(pharmaceuChapters);
+
+    container.innerHTML = `
+      <div class="pro-subject-grid">
+        <div class="pro-subject-card pharma" onclick="App.showProChapters('pharmacology')">
+          <div class="pro-icon">💊</div>
+          <div class="pro-name">药理学</div>
+          <div class="pro-count">${pharmaChapters.length} 章 · ${pharmaPoints} 个知识点</div>
+          ${pharmaDue > 0 ? '<div class="pro-count" style="color:var(--accent)">' + pharmaDue + ' 个待复习</div>' : ''}
+        </div>
+        <div class="pro-subject-card pharmaceu" onclick="App.showProChapters('pharmaceutics')">
+          <div class="pro-icon">🧪</div>
+          <div class="pro-name">药剂学 / 工业药剂学</div>
+          <div class="pro-count">${pharmaceuChapters.length} 章 · ${pharmaceuPoints} 个知识点</div>
+          ${pharmaceuDue > 0 ? '<div class="pro-count" style="color:var(--accent)">' + pharmaceuDue + ' 个待复习</div>' : ''}
+        </div>
+      </div>`;
+  },
+
+  showProChapters(subject) {
+    this._proNavStack = [{ view: 'chapters', subject }];
+    this._renderProBreadcrumb();
+    const container = document.getElementById('proContent');
+    const data = this._proData;
+    const key = subject === 'pharmacology' ? 'pharmacology' : 'pharmaceutics';
+    const chapters = data[key] && data[key].chapters;
+    if (!chapters || chapters.length === 0) {
+      container.innerHTML = '<div class="empty-state">暂无章节数据</div>';
+      return;
+    }
+
+    const subjLabel = subject === 'pharmacology' ? '药理学' : '药剂学 / 工业药剂学';
+    const reviewState = this.getProReviewState();
+    const today = todayKey();
+
+    const items = chapters.map(ch => {
+      const ptCount = (ch.knowledgePoints || []).length;
+      let due = 0;
+      for (const pt of (ch.knowledgePoints || [])) {
+        const rs = reviewState[pt.id];
+        const nextDate = rs ? rs.nextReviewDate : today;
+        const status = rs ? rs.status : '未学';
+        if (status !== '熟练' && nextDate <= today) due++;
+      }
+      return `
+        <li class="pro-chapter-item" onclick="App.showProPoints('${subject}', '${ch.id}')">
+          <span class="ch-title">${this.escHtml(ch.title)}</span>
+          <span class="ch-count">${ptCount} 点${due > 0 ? ' · <span style=\\"color:var(--accent)\\">' + due + ' 待复习</span>' : ''}</span>
+        </li>`;
+    }).join('');
+
+    container.innerHTML = `
+      <div style="font-size:0.8rem;color:var(--text-lighter);margin-bottom:10px">${subjLabel} — 共 ${chapters.length} 章</div>
+      <ul class="pro-chapter-list">${items}</ul>`;
+  },
+
+  showProPoints(subject, chapterId) {
+    this._proNavStack = [{ view: 'points', subject, chapterId }];
+    this._renderProBreadcrumb();
+    const container = document.getElementById('proContent');
+    const data = this._proData;
+    const key = subject === 'pharmacology' ? 'pharmacology' : 'pharmaceutics';
+    const chapters = data[key] && data[key].chapters;
+    const ch = chapters && chapters.find(c => c.id === chapterId);
+    if (!ch || !ch.knowledgePoints || ch.knowledgePoints.length === 0) {
+      container.innerHTML = '<div class="empty-state">暂无知识点</div>';
+      return;
+    }
+
+    const reviewState = this.getProReviewState();
+    const today = todayKey();
+    const points = ch.knowledgePoints || [];
+
+    const items = points.map(pt => {
+      const rs = reviewState[pt.id];
+      const status = rs ? rs.status : pt.status || '未学';
+      const nextDate = rs ? rs.nextReviewDate : '';
+      const isDue = status !== '熟练' && nextDate && nextDate <= today;
+      const tagClass = status === '熟练' ? 'done' : (isDue ? 'due' : (pt.importance === '高频' ? 'high' : 'mid'));
+      const tagLabel = status !== '未学' ? status : (isDue ? '待复习' : pt.importance);
+      return `
+        <div class="pro-point-item" onclick="App.showProDetail('${pt.id}')">
+          <div class="pt-title">${this.escHtml(pt.title)}</div>
+          <div class="pt-meta">
+            <span class="pt-tag ${tagClass}">${this.escHtml(tagLabel)}</span>
+            <span>${pt.examType || ''}</span>
+          </div>
+        </div>`;
+    }).join('');
+
+    container.innerHTML = `
+      <div style="font-size:0.8rem;color:var(--text-lighter);margin-bottom:10px">${this.escHtml(ch.title)} — ${points.length} 个知识点</div>
+      ${items}`;
+  },
+
+  showProDetail(pointId) {
+    this._proNavStack = [{ view: 'detail', pointId,
+      subject: this._proNavStack.length > 0 ? this._proNavStack[this._proNavStack.length-1].subject : '',
+      chapterId: this._proNavStack.length > 0 ? this._proNavStack[this._proNavStack.length-1].chapterId : ''
+    }];
+    // Try to get subject/chapter from index
+    const pt = this._proPointIndex && this._proPointIndex[pointId];
+    if (pt) {
+      const subjectKey = pt.subject === '药理学' ? 'pharmacology' : 'pharmaceutics';
+      // Find chapter
+      const data = this._proData;
+      for (const key of ['pharmacology', 'pharmaceutics']) {
+        for (const ch of (data[key] && data[key].chapters || [])) {
+          if (ch.knowledgePoints && ch.knowledgePoints.some(p => p.id === pointId)) {
+            this._proNavStack[0].subject = key;
+            this._proNavStack[0].chapterId = ch.id;
+            break;
+          }
+        }
+      }
+    }
+    this._renderProBreadcrumb();
+    this._renderProDetail(pointId);
+  },
+
+  _renderProDetail(pointId) {
+    const container = document.getElementById('proContent');
+    const pt = this._proPointIndex && this._proPointIndex[pointId];
+    if (!pt) {
+      container.innerHTML = '<div class="empty-state">知识点未找到</div>';
+      return;
+    }
+
+    const reviewState = this.getProReviewState();
+    const rs = reviewState[pointId];
+    const status = rs ? rs.status : pt.status || '未学';
+    const reviewCount = rs ? (rs.reviewCount || 0) : (pt.reviewCount || 0);
+    const lastReviewDate = rs ? (rs.lastReviewDate || '') : (pt.lastReviewDate || '');
+    const nextReviewDate = rs ? (rs.nextReviewDate || '') : (pt.nextReviewDate || '');
+
+    const keyPointsHtml = (pt.keyPoints && pt.keyPoints.length > 0)
+      ? '<ul class="pro-detail-list">' + pt.keyPoints.map(k => '<li>' + this.escHtml(k) + '</li>').join('') + '</ul>'
+      : '';
+
+    container.innerHTML = `
+      <div class="card">
+        <div class="pro-detail-section">
+          <div class="pro-detail-label">知识点</div>
+          <div class="pro-detail-content" style="font-size:1rem;font-weight:600;color:var(--text)">${this.escHtml(pt.title)}</div>
+        </div>
+
+        <div class="pro-detail-section">
+          <div class="pro-detail-label">考查形式</div>
+          <div class="pro-detail-content">${this.escHtml(pt.examType || '')}</div>
+        </div>
+
+        <div class="pro-detail-section">
+          <div class="pro-detail-label">重要程度</div>
+          <div class="pro-detail-content">${this.escHtml(pt.importance || '')}</div>
+        </div>
+
+        <div class="pro-detail-section">
+          <div class="pro-detail-label">核心内容</div>
+          <div class="pro-detail-content">${this.escHtml(pt.content || '')}</div>
+        </div>
+
+        ${keyPointsHtml ? '<div class="pro-detail-section"><div class="pro-detail-label">关键要点</div>' + keyPointsHtml + '</div>' : ''}
+
+        ${pt.mistakes ? '<div class="pro-detail-section"><div class="pro-detail-label">常见错误</div><div class="pro-detail-content" style="color:var(--accent)">' + this.escHtml(pt.mistakes) + '</div></div>' : ''}
+
+        ${pt.mnemonic ? '<div class="pro-detail-section"><div class="pro-detail-label">记忆口诀</div><div class="pro-detail-content" style="color:var(--primary)">' + this.escHtml(pt.mnemonic) + '</div></div>' : ''}
+
+        <div class="pro-detail-section" style="margin-top:14px">
+          <div class="pro-detail-label">学习状态</div>
+          <div class="pro-detail-content">
+            状态：<strong>${this.escHtml(status)}</strong> ·
+            已复习 <strong>${reviewCount}</strong> 次 ·
+            上次：${lastReviewDate || '-'} ·
+            下次：${nextReviewDate || '-'}
+          </div>
+        </div>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn btn-sm" style="background:#f0e0e0;color:#a06868" onclick="App.markProPoint('${pointId}', '仍然模糊')">仍然模糊</button>
+          <button class="btn btn-sm" style="background:#d8e8f0;color:#5888a0" onclick="App.markProPoint('${pointId}', '基本会了')">基本会了</button>
+          <button class="btn btn-sm" style="background:#d8f0e0;color:#589068" onclick="App.markProPoint('${pointId}', '已熟练')">已熟练</button>
+        </div>
+      </div>`;
+  },
+
+  markProPoint(pointId, status) {
+    const reviewState = this.getProReviewState();
+    const today = todayKey();
+    const now = new Date().toISOString();
+
+    const schedule = { '仍然模糊': 1, '基本会了': 7, '已熟练': 30 };
+    const days = schedule[status] || 3;
+    const nd = new Date();
+    nd.setDate(nd.getDate() + days);
+    const nextDate = nd.getFullYear() + '-' + String(nd.getMonth()+1).padStart(2,'0') + '-' + String(nd.getDate()).padStart(2,'0');
+
+    reviewState[pointId] = {
+      status,
+      reviewCount: (reviewState[pointId] ? (reviewState[pointId].reviewCount || 0) : 0) + 1,
+      lastReviewDate: today,
+      nextReviewDate: nextDate
+    };
+
+    this.saveProReviewState(reviewState);
+
+    // Also increment today's pro review count
+    const proCount = load('proReviewCount') || {};
+    proCount[today] = (proCount[today] || 0) + 1;
+    save('proReviewCount', proCount);
+
+    this._renderProDetail(pointId);
+    this.renderToday();
+    this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
+  },
+
   // ---- Navigation ----
   bindNav() {
     document.querySelectorAll('.nav-item').forEach(el => {
@@ -1215,14 +1702,15 @@ const App = {
     document.querySelectorAll('.page').forEach((el, i) => {
       el.classList.toggle('active', i === tab);
     });
-    const titles = ['今日', '学习', '背诵', '单词', '提醒'];
+    const titles = ['今日', '学习', '背诵', '专业课', '单词', '提醒'];
     document.getElementById('pageTitle').textContent = titles[tab];
     // Refresh content on switch
     if (tab === 0) this.renderToday();
     if (tab === 1) this.renderStudyRecords();
     if (tab === 2) this.renderMemoCards();
-    if (tab === 3) this.initWordView();
-    if (tab === 4) this.renderReminders();
+    if (tab === 3) this.renderProCourse();
+    if (tab === 4) this.initWordView();
+    if (tab === 5) this.renderReminders();
   },
 
   // ---- Today Page ----
@@ -1272,6 +1760,23 @@ const App = {
     // Memo review count
     const dueCards = this.getDueMemoCards();
     document.getElementById('statMemoReview').textContent = dueCards.length;
+
+    // Professional course review stats
+    const proReviewState = this.getProReviewState();
+    if (this._proPointIndex) {
+      let proDue = 0;
+      for (const [ptId, pt] of Object.entries(this._proPointIndex)) {
+        const rs = proReviewState[ptId];
+        const status = rs ? rs.status : (pt.status || '未学');
+        const nextDate = rs ? rs.nextReviewDate : (pt.nextReviewDate || '');
+        if (status !== '熟练' && status !== '已熟练' && nextDate && nextDate <= today) proDue++;
+      }
+      document.getElementById('statProReview').textContent = proDue;
+    } else {
+      document.getElementById('statProReview').textContent = '--';
+    }
+    const proCount = load('proReviewCount') || {};
+    document.getElementById('statProDone').textContent = proCount[today] || 0;
 
     // Progress - based on study time (target 6h), words (target 50), water (target from settings)
     const studyTarget = 6 * 3600;

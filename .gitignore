@@ -1,6 +1,9 @@
 # PDF files (too large for git)
 *.pdf
 
+# Claude local files
+.claude/
+
 # OS files
 .DS_Store
 Thumbs.db

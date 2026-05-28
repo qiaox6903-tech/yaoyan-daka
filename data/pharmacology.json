@@ -1,0 +1,1745 @@
+{
+  "schemaVersion": "2.1",
+  "libraryType": "professionalKnowledge",
+  "exam": "中国药科大学 药学 349 药学综合",
+  "subject": "药理学",
+  "description": "按中国药科大学349药学综合药理学笔记目录重排，覆盖药理学42章核心考点，适合“科目→章节→知识点”复习。",
+  "chapters": [
+    {
+      "id": "35a0f29007",
+      "title": "第一章 绪论",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-7232576760",
+          "subject": "药理学",
+          "chapter": "第一章 绪论",
+          "title": "药理学研究对象与 PD/PK",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药理学研究药物与机体相互作用的规律。PD 研究药物对机体的作用、作用机制、临床应用和不良反应；PK 研究机体对药物的处置，包括吸收、分布、代谢、排泄和血药浓度-时间变化。",
+          "keyPoints": [
+            "PD：作用、机制、应用、不良反应",
+            "PK：ADME、药时曲线",
+            "答题先定义再分层"
+          ],
+          "mistakes": "不要把药代动力学仅理解为“代谢”。",
+          "mnemonic": "PD看效应，PK看去向。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-3ff978f96e",
+          "subject": "药理学",
+          "chapter": "第一章 绪论",
+          "title": "新药研究中的药理学",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "非临床药理研究包括药效学、安全药理学、毒理学和药代动力学，为临床试验提供有效性、安全性、靶器官、不良反应监测和起始剂量依据。临床试验 I～IV 期分别强调耐受/PK、初步有效性安全性、确证疗效和上市后评价。",
+          "keyPoints": [
+            "非临床：药效、安全、毒理、药代",
+            "I期健康人，II期病人初步，III期确证，IV期上市后"
+          ],
+          "mistakes": "安全药理学偏生命系统功能，毒理学偏毒性性质和靶器官。",
+          "mnemonic": "非临四件套，临床一二三四。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "0c784d8f14",
+      "title": "第二章 药代动力学",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-22fa4dd70b",
+          "subject": "药理学",
+          "chapter": "第二章 药代动力学",
+          "title": "跨膜转运方式",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "被动转运顺浓度梯度、不耗能、无饱和、无选择、无竞争抑制；特殊转运包括主动转运、易化扩散、载体转运、受体介导转运和胞饮等，常具有选择性、饱和性和竞争抑制，主动转运可逆浓度梯度并耗能。",
+          "keyPoints": [
+            "被动：顺浓度、不耗能、三无",
+            "主动：逆浓度、耗能、三有",
+            "易化扩散：顺浓度、有载体、不耗能"
+          ],
+          "mistakes": "易化扩散不是主动转运；它不耗能。",
+          "mnemonic": "被动三无，主动三有。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-d8f923451a",
+          "subject": "药理学",
+          "chapter": "第二章 药代动力学",
+          "title": "吸收影响因素",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药物吸收受给药途径、药物理化性质、剂型、胃排空、肠蠕动、吸收面积、pH、血流量、食物和药物相互作用影响。口服药多在小肠吸收，因为小肠面积大、血流丰富、停留时间长、pH较适宜。",
+          "keyPoints": [
+            "小肠是主要吸收部位",
+            "非解离型更易过膜",
+            "胃排空、pH、血流量和相互作用常考"
+          ],
+          "mistakes": "不要只答“脂溶性大吸收好”，要按药物、制剂、机体因素展开。",
+          "mnemonic": "途径-性质-剂型-部位-pH-血流。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-33882b1ba0",
+          "subject": "药理学",
+          "chapter": "第二章 药代动力学",
+          "title": "分布与血浆蛋白结合",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "分布受血流量、组织亲和力、血浆蛋白结合、体液pH、屏障和理化性质影响。血浆蛋白结合具有可逆性、饱和性和竞争置换；结合型暂时无活性、不易滤过，游离型发挥药效并被消除。",
+          "keyPoints": [
+            "游离型有效",
+            "结合型是储库",
+            "竞争置换可增强毒性"
+          ],
+          "mistakes": "结合型不是无意义，它可延长作用并影响相互作用。",
+          "mnemonic": "游离起效，结合储库。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-082a2be88d",
+          "subject": "药理学",
+          "chapter": "第二章 药代动力学",
+          "title": "代谢、肝药酶诱导与抑制",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药物代谢又称生物转化，主要在肝脏，可使药物极性增加、便于排泄，也可能活化前药或产生毒性代谢物。CYP450 是重要酶系；酶诱导可加快代谢、降低原药作用，酶抑制可减慢代谢、增强作用或中毒。",
+          "keyPoints": [
+            "代谢不一定灭活",
+            "CYP450",
+            "诱导快，抑制慢"
+          ],
+          "mistakes": "前药经代谢后作用增强，不能笼统写“代谢=失效”。",
+          "mnemonic": "诱导快，抑制慢，前药反着看。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-8cd270aebe",
+          "subject": "药理学",
+          "chapter": "第二章 药代动力学",
+          "title": "排泄、半衰期与稳态",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "肾排泄包括滤过、分泌和重吸收，尿液pH可影响弱酸弱碱药排泄。半衰期反映消除快慢，等间隔给药约经4～5个半衰期达到稳态，停药后约经4～5个半衰期基本消除，可指导给药间隔、负荷剂量和维持剂量。",
+          "keyPoints": [
+            "肾排泄三环节",
+            "弱酸中毒可碱化尿液促排泄",
+            "4～5个半衰期达稳态"
+          ],
+          "mistakes": "半衰期不完全等同药效持续时间。",
+          "mnemonic": "四五半衰稳，四五半衰清。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "650349f42c",
+      "title": "第三章 药物效应动力学",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-b248e01135",
+          "subject": "药理学",
+          "chapter": "第三章 药物效应动力学",
+          "title": "选择性与量效关系",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "选择性来自药物分布、组织功能、靶点表达和病原体差异，是治疗作用基础。量效关系中，效价强度看达到同等效应所需剂量，效能看最大效应；治疗指数 TI 反映安全范围，但还需结合安全窗和严重毒性。",
+          "keyPoints": [
+            "选择性是相对的",
+            "效价强度≠效能",
+            "TI越大通常越安全"
+          ],
+          "mistakes": "不要说选择性高就一定无不良反应。",
+          "mnemonic": "强度看剂量，效能看顶点。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-b2abcf066d",
+          "subject": "药理学",
+          "chapter": "第三章 药物效应动力学",
+          "title": "受体、激动药和拮抗药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "受体包括G蛋白偶联受体、配体门控离子通道、酶偶联受体和细胞内受体。激动药有亲和力和内在活性；拮抗药有亲和力无内在活性；部分激动药内在活性较弱，与完全激动药合用可表现拮抗。竞争性拮抗使曲线平行右移，最大效应不变；非竞争性拮抗降低最大效应。",
+          "keyPoints": [
+            "四类受体",
+            "亲和力+内在活性",
+            "竞争性拮抗右移不降顶"
+          ],
+          "mistakes": "部分激动药不是简单“弱激动药”，与完全激动药合用时可能拮抗。",
+          "mnemonic": "激动两都有，拮抗有亲无效。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-9d00531ccd",
+          "subject": "药理学",
+          "chapter": "第三章 药物效应动力学",
+          "title": "不良反应类型",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "不良反应包括副反应、毒性反应、后遗效应、停药反应、变态反应、特异质反应、继发反应以及致畸、致癌、致突变。副反应发生于治疗剂量且与药理作用相关；毒性反应多与过量或蓄积有关；变态反应与免疫有关且与剂量关系小；特异质反应与遗传异常相关。",
+          "keyPoints": [
+            "副反应：治疗量、选择性低",
+            "毒性：过量或蓄积",
+            "变态：免疫",
+            "特异质：遗传"
+          ],
+          "mistakes": "不要把所有不舒服都称为副作用。",
+          "mnemonic": "副毒后停，变特继三致。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "e6fd7afbb8",
+      "title": "第四章 影响药物作用的因素",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-88a67958bb",
+          "subject": "药理学",
+          "chapter": "第四章 影响药物作用的因素",
+          "title": "药物因素与相互作用",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药物因素包括剂型、途径、剂量、给药时间和联合用药。相互作用可发生在PK环节：吸收、分布、代谢、排泄，也可发生在PD环节：协同、相加、增敏、拮抗。合理联用可增效减毒，不合理联用可疗效下降或毒性增加。",
+          "keyPoints": [
+            "PK：A/D/M/E",
+            "PD：协同/相加/增敏/拮抗",
+            "答题按PK-PD分类"
+          ],
+          "mistakes": "不要只罗列例子，要先分类。",
+          "mnemonic": "相互作用先PK后PD。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-bebc1a4f12",
+          "subject": "药理学",
+          "chapter": "第四章 影响药物作用的因素",
+          "title": "拮抗类型",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药物拮抗包括药理性拮抗、生理性拮抗、化学性拮抗和生化性拮抗。药理性拮抗发生在受体或作用位点；生理性拮抗通过相反生理效应抵消；化学性拮抗通过化学结合失活；生化性拮抗通过影响代谢酶等改变药物浓度。",
+          "keyPoints": [
+            "药理抢位",
+            "生理反向",
+            "化学结合",
+            "生化改酶"
+          ],
+          "mistakes": "生理性拮抗不等于竞争同一受体。",
+          "mnemonic": "药理位点，生理反向，化学结合，生化改酶。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-0f0c7a5811",
+          "subject": "药理学",
+          "chapter": "第四章 影响药物作用的因素",
+          "title": "机体因素与长期用药反应",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "机体因素包括年龄、性别、遗传、病理状态、心理因素、昼夜节律等。长期用药可出现耐受性、快速耐受性、耐药性、依赖性和成瘾。儿童、老年人、妊娠、肝肾功能异常者用药需调整。",
+          "keyPoints": [
+            "age/sex/gene/long/psycho/change",
+            "耐受≠耐药",
+            "肝肾功能影响剂量"
+          ],
+          "mistakes": "耐药常用于病原体或肿瘤细胞敏感性下降，耐受常用于机体反应降低。",
+          "mnemonic": "年龄性别基因，长期心理病情。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "646430e410",
+      "title": "第五章 外周神经药理学概述",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-b8965ff245",
+          "subject": "药理学",
+          "chapter": "第五章 外周神经药理学概述",
+          "title": "传出神经递质与受体",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "传出神经系统药物围绕ACh和NA两大递质。胆碱受体分M受体和N受体；肾上腺素受体分α1、α2、β1、β2、β3。掌握受体分布和效应是理解拟胆碱药、抗胆碱药、拟肾上腺素药和抗肾上腺素药的基础。",
+          "keyPoints": [
+            "ACh与NA两大递质",
+            "M/N受体",
+            "α/β受体"
+          ],
+          "mistakes": "不要死背药物，先用受体分布推效应。",
+          "mnemonic": "先受体，后药物。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-5eec01adc8",
+          "subject": "药理学",
+          "chapter": "第五章 外周神经药理学概述",
+          "title": "传出神经药物分类",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "传出神经药物可按作用环节分为影响递质合成、储存、释放、灭活和直接作用受体的药物；也可按效应分为拟胆碱药、抗胆碱药、拟肾上腺素药和抗肾上腺素药。胆碱酯酶抑制药通过抑制ACh水解增强胆碱能效应。",
+          "keyPoints": [
+            "按环节分类",
+            "按效应分类",
+            "胆碱酯酶抑制药增强ACh"
+          ],
+          "mistakes": "拟胆碱不一定都是直接激动受体，新斯的明属于间接作用。",
+          "mnemonic": "环节分类：合储释灭受。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "abca180e9b",
+      "title": "第六章 作用于胆碱受体的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-dccba9fac5",
+          "subject": "药理学",
+          "chapter": "第六章 作用于胆碱受体的药物",
+          "title": "毛果芸香碱",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "毛果芸香碱为M受体激动药，眼部产生缩瞳、降低眼内压、调节痉挛。用于青光眼，尤其闭角型青光眼，也可对抗阿托品中毒。全身不良反应包括流涎、出汗、支气管收缩、胃肠蠕动增强等。",
+          "keyPoints": [
+            "M受体激动",
+            "缩瞳、降眼压、调节痉挛",
+            "闭角型青光眼"
+          ],
+          "mistakes": "降眼压机制要写前房角开放、房水回流增加。",
+          "mnemonic": "毛果缩瞳降眼压。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-1d5da0c8bf",
+          "subject": "药理学",
+          "chapter": "第六章 作用于胆碱受体的药物",
+          "title": "阿托品",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "阿托品为M受体阻断药，作用包括抑制腺体分泌、扩瞳升眼压、调节麻痹、松弛内脏平滑肌、解除迷走神经抑制使心率加快、大剂量兴奋中枢。用于内脏绞痛、麻醉前给药、缓慢型心律失常、有机磷中毒和抗休克等。不良反应为口干、视物模糊、心悸、尿潴留、便秘、体温升高等。",
+          "keyPoints": [
+            "抑腺、扩瞳、松平滑肌、快心率",
+            "有机磷中毒配伍解磷定",
+            "青光眼/前列腺肥大慎用"
+          ],
+          "mistakes": "阿托品对胆肾绞痛常需合用镇痛药。",
+          "mnemonic": "干扩松快兴。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-242ce50c48",
+          "subject": "药理学",
+          "chapter": "第六章 作用于胆碱受体的药物",
+          "title": "新斯的明与肌松药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "新斯的明抑制胆碱酯酶，增强ACh作用，对骨骼肌作用强。用于重症肌无力、术后腹胀尿潴留、阵发性室上速和非去极化肌松药中毒。非去极化肌松药可被新斯的明拮抗；去极化肌松药如琥珀胆碱不能用新斯的明解救。",
+          "keyPoints": [
+            "AChE抑制",
+            "重症肌无力",
+            "解救非去极化肌松"
+          ],
+          "mistakes": "机械性肠梗阻、尿路梗阻禁用。",
+          "mnemonic": "新斯的明强骨骼肌。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "6a34746d30",
+      "title": "第七章 作用于肾上腺素受体的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-6c4cf51dab",
+          "subject": "药理学",
+          "chapter": "第七章 作用于肾上腺素受体的药物",
+          "title": "肾上腺素用于过敏性休克",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "肾上腺素激动α、β受体，治疗过敏性休克机制包括α1收缩血管升压、β1兴奋心脏增加心排出量、β2舒张支气管并抑制过敏介质释放。因此是过敏性休克首选药。",
+          "keyPoints": [
+            "α1升压",
+            "β1强心",
+            "β2扩支气管/抑制介质"
+          ],
+          "mistakes": "答题必须写“为什么首选”，不只写适应证。",
+          "mnemonic": "强心升压扩支气。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-b48bb512d4",
+          "subject": "药理学",
+          "chapter": "第七章 作用于肾上腺素受体的药物",
+          "title": "NA、ISO、DA比较",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "去甲肾上腺素主要激动α和β1，强烈收缩血管、升压，反射性心率下降；异丙肾上腺素激动β1和β2，兴奋心脏、舒张支气管和骨骼肌血管；多巴胺小剂量激动D1扩肾血管，中剂量激动β1强心，大剂量激动α升压。",
+          "keyPoints": [
+            "NA：α强，升压",
+            "ISO：β强，舒张支气管",
+            "DA：小D1中β1大α"
+          ],
+          "mistakes": "比较题按心脏、血管、血压、用途四列写。",
+          "mnemonic": "去甲α，异丙β，多巴三段。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-c2222a8728",
+          "subject": "药理学",
+          "chapter": "第七章 作用于肾上腺素受体的药物",
+          "title": "β受体阻断药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "β阻断药通过阻断β1降低心率、心肌收缩力、耗氧量和肾素释放，用于高血压、心绞痛、心律失常、慢性心衰等；阻断β2可诱发支气管收缩和影响糖代谢。不良反应有心动过缓、房室传导阻滞、哮喘加重、掩盖低血糖和停药反跳。",
+          "keyPoints": [
+            "降压、抗心绞痛、抗心律失常、慢性心衰",
+            "哮喘慎用",
+            "不可骤停"
+          ],
+          "mistakes": "慢性心衰用药需稳定期小剂量起始。",
+          "mnemonic": "β阻慢心降耗氧。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "eba414049a",
+      "title": "第八章 全身麻醉药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-c1974b84f1",
+          "subject": "药理学",
+          "chapter": "第八章 全身麻醉药",
+          "title": "全身麻醉药分类与复合麻醉",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "全麻药分吸入麻醉药和静脉麻醉药。理想全麻应诱导迅速、苏醒快、镇痛肌松好、安全范围大、对重要器官影响小。复合麻醉通过镇静、镇痛、肌松、抑制反射等药物联合，减少单药用量和不良反应。",
+          "keyPoints": [
+            "吸入/静脉",
+            "复合麻醉多环节联合",
+            "减少单药剂量"
+          ],
+          "mistakes": "全麻不是单纯催眠，镇痛、肌松、反射抑制都要考虑。",
+          "mnemonic": "麻醉四要素：睡痛肌反。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-106cfd93dd",
+          "subject": "药理学",
+          "chapter": "第八章 全身麻醉药",
+          "title": "丙泊酚",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "丙泊酚为静脉麻醉药，起效快、苏醒快、术后恶心呕吐少，常用于诱导和维持麻醉、镇静。缺点是镇痛弱，可引起呼吸抑制、血压下降和注射痛，长期大剂量输注有丙泊酚输注综合征风险。",
+          "keyPoints": [
+            "起效快、苏醒快",
+            "镇痛弱",
+            "呼吸抑制/低血压"
+          ],
+          "mistakes": "丙泊酚不能代替镇痛药。",
+          "mnemonic": "丙泊酚快睡不止痛。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "2dae72fd7d",
+      "title": "第九章 镇静催眠药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-b613d50ab4",
+          "subject": "药理学",
+          "chapter": "第九章 镇静催眠药",
+          "title": "苯二氮卓类",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "苯二氮卓类增强GABA_A受体介导Cl-内流，具有抗焦虑、镇静催眠、抗惊厥、抗癫痫和中枢性肌松作用。较巴比妥类安全范围大、呼吸循环抑制轻、较少肝酶诱导；拮抗药为氟马西尼。",
+          "keyPoints": [
+            "增强GABA_A",
+            "抗焦虑/镇静/抗惊厥/肌松",
+            "氟马西尼"
+          ],
+          "mistakes": "苯二氮卓增加氯通道开放频率，巴比妥延长开放时间。",
+          "mnemonic": "焦虑睡惊肌。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-e9a492050a",
+          "subject": "药理学",
+          "chapter": "第九章 镇静催眠药",
+          "title": "巴比妥类与唑吡坦",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "巴比妥类可镇静催眠、抗惊厥和麻醉，但安全范围小、呼吸抑制强、诱导肝药酶、易耐受依赖，临床催眠使用减少。唑吡坦选择性作用于BZ1受体，主要催眠，肌松和抗惊厥弱，对睡眠结构影响相对小。",
+          "keyPoints": [
+            "巴比妥安全性差",
+            "肝酶诱导",
+            "唑吡坦偏催眠"
+          ],
+          "mistakes": "巴比妥过量危险大，不能与苯二氮卓安全性混淆。",
+          "mnemonic": "巴比妥老药风险大。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "4578f40d82",
+      "title": "第十章 中枢性兴奋药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-f567eefa55",
+          "subject": "药理学",
+          "chapter": "第十章 中枢性兴奋药",
+          "title": "中枢兴奋药分类",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "中枢兴奋药可兴奋大脑皮层、延髓呼吸中枢或脊髓。咖啡因兴奋大脑皮层、收缩脑血管，可用于偏头痛复方制剂；尼可刹米等呼吸兴奋药现临床应用受限。",
+          "keyPoints": [
+            "皮层兴奋",
+            "呼吸中枢兴奋",
+            "咖啡因可用于偏头痛复方"
+          ],
+          "mistakes": "中枢兴奋药过量可致惊厥。",
+          "mnemonic": "兴奋过度会惊厥。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "4474b25a54",
+      "title": "第十一章 抗癫痫药和抗惊厥药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-829912fbd3",
+          "subject": "药理学",
+          "chapter": "第十一章 抗癫痫药和抗惊厥药",
+          "title": "抗癫痫药选药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "苯妥英钠用于强直-阵挛和部分性发作；卡马西平用于部分性发作和三叉神经痛；丙戊酸钠广谱但有肝毒性和致畸风险；乙琥胺常用于失神发作；苯二氮卓类如地西泮用于癫痫持续状态。",
+          "keyPoints": [
+            "大发作/部分：苯妥英钠、卡马西平",
+            "失神：乙琥胺",
+            "持续状态：地西泮",
+            "丙戊酸广谱"
+          ],
+          "mistakes": "失神发作不要首选苯妥英钠。",
+          "mnemonic": "失神乙琥胺，持续地西泮。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-b7fdab5a72",
+          "subject": "药理学",
+          "chapter": "第十一章 抗癫痫药和抗惊厥药",
+          "title": "硫酸镁不同给药途径",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "硫酸镁口服不吸收，产生导泻和利胆；注射给药可抗惊厥、降压、松弛骨骼肌，用于子痫等；外用可消肿。注射过量可致呼吸抑制、血压下降、腱反射消失，可用钙剂解救。",
+          "keyPoints": [
+            "口服导泻利胆",
+            "注射抗惊厥降压",
+            "过量钙剂解救"
+          ],
+          "mistakes": "不同给药途径作用差异很大，是常考比较点。",
+          "mnemonic": "口服泻，注射抗惊。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "88598bf220",
+      "title": "第十二章 治疗中枢神经系统退行性疾病的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-6c4fba8f3c",
+          "subject": "药理学",
+          "chapter": "第十二章 治疗中枢神经系统退行性疾病的药物",
+          "title": "抗帕金森药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "治疗围绕增强多巴胺或抑制胆碱。左旋多巴为DA前体，常与卡比多巴合用；恩他卡朋抑制COMT；司来吉兰抑制MAO-B；金刚烷胺促DA释放；苯海索为中枢抗胆碱药，适用于震颤明显者。",
+          "keyPoints": [
+            "左旋多巴+卡比多巴",
+            "COMT/MAO-B抑制",
+            "苯海索抗胆碱"
+          ],
+          "mistakes": "多巴胺本身不易过血脑屏障，所以用左旋多巴。",
+          "mnemonic": "补多巴，抑胆碱。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-50572e2a59",
+          "subject": "药理学",
+          "chapter": "第十二章 治疗中枢神经系统退行性疾病的药物",
+          "title": "阿尔茨海默病药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "多奈哌齐、加兰他敏、卡巴拉汀等胆碱酯酶抑制药可提高中枢ACh水平，改善认知症状；美金刚为NMDA受体拮抗药，可用于中重度患者。治疗多为改善症状，不能根治。",
+          "keyPoints": [
+            "AChE抑制剂",
+            "美金刚NMDA拮抗",
+            "改善症状"
+          ],
+          "mistakes": "胆碱酯酶抑制药可有胃肠反应和心动过缓。",
+          "mnemonic": "AD补胆碱，重者美金刚。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "85ba4bce11",
+      "title": "第十三章 抗精神病药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-ee6e08a8bf",
+          "subject": "药理学",
+          "chapter": "第十三章 抗精神病药",
+          "title": "抗精神病药作用与不良反应",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "典型抗精神病药主要阻断D2受体，改善阳性症状。阻断黑质-纹状体D2可致锥体外系反应，阻断结节-漏斗通路可致泌乳素升高。氯丙嗪还可镇吐、降温、阻断α和M受体。不良反应包括EPS、内分泌改变、低血压、口干便秘和恶性综合征。",
+          "keyPoints": [
+            "D2阻断",
+            "阳性症状",
+            "EPS/泌乳素升高"
+          ],
+          "mistakes": "抗精神病作用与镇静不是一回事。",
+          "mnemonic": "D2治阳性，也带EPS。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "c2aad540e9",
+      "title": "第十四章 镇痛药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-afa7041a91",
+          "subject": "药理学",
+          "chapter": "第十四章 镇痛药",
+          "title": "吗啡",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "吗啡激动μ受体，强镇痛、镇静、欣快、呼吸抑制、镇咳、缩瞳、兴奋胃肠平滑肌和括约肌。用于剧烈疼痛、心源性哮喘等。中毒三联征为昏迷、针尖样瞳孔、呼吸抑制，纳洛酮解救。",
+          "keyPoints": [
+            "μ受体激动",
+            "镇痛/呼吸抑制/缩瞳",
+            "纳洛酮解救"
+          ],
+          "mistakes": "胆肾绞痛需合用解痉药。",
+          "mnemonic": "吗啡三中毒：昏迷针瞳呼抑。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "409f2ab70f",
+      "title": "第十五章 解热镇痛抗炎药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-b36cf79257",
+          "subject": "药理学",
+          "chapter": "第十五章 解热镇痛抗炎药",
+          "title": "NSAIDs",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "NSAIDs抑制COX，减少前列腺素合成，产生解热、镇痛、抗炎作用。阿司匹林不可逆抑制血小板COX-1，低剂量抗血栓。不良反应包括胃肠反应、出血、阿司匹林哮喘、瑞夷综合征、肾损害等。",
+          "keyPoints": [
+            "COX-PG通路",
+            "阿司匹林抗血小板",
+            "胃肠和出血风险"
+          ],
+          "mistakes": "解热仅降低发热体温，对正常体温影响小。",
+          "mnemonic": "NSAIDs抑COX降PG。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "228d401654",
+      "title": "第十六章 抗心律失常药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-e00868c843",
+          "subject": "药理学",
+          "chapter": "第十六章 抗心律失常药",
+          "title": "分类与折返",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "抗心律失常药分I类Na通道阻滞药、II类β阻断药、III类延长APD药、IV类Ca通道阻滞药。折返是快速型心律失常重要机制，延长有效不应期或减慢传导可终止折返。",
+          "keyPoints": [
+            "I钠IIβIII钾IV钙",
+            "折返机制",
+            "ERP和传导速度"
+          ],
+          "mistakes": "不要只背分类，要联系自律性、传导性和ERP。",
+          "mnemonic": "钠β钾钙。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-6d72bcc4f5",
+          "subject": "药理学",
+          "chapter": "第十六章 抗心律失常药",
+          "title": "常用药特点",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "利多卡因属IB类，主要用于室性心律失常，尤其急性心肌梗死后；胺碘酮属III类，多通道阻滞，广谱但可致甲状腺、肺、肝、角膜等不良反应；维拉帕米用于室上性心律失常。",
+          "keyPoints": [
+            "利多卡因：室性",
+            "胺碘酮：广谱、多器官毒性",
+            "维拉帕米：室上性"
+          ],
+          "mistakes": "胺碘酮含碘，注意甲状腺功能影响。",
+          "mnemonic": "利多室性，胺碘广谱。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "c4afa5c032",
+      "title": "第十七章 利尿药及泌尿系统疾病用药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-9fc35d57a0",
+          "subject": "药理学",
+          "chapter": "第十七章 利尿药及泌尿系统疾病用药",
+          "title": "利尿药分类",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "袢利尿药如呋塞米作用于髓袢升支粗段，强效，可致低钾、低氯碱中毒、耳毒性和高尿酸。噻嗪类用于高血压和轻中度水肿，可致低钾、高尿酸、高血糖、高血脂。保钾利尿药如螺内酯可致高钾。",
+          "keyPoints": [
+            "袢：强效、耳毒、低钾",
+            "噻嗪：降压、三高、低钾",
+            "保钾：高钾"
+          ],
+          "mistakes": "螺内酯是醛固酮受体拮抗药，起效较慢。",
+          "mnemonic": "袢强耳毒，噻嗪三高，保钾高钾。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "4b2aee0dd2",
+      "title": "第十八章 抗心肌缺血药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-1d398b83c8",
+          "subject": "药理学",
+          "chapter": "第十八章 抗心肌缺血药",
+          "title": "硝酸酯、β阻断药和钙阻滞药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "硝酸甘油释放NO，扩张静脉降低前负荷并扩冠，适合急性发作；β阻断药降低心率和耗氧，适合稳定型心绞痛；钙通道阻滞药扩张冠脉并降低后负荷，适合变异型心绞痛。",
+          "keyPoints": [
+            "硝酸酯急救",
+            "β阻断降耗氧",
+            "钙阻变异型"
+          ],
+          "mistakes": "硝酸酯不可与PDE5抑制剂合用。",
+          "mnemonic": "硝酸急救，钙阻变异。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "0b349dc14b",
+      "title": "第十九章 抗高血压药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-6cec5529f9",
+          "subject": "药理学",
+          "chapter": "第十九章 抗高血压药",
+          "title": "抗高血压药分类与ACEI",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "降压药包括利尿药、ACEI/ARB、钙通道阻滞药、β阻断药、α1阻断药和中枢降压药等。ACEI降低Ang II和醛固酮，保护心肾，但可致干咳、高钾、血管神经性水肿，孕妇禁用，双侧肾动脉狭窄慎用。",
+          "keyPoints": [
+            "五大类常用降压药",
+            "ACEI：干咳、高钾、肾保护",
+            "孕妇禁用"
+          ],
+          "mistakes": "ACEI与ARB一般不推荐常规联用。",
+          "mnemonic": "降压五类；ACEI咳钾肾。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "b385d9eeb9",
+      "title": "第二十章 治疗心力衰竭的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-626c63b10f",
+          "subject": "药理学",
+          "chapter": "第二十章 治疗心力衰竭的药物",
+          "title": "心衰治疗药物框架",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "改善预后药包括ACEI/ARB/ARNI、β阻断药、醛固酮受体拮抗药、SGLT2抑制药等；改善症状药包括利尿药、强心苷和血管扩张药。地高辛抑制Na-K-ATP酶增强心肌收缩力，并减慢房室传导。",
+          "keyPoints": [
+            "改善预后与改善症状分开",
+            "地高辛强心、减慢房室传导",
+            "低钾促中毒"
+          ],
+          "mistakes": "β阻断药用于稳定慢性心衰，小剂量起始。",
+          "mnemonic": "强心苷怕低钾。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "f2369d3736",
+      "title": "第二十一章 调血脂药与抗动脉粥样硬化药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-0a0ee024d4",
+          "subject": "药理学",
+          "chapter": "第二十一章 调血脂药与抗动脉粥样硬化药",
+          "title": "他汀与其他调脂药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "他汀抑制HMG-CoA还原酶，降低胆固醇合成并上调LDL受体，是降LDL-C和抗动脉粥样硬化基础药。不良反应为肝酶升高和肌病。贝特类主要降TG；依折麦布抑制胆固醇吸收；胆酸螯合剂可影响其他药吸收。",
+          "keyPoints": [
+            "他汀降LDL一线",
+            "贝特降TG",
+            "他汀不良反应：肝肌"
+          ],
+          "mistakes": "他汀与强CYP3A4抑制剂合用肌病风险增加。",
+          "mnemonic": "他汀胆固醇，贝特甘油三酯。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "a936d15262",
+      "title": "第二十二章 作用于血液及造血器官的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-8f01b816e9",
+          "subject": "药理学",
+          "chapter": "第二十二章 作用于血液及造血器官的药物",
+          "title": "抗凝、抗血小板和溶栓药",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "肝素增强抗凝血酶III活性，体内外抗凝，过量用鱼精蛋白；华法林抑制维生素K循环，影响II、VII、IX、X合成，需监测INR，过量用维生素K。阿司匹林抑制血小板COX-1，氯吡格雷阻断ADP受体；溶栓药促进纤溶。",
+          "keyPoints": [
+            "肝素-鱼精蛋白",
+            "华法林-维K",
+            "阿司匹林/氯吡格雷抗血小板"
+          ],
+          "mistakes": "华法林起效慢且孕妇禁用。",
+          "mnemonic": "肝素鱼精，华法维K。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "9347d6813c",
+      "title": "第二十三章 作用于呼吸系统的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-40388f4601",
+          "subject": "药理学",
+          "chapter": "第二十三章 作用于呼吸系统的药物",
+          "title": "平喘药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "平喘药包括β2激动药、茶碱类、M受体阻断药、糖皮质激素、白三烯调节剂等。短效β2激动药用于急性发作，吸入糖皮质激素是慢性控制基础，茶碱治疗窗窄，M受体阻断药常用于COPD。",
+          "keyPoints": [
+            "SABA急救",
+            "ICS控制",
+            "茶碱治疗窗窄",
+            "异丙托溴铵用于COPD"
+          ],
+          "mistakes": "吸入糖皮质激素不是急救药。",
+          "mnemonic": "急救β2，控制激素。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "d1b626a021",
+      "title": "第二十四章 作用于消化系统的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-71c41b7d08",
+          "subject": "药理学",
+          "chapter": "第二十四章 作用于消化系统的药物",
+          "title": "抗消化性溃疡药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "PPI抑制H-K-ATP酶，抑酸最强；H2受体阻断药抑制组胺促酸；铋剂和硫糖铝保护黏膜；根除幽门螺杆菌常用PPI联合两种抗菌药，必要时加铋剂。",
+          "keyPoints": [
+            "PPI最强",
+            "H2阻断",
+            "黏膜保护",
+            "HP联合根除"
+          ],
+          "mistakes": "PPI通常餐前服用。",
+          "mnemonic": "PPI关质子泵。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "1861fb84f5",
+      "title": "第二十五章 肾上腺皮质激素类药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-9df6fa5db5",
+          "subject": "药理学",
+          "chapter": "第二十五章 肾上腺皮质激素类药物",
+          "title": "糖皮质激素作用与应用",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "糖皮质激素有抗炎、免疫抑制、抗休克、抗毒素和替代治疗作用。用于严重感染辅助、防止炎症后遗症、自身免疫病、过敏、休克、血液病、局部应用和肾上腺皮质功能不全替代治疗。",
+          "keyPoints": [
+            "抗炎抗休克免疫抑制",
+            "严重感染需合用抗菌药",
+            "替代治疗"
+          ],
+          "mistakes": "严重感染不能单用激素。",
+          "mnemonic": "抗炎抗休局液代。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药理-836037212e",
+          "subject": "药理学",
+          "chapter": "第二十五章 肾上腺皮质激素类药物",
+          "title": "糖皮质激素不良反应",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "长期大量使用可致诱发/加重感染、医源性肾上腺皮质功能亢进、骨质疏松、消化性溃疡、精神症状、高血压/水肿/低钾、糖代谢异常、停药反跳和肾上腺皮质功能不全。需逐渐减量停药。",
+          "keyPoints": [
+            "感染",
+            "库欣样",
+            "骨质疏松",
+            "消化性溃疡",
+            "反跳"
+          ],
+          "mistakes": "长期用药不可突然停药。",
+          "mnemonic": "诱医库，白骨精，小消心血，抗反跳。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "8ccadab8d9",
+      "title": "第二十六章 胰岛素及口服降糖药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-fafd1021aa",
+          "subject": "药理学",
+          "chapter": "第二十六章 胰岛素及口服降糖药",
+          "title": "胰岛素与口服降糖药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "胰岛素用于1型糖尿病、糖尿病急症、妊娠、围手术期等，主要风险是低血糖。二甲双胍减少肝糖输出、改善胰岛素抵抗；磺酰脲促进胰岛素释放；α-葡萄糖苷酶抑制剂延缓糖吸收；TZD改善胰岛素敏感性；DPP-4抑制剂/GLP-1受体激动剂增强肠促胰素。",
+          "keyPoints": [
+            "胰岛素低血糖",
+            "二甲双胍一线常用",
+            "磺酰脲促分泌",
+            "阿卡波糖延缓吸收"
+          ],
+          "mistakes": "二甲双胍肾功能差者注意乳酸酸中毒风险。",
+          "mnemonic": "胰岛素救急，二甲抗抵抗。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "65c44d4c28",
+      "title": "第二十七章 甲状腺激素及抗甲状腺药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-e39dd84bec",
+          "subject": "药理学",
+          "chapter": "第二十七章 甲状腺激素及抗甲状腺药",
+          "title": "抗甲状腺药",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "硫脲类抑制甲状腺过氧化物酶，减少T3/T4合成，PTU还抑制外周T4转T3，适用于甲亢和甲亢危象。大剂量碘短期抑制甲状腺激素释放并减少腺体血流，用于术前准备。β阻断药可控制交感症状。",
+          "keyPoints": [
+            "硫脲抑合成",
+            "PTU抑转化",
+            "大剂量碘术前"
+          ],
+          "mistakes": "碘剂不能长期单用，易脱逸。",
+          "mnemonic": "硫脲合成，PTU转化。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "18c019d5fb",
+      "title": "第二十八章 作用于生殖系统的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-d8ed94548b",
+          "subject": "药理学",
+          "chapter": "第二十八章 作用于生殖系统的药物",
+          "title": "性激素类药物",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "雌激素、孕激素和雄激素类药物用于替代治疗、避孕、功能性子宫出血、子宫内膜异位症等。复方口服避孕药主要通过抑制排卵、改变宫颈黏液和子宫内膜发挥作用。不良反应和禁忌需关注血栓风险、肝功能、激素依赖肿瘤等。",
+          "keyPoints": [
+            "抑制排卵",
+            "改变宫颈黏液",
+            "改变内膜",
+            "血栓风险"
+          ],
+          "mistakes": "雌激素相关血栓风险是重要安全点。",
+          "mnemonic": "避孕三机制：排卵、黏液、内膜。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "dec326440c",
+      "title": "第二十九章 抗微生物药物概论",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-3dcc96b9db",
+          "subject": "药理学",
+          "chapter": "第二十九章 抗微生物药物概论",
+          "title": "抗菌机制与耐药机制",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "抗菌药机制包括抑制细胞壁合成、影响细胞膜、抑制蛋白质合成、抑制核酸合成和抑制叶酸代谢。耐药机制包括产生灭活酶、改变靶位、降低通透性、主动外排和代谢旁路。合理用药需结合病原、药敏、感染部位、PK/PD和患者状态。",
+          "keyPoints": [
+            "壁膜蛋核叶",
+            "酶靶通排旁",
+            "病原+药敏+部位"
+          ],
+          "mistakes": "广谱不一定更好，滥用易耐药和菌群失调。",
+          "mnemonic": "壁膜蛋核叶；酶靶通排旁。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "34463bb856",
+      "title": "第三十章 β-内酰胺类抗生素",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-7bf565dcf2",
+          "subject": "药理学",
+          "chapter": "第三十章 β-内酰胺类抗生素",
+          "title": "β-内酰胺类",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "β-内酰胺类与PBP结合抑制肽聚糖合成，为繁殖期杀菌药。青霉素主要不良反应是过敏；耐药机制包括β-内酰胺酶、PBP改变和通透性下降。头孢菌素代数增加通常对G-菌作用和酶稳定性增强。",
+          "keyPoints": [
+            "抑制细胞壁",
+            "繁殖期杀菌",
+            "过敏反应",
+            "耐药机制"
+          ],
+          "mistakes": "青霉素使用前需关注过敏史和皮试要求。",
+          "mnemonic": "β内酰胺打细胞壁。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "5c120dcebe",
+      "title": "第三十一章 大环内酯类、林可霉素及多肽类抗生素",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-3aa8e4e474",
+          "subject": "药理学",
+          "chapter": "第三十一章 大环内酯类、林可霉素及多肽类抗生素",
+          "title": "大环内酯类",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "大环内酯类结合50S核糖体抑制蛋白质合成，对支原体、衣原体、军团菌等非典型病原体有效。红霉素胃肠反应明显，可抑制CYP3A4；阿奇霉素组织浓度高、半衰期长。",
+          "keyPoints": [
+            "50S",
+            "非典型病原体",
+            "红霉素CYP相互作用"
+          ],
+          "mistakes": "大环内酯与林可霉素作用位点相近，合用可能拮抗。",
+          "mnemonic": "大环50打非典型。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "80529ad99f",
+      "title": "第三十二章 氨基糖苷类抗生素",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-0c2e92f68a",
+          "subject": "药理学",
+          "chapter": "第三十二章 氨基糖苷类抗生素",
+          "title": "氨基糖苷类",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "氨基糖苷类结合30S核糖体，主要对需氧G-杆菌有效，为杀菌药。口服不吸收，常注射给药。不良反应包括耳毒性、肾毒性、神经肌肉阻滞和过敏，避免与其他耳肾毒性药物合用。",
+          "keyPoints": [
+            "30S",
+            "需氧G-杆菌",
+            "耳毒、肾毒、神经肌肉阻滞"
+          ],
+          "mistakes": "对厌氧菌无效。",
+          "mnemonic": "氨基糖苷耳肾毒。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "96790942aa",
+      "title": "第三十三章 四环素类抗生素",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-1446720014",
+          "subject": "药理学",
+          "chapter": "第三十三章 四环素类抗生素",
+          "title": "四环素类",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "四环素类结合30S核糖体抑制蛋白合成，为广谱抑菌药，对支原体、衣原体、立克次体等有效。可与钙、镁、铁形成络合物影响吸收，并沉积于骨牙，孕妇和8岁以下儿童慎/禁用。",
+          "keyPoints": [
+            "30S",
+            "广谱抑菌",
+            "骨牙影响",
+            "金属离子影响吸收"
+          ],
+          "mistakes": "不要与牛奶、钙铁镁制剂同服。",
+          "mnemonic": "四环素伤骨牙。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "92e913a599",
+      "title": "第三十四章 人工合成抗菌药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-544bc496c7",
+          "subject": "药理学",
+          "chapter": "第三十四章 人工合成抗菌药物",
+          "title": "喹诺酮与磺胺",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "喹诺酮抑制DNA回旋酶/拓扑异构酶，抗G-菌强，可致胃肠反应、中枢反应、光敏和软骨损害，孕妇儿童慎用。磺胺抑制二氢蝶酸合成酶，TMP抑制二氢叶酸还原酶，二者合用顺序阻断叶酸代谢。",
+          "keyPoints": [
+            "喹诺酮抑DNA酶",
+            "SMZ+TMP双重阻断叶酸",
+            "喹诺酮软骨风险"
+          ],
+          "mistakes": "磺胺注意结晶尿、过敏和核黄疸。",
+          "mnemonic": "喹诺DNA，磺胺叶酸。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "70b6d95b3d",
+      "title": "第三十五章 抗真菌药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-f1bf1ede7a",
+          "subject": "药理学",
+          "chapter": "第三十五章 抗真菌药物",
+          "title": "抗真菌药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "两性霉素B与麦角固醇结合形成孔道，抗菌谱广但肾毒性强；唑类抑制麦角固醇合成，氟康唑常用于念珠菌和隐球菌；棘白菌素抑制真菌细胞壁β-葡聚糖合成。",
+          "keyPoints": [
+            "两性霉素B：膜孔、肾毒",
+            "唑类：抑制麦角固醇合成",
+            "棘白菌素：细胞壁"
+          ],
+          "mistakes": "两性霉素B毒性大但重症深部真菌感染仍重要。",
+          "mnemonic": "真菌看麦角固醇。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "73fc73e791",
+      "title": "第三十六章 抗病毒药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-a074f0ef90",
+          "subject": "药理学",
+          "chapter": "第三十六章 抗病毒药",
+          "title": "抗病毒药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "阿昔洛韦经病毒胸苷激酶活化后抑制病毒DNA聚合酶，常用于疱疹病毒感染；抗流感药包括神经氨酸酶抑制剂如奥司他韦；抗HIV药物按逆转录酶、蛋白酶、整合酶、进入/融合等环节分类，常联合治疗。",
+          "keyPoints": [
+            "阿昔洛韦：疱疹",
+            "奥司他韦：流感",
+            "HIV联合多靶点"
+          ],
+          "mistakes": "病毒依赖宿主细胞，抗病毒药选择性和毒性需重点考虑。",
+          "mnemonic": "抗病毒按复制环节。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "c9e0ad38eb",
+      "title": "第三十七章 抗结核病和抗麻风病药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-7b07eea4af",
+          "subject": "药理学",
+          "chapter": "第三十七章 抗结核病和抗麻风病药",
+          "title": "抗结核药原则",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "抗结核治疗原则为早期、联合、适量、规律、全程。一线药包括异烟肼、利福平、吡嗪酰胺、乙胺丁醇、链霉素等。异烟肼可致周围神经炎，需补充维生素B6；利福平可致肝毒性和橙红色体液并诱导肝药酶。",
+          "keyPoints": [
+            "早联适规全",
+            "INH周围神经炎",
+            "RFP肝酶诱导"
+          ],
+          "mistakes": "抗结核必须联合用药防耐药。",
+          "mnemonic": "早联适规全。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "128e0345dd",
+      "title": "第三十八章 抗寄生虫药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-b339886864",
+          "subject": "药理学",
+          "chapter": "第三十八章 抗寄生虫药",
+          "title": "抗疟药与抗肠虫药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "氯喹用于敏感疟原虫红细胞内期，青蒿素类起效快用于恶性疟，伯氨喹作用于肝内休眠子和配子体但可致溶血。阿苯达唑为广谱抗肠蠕虫药，抑制微管形成和糖摄取。",
+          "keyPoints": [
+            "氯喹红内期",
+            "青蒿素速效",
+            "伯氨喹防复发/传播",
+            "阿苯达唑广谱驱虫"
+          ],
+          "mistakes": "G6PD缺乏者用伯氨喹有溶血风险。",
+          "mnemonic": "疟疾分阶段用药。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "066aa54323",
+      "title": "第三十九章 抗恶性肿瘤药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-670a6c881e",
+          "subject": "药理学",
+          "chapter": "第三十九章 抗恶性肿瘤药",
+          "title": "抗肿瘤药分类与应用原则",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "抗肿瘤药包括抗代谢药、烷化剂、铂类、抗肿瘤抗生素、植物药、激素类、靶向药和免疫治疗药。应用原则考虑细胞增殖动力学、作用机制、抗瘤谱、药代动力学、毒性和给药方法，常联合用药以增效、减少耐药和降低毒性。",
+          "keyPoints": [
+            "按机制分类",
+            "联合用药",
+            "骨髓抑制常见"
+          ],
+          "mistakes": "抗肿瘤药联合需避免毒性完全重叠。",
+          "mnemonic": "动力机制谱，药代毒性法。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "55eaa8151a",
+      "title": "第四十章 影响免疫功能的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-3e5b14dc6d",
+          "subject": "药理学",
+          "chapter": "第四十章 影响免疫功能的药物",
+          "title": "免疫抑制剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "环孢素与亲环素结合抑制钙调神经磷酸酶，抑制T细胞活化，用于器官移植和自身免疫病，主要不良反应为肾毒性、高血压等。他克莫司作用类似但与FKBP结合。抗增殖药如麦考酚酯抑制嘌呤合成。",
+          "keyPoints": [
+            "环孢素抑制T细胞",
+            "器官移植/自免病",
+            "肾毒性"
+          ],
+          "mistakes": "免疫抑制剂增加感染和肿瘤风险。",
+          "mnemonic": "环孢素：T细胞、移植、肾毒。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "53e7f7a44c",
+      "title": "第四十一章 影响自体活性物质的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-fdc0f788c9",
+          "subject": "药理学",
+          "chapter": "第四十一章 影响自体活性物质的药物",
+          "title": "组胺、5-HT和前列腺素相关药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "H1受体阻断药用于过敏性疾病和晕动病，第一代易镇静和抗胆碱；H2受体阻断药抑酸。5-HT相关药物用于偏头痛、止吐等；前列腺素类似物可用于胃黏膜保护、引产、青光眼等，不同受体作用差异大。",
+          "keyPoints": [
+            "H1抗过敏",
+            "H2抑酸",
+            "5-HT止吐/偏头痛",
+            "PG类似物多用途"
+          ],
+          "mistakes": "第一代H1阻断药中枢镇静明显，驾驶需注意。",
+          "mnemonic": "H1过敏，H2胃酸。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "23ebf3134e",
+      "title": "第四十二章 治疗骨质疏松的药物",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药理-a2ceee8da3",
+          "subject": "药理学",
+          "chapter": "第四十二章 治疗骨质疏松的药物",
+          "title": "骨质疏松治疗药",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "治疗包括钙剂和维生素D补充、双膦酸盐抑制破骨细胞、降钙素抑制骨吸收并止痛、雌激素/SERM、甲状旁腺激素类似物促进骨形成等。双膦酸盐服用需空腹足量水送服并保持直立，防食管刺激。",
+          "keyPoints": [
+            "钙+D基础",
+            "双膦酸盐抑制骨吸收",
+            "PTH促进骨形成"
+          ],
+          "mistakes": "双膦酸盐服法是常见细节考点。",
+          "mnemonic": "钙D打底，双膦抗吸收。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "chapters": 42,
+    "knowledgePoints": 62
+  }
+}

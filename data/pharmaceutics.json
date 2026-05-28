@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "2.1",
+  "libraryType": "professionalKnowledge",
+  "exam": "中国药科大学 药学 349 药学综合",
+  "subject": "药剂学",
+  "description": "药剂学与工业药剂学合并整理，按剂型、制剂技术、处方设计和辅料专题组织，适合“科目→章节→知识点”复习。",
+  "chapters": [
+    {
+      "id": "07e26b98de",
+      "title": "第一章 药剂学概述",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-a510a80cb8",
+          "subject": "药剂学",
+          "chapter": "第一章 药剂学概述",
+          "title": "药剂学、剂型与制剂",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "药剂学研究药物制剂的基本理论、处方设计、制备工艺、质量控制、药用辅料和合理用药。剂型是给药形式，如片剂、注射剂；制剂是具体药品，如维生素C注射液。剂型会影响药物作用速度、作用性质、毒副作用、稳定性和靶向性。",
+          "keyPoints": [
+            "药剂学=理论+处方+工艺+质控+辅料",
+            "剂型是形式，制剂是具体品种",
+            "剂型影响疗效和安全"
+          ],
+          "mistakes": "不要把剂型和制剂完全等同。",
+          "mnemonic": "剂型是形，制剂是品。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-efd8a9239a",
+          "subject": "药剂学",
+          "chapter": "第一章 药剂学概述",
+          "title": "剂型分类与GMP",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "剂型可按形态、分散系统和给药途径分类。GMP是药品生产和质量管理基本准则，贯穿制剂生产全过程。药品标准是质量规格和检验方法的法定技术规定。",
+          "keyPoints": [
+            "形态/分散系统/给药途径",
+            "GMP管生产质量管理",
+            "药品标准管质量规格和检验"
+          ],
+          "mistakes": "分类题要说明“按什么分类”。",
+          "mnemonic": "形态分散途径。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "83f6cdcce8",
+      "title": "第二章 液体药剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-3e92cdd875",
+          "subject": "药剂学",
+          "chapter": "第二章 液体药剂",
+          "title": "液体药剂分类与质量要求",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "液体药剂分均相液体制剂和非均相液体制剂。优点为分散度大、吸收快、刺激小、便于分剂量；缺点为稳定性差、携带运输不便。质量要求包括浓度准确、分散均匀、振摇后易再分散、口感/外用适宜并有一定防腐能力。",
+          "keyPoints": [
+            "均相/非均相",
+            "吸收快但稳定差",
+            "非均相重在再分散"
+          ],
+          "mistakes": "非均相制剂不要求澄明。",
+          "mnemonic": "均相澄明，非均相均匀。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-10eb0b90c6",
+          "subject": "药剂学",
+          "chapter": "第二章 液体药剂",
+          "title": "增加溶解度方法",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "增加难溶药溶解度可用成盐、增溶、助溶、潜溶、调pH、包合物、固体分散体、减小粒径等。选择方法需结合药物酸碱性、稳定性、安全性和给药途径。",
+          "keyPoints": [
+            "成盐",
+            "增溶/助溶/潜溶",
+            "调pH",
+            "包合/固分"
+          ],
+          "mistakes": "增溶常借助表面活性剂胶束，助溶强调形成可溶性复合物。",
+          "mnemonic": "盐增助潜，pH包固。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-6a1d7c3c9c",
+          "subject": "药剂学",
+          "chapter": "第二章 液体药剂",
+          "title": "混悬剂",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "混悬剂为难溶性固体药物微粒分散于液体介质。稳定措施包括减小粒径、增加介质黏度、加入润湿剂、助悬剂、絮凝剂/反絮凝剂，并控制沉降体积比和再分散性。",
+          "keyPoints": [
+            "难溶固体微粒",
+            "沉降慢且易再分散",
+            "润湿/助悬/絮凝"
+          ],
+          "mistakes": "混悬剂不是完全不沉降，而是沉降后不结块、可再分散。",
+          "mnemonic": "小粒增黏可再分散。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-c3ffd435f8",
+          "subject": "药剂学",
+          "chapter": "第二章 液体药剂",
+          "title": "乳剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "乳剂由油相、水相和乳化剂组成，分O/W和W/O。乳化剂可为天然乳化剂、表面活性剂或固体微粒。制备方法有干胶法、湿胶法等。不稳定现象包括分层、絮凝、转相、破裂和酸败。",
+          "keyPoints": [
+            "油水乳化剂",
+            "O/W与W/O",
+            "分层絮凝转相破裂酸败"
+          ],
+          "mistakes": "破裂通常不可逆；分层和絮凝多可逆。",
+          "mnemonic": "分絮转破酸。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "9380676fc3",
+      "title": "第三章 表面活性剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-d029b18638",
+          "subject": "药剂学",
+          "chapter": "第三章 表面活性剂",
+          "title": "表面活性剂与HLB",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "表面活性剂具有亲水基和亲油基，能降低界面张力。按离子性质分阴离子、阳离子、两性离子和非离子。HLB表示亲水亲油平衡，低HLB偏亲油适合W/O乳化剂，高HLB偏亲水适合O/W乳化剂，也用于润湿、增溶等选择。",
+          "keyPoints": [
+            "两亲结构",
+            "四类表活",
+            "低HLB W/O，高HLB O/W"
+          ],
+          "mistakes": "吐温偏亲水，司盘偏亲油。",
+          "mnemonic": "低油高水。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-439a9d1343",
+          "subject": "药剂学",
+          "chapter": "第三章 表面活性剂",
+          "title": "表面活性剂应用与毒性",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "表面活性剂可作增溶剂、乳化剂、润湿剂、起泡/消泡剂、去污剂、杀菌剂和吸收促进剂。一般阳离子毒性和刺激性较强，非离子型毒性较低。起昙现象主要见于某些非离子型表面活性剂。",
+          "keyPoints": [
+            "增溶/乳化/润湿",
+            "阳离子毒性较大",
+            "非离子相对低毒",
+            "起昙"
+          ],
+          "mistakes": "表面活性剂量过高可能刺激或影响稳定性。",
+          "mnemonic": "表活用途多，毒性看类型。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "a240f8d53d",
+      "title": "第四章 药物制剂稳定性",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-2b1cc0811d",
+          "subject": "药剂学",
+          "chapter": "第四章 药物制剂稳定性",
+          "title": "稳定性范围和降解途径",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "制剂稳定性包括化学、物理和生物稳定性。常见降解途径有水解、氧化、光解、异构化和聚合。酯、酰胺易水解；酚类、烯醇类、芳胺类易氧化；光敏药需避光。",
+          "keyPoints": [
+            "化学/物理/生物稳定性",
+            "水解/氧化/光解/异构/聚合"
+          ],
+          "mistakes": "稳定性不只看含量，还看外观、粒径、晶型和微生物。",
+          "mnemonic": "化物生，水氧光。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-a16c559887",
+          "subject": "药剂学",
+          "chapter": "第四章 药物制剂稳定性",
+          "title": "提高稳定性方法",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "提高稳定性可调pH、加缓冲剂、抗氧剂、螯合剂，控制水分、温度、光照，充氮排氧，改进剂型如冻干、包合、微囊、脂质体，并选择避光、防潮、密封包装。",
+          "keyPoints": [
+            "调pH",
+            "抗氧/螯合/充氮",
+            "避光防潮控温",
+            "改剂型"
+          ],
+          "mistakes": "抗氧剂不能解决水解问题。",
+          "mnemonic": "处方工艺包装贮藏。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-3da4d360f4",
+          "subject": "药剂学",
+          "chapter": "第四章 药物制剂稳定性",
+          "title": "稳定性试验",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "稳定性试验包括影响因素试验、加速试验和长期试验。影响因素试验考察高温、高湿、强光等；加速试验用于预测稳定性；长期试验是在规定贮藏条件下确定有效期和贮藏条件的重要依据。",
+          "keyPoints": [
+            "影响因素：找敏感因素",
+            "加速：预测",
+            "长期：定有效期"
+          ],
+          "mistakes": "加速试验和影响因素试验目的不同。",
+          "mnemonic": "影响找因，加速预测，长期定期。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "f728c29382",
+      "title": "第五章 灭菌与无菌制剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-478f42c629",
+          "subject": "药剂学",
+          "chapter": "第五章 灭菌与无菌制剂",
+          "title": "灭菌方法选择",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "灭菌方法包括湿热灭菌、干热灭菌、过滤除菌、辐射灭菌、气体灭菌和无菌操作。热稳定水溶液首选湿热灭菌；热敏溶液可过滤除菌；油脂和耐热粉末可干热；无菌粉末可无菌分装或冻干。",
+          "keyPoints": [
+            "湿热常用",
+            "热敏过滤",
+            "无菌操作防污染"
+          ],
+          "mistakes": "过滤除菌不能去除热原。",
+          "mnemonic": "热稳湿热，热敏过滤。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-0b1075e990",
+          "subject": "药剂学",
+          "chapter": "第五章 灭菌与无菌制剂",
+          "title": "热原与细菌内毒素",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "热原主要来自革兰阴性菌内毒素，耐热、不挥发、可滤过，进入血液可引起发热反应。去除方法包括高温破坏、活性炭吸附、离子交换、超滤、反渗透等。注射用水和注射剂生产需严格控制热原。",
+          "keyPoints": [
+            "内毒素为主",
+            "耐热不挥发可滤过",
+            "活性炭/超滤/离子交换"
+          ],
+          "mistakes": "普通过滤除菌不能可靠去热原。",
+          "mnemonic": "菌可滤，热原难滤。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "49fa1d2ee4",
+      "title": "第六章 注射剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-4d57ff529a",
+          "subject": "药剂学",
+          "chapter": "第六章 注射剂",
+          "title": "注射剂质量要求",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "注射剂要求无菌、无热原/内毒素、澄明或粒度合格、pH适宜、渗透压适宜、稳定、安全。处方设计需考虑溶解度、稳定性、刺激性、pH、渗透压、抗氧、防腐和包装。",
+          "keyPoints": [
+            "无菌",
+            "无热原",
+            "澄明/粒度",
+            "pH/渗透压",
+            "稳定"
+          ],
+          "mistakes": "输液一般不得加入抑菌剂。",
+          "mnemonic": "菌热澄pH渗。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-18a6607989",
+          "subject": "药剂学",
+          "chapter": "第六章 注射剂",
+          "title": "维生素C注射液设计",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "维生素C易氧化，处方设计重点是调pH、加抗氧剂如亚硫酸氢钠/焦亚硫酸钠、加螯合剂EDTA-2Na、充氮、避光和控制灭菌条件。工艺中应减少与空气、金属离子和强光接触。",
+          "keyPoints": [
+            "易氧化",
+            "抗氧剂+螯合剂",
+            "充氮避光",
+            "控pH和灭菌"
+          ],
+          "mistakes": "不要只写加抗氧剂，要写完整抗氧体系。",
+          "mnemonic": "抗氧螯合充氮避光。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-16095f651e",
+          "subject": "药剂学",
+          "chapter": "第六章 注射剂",
+          "title": "冻干粉针",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "冻干适用于热敏、易水解或溶液中不稳定药物。过程为预冻、一次干燥和二次干燥，辅料可包括冻干保护剂、填充剂和缓冲剂。质量看外观、残余水分、复溶性、澄明度、无菌、含量。",
+          "keyPoints": [
+            "预冻",
+            "一次干燥升华",
+            "二次干燥除结合水",
+            "保护剂"
+          ],
+          "mistakes": "冻干不是简单低温烘干。",
+          "mnemonic": "预冻一干二干。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "6215f95ac6",
+      "title": "第七章 眼用制剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-499e2f150d",
+          "subject": "药剂学",
+          "chapter": "第七章 眼用制剂",
+          "title": "滴眼剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "滴眼剂为供滴入眼部的无菌水性、油性澄明溶液、混悬液或乳状液。质量要求包括无菌、pH一般5～9、渗透压接近泪液、澄明/粒度、黏度适当、刺激性小和稳定。眼外伤或手术用滴眼剂不得加抑菌剂。",
+          "keyPoints": [
+            "无菌",
+            "pH 5～9",
+            "渗透压接近泪液",
+            "黏度适当"
+          ],
+          "mistakes": "黏度过高会影响舒适性和视物。",
+          "mnemonic": "眼用菌pH渗澄黏。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-a6aa81cb4a",
+          "subject": "药剂学",
+          "chapter": "第七章 眼用制剂",
+          "title": "眼用制剂吸收与附加剂",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "眼用药可经角膜和结膜吸收。影响因素包括泪液稀释和流失、药物pH/解离度、脂溶性、表面张力、黏度、刺激性和防腐剂。常用附加剂有等渗调节剂、pH调节剂、增黏剂、抑菌剂和抗氧剂。",
+          "keyPoints": [
+            "角膜/结膜吸收",
+            "泪液流失",
+            "增黏延长滞留"
+          ],
+          "mistakes": "刺激性强会反射性流泪，反而降低吸收。",
+          "mnemonic": "眼吸收看泪液和角膜。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "59e6cf3cdd",
+      "title": "第八章 散剂、颗粒剂与胶囊剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-78b8ed3197",
+          "subject": "药剂学",
+          "chapter": "第八章 散剂、颗粒剂与胶囊剂",
+          "title": "散剂和倍散",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "散剂关键工艺为粉碎、过筛、混合和分剂量。小剂量毒剧药需制成倍散，采用等量递加法混合，可加着色剂判断均匀性。质量要求包括均匀度、粒度、干燥失重、装量差异等。",
+          "keyPoints": [
+            "粉碎过筛混合",
+            "倍散",
+            "等量递加"
+          ],
+          "mistakes": "小剂量药物直接混合易含量不均。",
+          "mnemonic": "小量等量递加。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-e8b3286056",
+          "subject": "药剂学",
+          "chapter": "第八章 散剂、颗粒剂与胶囊剂",
+          "title": "胶囊剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "胶囊剂优点是掩味、提高稳定性、外观整洁、可改善释放。硬胶囊多装粉末/颗粒，软胶囊多装油状液体、非水液体或混悬液。水溶液、稀乙醇液、强吸湿或易风化药物不宜装普通胶囊。",
+          "keyPoints": [
+            "硬胶囊/软胶囊",
+            "掩味与稳定",
+            "水溶液不宜"
+          ],
+          "mistakes": "软胶囊内容物并非只能是油。",
+          "mnemonic": "胶囊怕水怕壳变。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "67b666585c",
+      "title": "第九章 片剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-e8d0531afc",
+          "subject": "药剂学",
+          "chapter": "第九章 片剂",
+          "title": "片剂质量要求",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "片剂要求外观完整、色泽均匀、含量准确、重量差异小、硬度适宜、脆碎度合格、崩解时限和溶出/释放符合规定，小剂量或药性剧烈片剂需符合含量均匀度。",
+          "keyPoints": [
+            "外观",
+            "重量差异",
+            "硬度/脆碎度",
+            "崩解/溶出",
+            "含量均匀度"
+          ],
+          "mistakes": "硬度过高可能影响崩解和溶出。",
+          "mnemonic": "片剂质量看硬崩溶含。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-9a70b794fc",
+          "subject": "药剂学",
+          "chapter": "第九章 片剂",
+          "title": "片剂辅料",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "片剂辅料包括填充剂、黏合剂、润湿剂、崩解剂、润滑剂、助流剂、抗黏剂、矫味剂等。常见填充剂有淀粉、乳糖、MCC、甘露醇；黏合剂有淀粉浆、PVP、HPMC、CMC-Na；崩解剂有CMS-Na、CCMC-Na、L-HPC、PVPP；润滑剂有硬脂酸镁、滑石粉、PEG。",
+          "keyPoints": [
+            "填充剂",
+            "黏合剂",
+            "崩解剂",
+            "润滑/助流/抗黏"
+          ],
+          "mistakes": "硬脂酸镁疏水，用量过多可影响崩解。",
+          "mnemonic": "填黏崩润。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-3e87dcbb21",
+          "subject": "药剂学",
+          "chapter": "第九章 片剂",
+          "title": "制粒压片工艺",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "湿法制粒流程为粉碎过筛、混合、制软材、制湿颗粒、干燥、整粒、加入外加辅料、压片。直接压片适合湿热敏感药物，但要求物料流动性和可压性好。干法制粒适合湿热不稳定且可压性差药物。",
+          "keyPoints": [
+            "湿法改善流动和可压",
+            "直接压片工艺简单",
+            "干法适合湿热不稳"
+          ],
+          "mistakes": "内外加崩解剂作用位置不同，分散片常内外加。",
+          "mnemonic": "软粒干整压。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-f5d7a503a4",
+          "subject": "药剂学",
+          "chapter": "第九章 片剂",
+          "title": "片剂生产问题",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "裂片、松片、黏冲、崩解迟缓、片重差异和含量不均是常见问题。分析原因应从处方、颗粒粒度与水分、黏合剂/润滑剂用量、压力、冲模设备和环境湿度入手。",
+          "keyPoints": [
+            "裂片/松片",
+            "黏冲",
+            "崩解迟缓",
+            "片重差异"
+          ],
+          "mistakes": "片剂问题不要只归因于压力，常是处方和工艺共同导致。",
+          "mnemonic": "方粒水压机。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "c9139afc30",
+      "title": "第十章 包衣与特殊片剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-68d7129fd6",
+          "subject": "药剂学",
+          "chapter": "第十章 包衣与特殊片剂",
+          "title": "包衣",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "包衣目的包括防潮避光、掩味、改善外观、隔离配伍变化、控制释放和定位释放。类型有糖衣、薄膜衣、肠溶衣。薄膜衣处方含成膜材料、增塑剂、遮光剂/色素和溶剂；肠溶衣要求胃中不溶、肠中溶。",
+          "keyPoints": [
+            "保护/掩味/控释/定位",
+            "糖衣/薄膜衣/肠溶衣",
+            "成膜材料+增塑剂"
+          ],
+          "mistakes": "肠溶衣要注意膜完整性和渗漏。",
+          "mnemonic": "包衣护控美定位。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-f452b68bab",
+          "subject": "药剂学",
+          "chapter": "第十章 包衣与特殊片剂",
+          "title": "分散片、口崩片、泡腾片",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "分散片强调水中快速崩解分散，常用高效崩解剂并内外加。口崩片强调口感、崩解速度和机械强度平衡。泡腾片由酸源和碳酸氢盐遇水产CO2促崩，需严格防潮，润滑剂宜选水溶性PEG等。",
+          "keyPoints": [
+            "分散片：高效崩解剂",
+            "口崩片：口感+快速崩解",
+            "泡腾片：酸碱+防潮"
+          ],
+          "mistakes": "泡腾片不可直接吞服，防潮是核心。",
+          "mnemonic": "快崩靠崩解，泡腾靠酸碱。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "62c2b89b91",
+      "title": "第十一章 半固体制剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-247b3c863e",
+          "subject": "药剂学",
+          "chapter": "第十一章 半固体制剂",
+          "title": "软膏、乳膏、凝胶基质",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "油脂性基质如凡士林、羊毛脂、石蜡封闭性强但油腻；水溶性基质如PEG易洗除但可能刺激；乳剂型基质分O/W和W/O，兼顾涂展性和释药；凝胶基质常用卡波姆和纤维素衍生物。",
+          "keyPoints": [
+            "油脂性",
+            "水溶性",
+            "乳剂型",
+            "凝胶基质"
+          ],
+          "mistakes": "羊毛脂可增加凡士林吸水性。",
+          "mnemonic": "油封水洗乳折中。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-be43a5c34b",
+          "subject": "药剂学",
+          "chapter": "第十一章 半固体制剂",
+          "title": "O/W乳膏处方设计",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "O/W乳膏常由油相、水相、乳化剂、保湿剂和防腐剂组成。硬脂酸与三乙醇胺可形成O/W乳化剂，单硬脂酸甘油酯稳定乳滴，液状石蜡/羊毛脂/凡士林为油相，甘油保湿，羟苯乙酯防腐。制备时油相水相分别加热至相近温度后混合乳化。",
+          "keyPoints": [
+            "油相水相同温",
+            "乳化剂与稳定剂",
+            "甘油保湿，尼泊金防腐"
+          ],
+          "mistakes": "乳化温度和搅拌速度影响乳滴大小和稳定性。",
+          "mnemonic": "油水同温，边加边搅。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "4299d49b51",
+      "title": "第十二章 栓剂、气雾剂与经皮给药",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-7e2c9462a1",
+          "subject": "药剂学",
+          "chapter": "第十二章 栓剂、气雾剂与经皮给药",
+          "title": "栓剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "栓剂基质分油脂性和水溶性。油脂性基质融化释药，如可可豆脂、半合成脂肪酸甘油酯；水溶性基质溶解释药，如甘油明胶、PEG。直肠下段吸收可部分避免首过效应。质量检查包括重量差异、融变时限、硬度和释放度。",
+          "keyPoints": [
+            "油脂性融化释药",
+            "水溶性溶解释药",
+            "部分避首过"
+          ],
+          "mistakes": "可可豆脂有多晶型，过热会影响熔点。",
+          "mnemonic": "油融水溶。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-270c892b8d",
+          "subject": "药剂学",
+          "chapter": "第十二章 栓剂、气雾剂与经皮给药",
+          "title": "经皮给药系统",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "TDDS可避免首过、维持较稳血药浓度、减少给药次数。适合剂量小、作用强、半衰期短、适度脂溶且皮肤刺激小的药物。影响因素包括分子量、脂溶性、浓度、皮肤状态、基质和促透剂。促透剂有油酸、表面活性剂、氮酮、醇类、尿素和萜类。",
+          "keyPoints": [
+            "避免首过",
+            "稳定血药浓度",
+            "选药：小剂量强效适度脂溶",
+            "促透剂分类"
+          ],
+          "mistakes": "大剂量或强刺激药不适合经皮。",
+          "mnemonic": "小强短，脂水平衡。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-e01929f59d",
+          "subject": "药剂学",
+          "chapter": "第十二章 栓剂、气雾剂与经皮给药",
+          "title": "气雾剂与粉雾剂",
+          "examType": "简答/选择/名解",
+          "importance": "普通",
+          "content": "气雾剂由药物、抛射剂、耐压容器和阀门系统组成，递送剂量较准确、起效快。喷雾剂依靠泵或压缩气体雾化，粉雾剂为干粉吸入，需关注空气动力学粒径、递送均一性和肺部沉积。",
+          "keyPoints": [
+            "气雾剂有抛射剂",
+            "粉雾剂看粒径",
+            "吸入递送均一性"
+          ],
+          "mistakes": "颗粒过大沉积口咽，过小可能呼出。",
+          "mnemonic": "吸入看粒径。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "42494b204d",
+      "title": "第十三章 缓释、控释制剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-21be9ec36a",
+          "subject": "药剂学",
+          "chapter": "第十三章 缓释、控释制剂",
+          "title": "缓释与控释",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "缓释制剂按要求缓慢非恒速释放，控释制剂缓慢恒速或接近恒速释放。优点为减少给药次数、降低峰谷波动、提高依从性；缺点为剂量调节不灵活、突释风险和成本高。机制包括骨架、膜控、渗透泵和离子交换。",
+          "keyPoints": [
+            "缓释非恒速",
+            "控释近恒速",
+            "骨架/膜控/渗透泵"
+          ],
+          "mistakes": "缓控释片通常不能掰开或嚼碎。",
+          "mnemonic": "缓慢非恒缓释，恒速控释。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-3c91a45632",
+          "subject": "药剂学",
+          "chapter": "第十三章 缓释、控释制剂",
+          "title": "骨架片与渗透泵",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "亲水凝胶骨架常用HPMC，遇水形成凝胶层，通过扩散和溶蚀控释；不溶性骨架常用EC等，通过孔道扩散。渗透泵利用半透膜内外渗透压差吸水，将药物从释药孔推出，接近零级释放。",
+          "keyPoints": [
+            "HPMC亲水凝胶骨架",
+            "EC不溶骨架",
+            "渗透泵半透膜+释药孔"
+          ],
+          "mistakes": "渗透泵膜破损或释药孔异常会造成释放失控。",
+          "mnemonic": "骨架靠扩散溶蚀，泵靠水进药出。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "d8e2e646f1",
+      "title": "第十四章 靶向制剂",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-0742a3273f",
+          "subject": "药剂学",
+          "chapter": "第十四章 靶向制剂",
+          "title": "靶向制剂分类",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "靶向制剂分被动靶向、主动靶向和物理化学靶向。被动靶向利用粒径、RES吞噬或EPR效应，如脂质体、纳米粒、微球；主动靶向通过配体、抗体、糖基等修饰识别靶细胞；物化靶向利用磁性、温度、pH、栓塞等条件。",
+          "keyPoints": [
+            "被动：粒径/RES/EPR",
+            "主动：配体/抗体",
+            "物化：磁/热/pH/栓塞"
+          ],
+          "mistakes": "主动靶向不等于药物自己主动移动，而是载体识别设计。",
+          "mnemonic": "被动粒径，主动识别，物化条件。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-1d767d8205",
+          "subject": "药剂学",
+          "chapter": "第十四章 靶向制剂",
+          "title": "脂质体",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "脂质体由磷脂和胆固醇形成双分子层囊泡，可包封水溶性或脂溶性药物，具有被动靶向、缓释、降低毒性和提高稳定性等特点。质量评价包括粒径、包封率、载药量、泄漏率、稳定性和体内分布。",
+          "keyPoints": [
+            "磷脂双分子层",
+            "胆固醇调膜稳定性",
+            "包封率和粒径关键"
+          ],
+          "mistakes": "胆固醇不是主药，常用于调节膜流动性。",
+          "mnemonic": "磷脂成膜，胆固醇稳膜。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-4d0d908eef",
+          "subject": "药剂学",
+          "chapter": "第十四章 靶向制剂",
+          "title": "微球、微囊、纳米粒",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "微囊是药物被囊材包裹，微球是药物分散或溶解于骨架材料。纳米粒可改善溶出、靶向和缓释，材料有明胶、白蛋白、PLGA、聚乳酸、脂质材料等。常用制备方法有乳化-交联、溶剂挥发、纳米沉淀和喷雾干燥。",
+          "keyPoints": [
+            "囊有膜，球为骨架",
+            "纳米粒改善递送",
+            "材料和工艺要会写"
+          ],
+          "mistakes": "微球与微囊结构不要混。",
+          "mnemonic": "囊有壳，球成体。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "9d479885c8",
+      "title": "第十五章 药物传递系统与新技术",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-63638b997d",
+          "subject": "药剂学",
+          "chapter": "第十五章 药物传递系统与新技术",
+          "title": "自乳化释药系统",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "自乳化系统由油相、表面活性剂、助表面活性剂和药物组成，遇胃肠液轻微搅动即可形成乳剂或微乳，可提高难溶药溶出和吸收，常装入软胶囊。评价包括乳化时间、粒径、稳定性、载药量和体内吸收。",
+          "keyPoints": [
+            "油相+表活+助表活",
+            "提高难溶药吸收",
+            "软胶囊常用"
+          ],
+          "mistakes": "表面活性剂过量可能刺激胃肠道。",
+          "mnemonic": "油表助表，自发成乳。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-39bbfd8c2e",
+          "subject": "药剂学",
+          "chapter": "第十五章 药物传递系统与新技术",
+          "title": "包合物与固体分散体",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "包合物常用环糊精及衍生物包合疏水药，提高溶解度、稳定性和掩味。固体分散体是药物以分子、胶态、微晶或无定形状态分散于固体载体中，常用PVP、PEG、HPMC、HPC等，制备方法有熔融法、溶剂法和热熔挤出。",
+          "keyPoints": [
+            "环糊精包合",
+            "固体分散体提高溶出",
+            "PVP/PEG/HPMC/HPC"
+          ],
+          "mistakes": "固体分散体可能因重结晶而稳定性下降。",
+          "mnemonic": "环糊精包，载体中散。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-ab66f532f3",
+          "subject": "药剂学",
+          "chapter": "第十五章 药物传递系统与新技术",
+          "title": "蛋白多肽类制剂",
+          "examType": "简答/选择/名解",
+          "importance": "重要",
+          "content": "蛋白多肽易被酶降解、分子量大、膜通透性差，口服困难。可设计注射剂、冻干粉针、微球长效注射剂、植入剂、鼻腔/肺部递送等。处方需关注构象稳定、聚集、吸附、pH、离子强度、冻干保护剂和无菌生产。",
+          "keyPoints": [
+            "易降解、难透膜",
+            "冻干和长效递送",
+            "稳定构象和防聚集"
+          ],
+          "mistakes": "不能用普通小分子处方思路直接套用蛋白多肽。",
+          "mnemonic": "蛋白怕酶怕热怕界面。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "1009599eaf",
+      "title": "第十六章 处方设计专题",
+      "description": "",
+      "knowledgePoints": [
+        {
+          "id": "药剂-3e093ac638",
+          "subject": "药剂学",
+          "chapter": "第十六章 处方设计专题",
+          "title": "处方题通用模板",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "处方设计题按“剂型选择依据—处方组成及辅料作用—制备工艺—质量控制—注意事项”作答。根据药物溶解度、稳定性、剂量、吸收部位、刺激性和临床需求选择剂型；再解释每种辅料作用；工艺需写关键参数和顺序。",
+          "keyPoints": [
+            "剂型依据",
+            "辅料作用",
+            "制备工艺",
+            "质量控制",
+            "注意事项"
+          ],
+          "mistakes": "不要只背处方，必须解释设计理由。",
+          "mnemonic": "依据-处方-工艺-质控-注意。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-ceca16e88f",
+          "subject": "药剂学",
+          "chapter": "第十六章 处方设计专题",
+          "title": "难溶药口服制剂设计",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "难溶药可通过减小粒径、成盐、增溶、助溶、固体分散体、包合物、自乳化系统、纳米混悬剂等提高溶出。若胃酸不稳定可做肠溶；若有吸收窗口可做胃内滞留；若首过效应强可考虑自乳化、经皮或黏膜递送。",
+          "keyPoints": [
+            "促溶技术",
+            "肠溶保护",
+            "胃滞留吸收窗口",
+            "规避首过"
+          ],
+          "mistakes": "难溶药不一定适合缓释，释放过慢可能进一步降低吸收。",
+          "mnemonic": "难溶先促溶，酸坏做肠溶。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        },
+        {
+          "id": "药剂-82042e4a6d",
+          "subject": "药剂学",
+          "chapter": "第十六章 处方设计专题",
+          "title": "辅料作用速查",
+          "examType": "简答/选择/名解",
+          "importance": "高频",
+          "content": "MCC可作填充剂、干黏合剂、崩解剂；PVP作黏合剂、助悬剂、固体分散体载体；HPMC作黏合剂、成膜材料和亲水凝胶骨架；EC作水不溶成膜/缓释材料；CMS-Na、CCMC-Na、L-HPC、PVPP为崩解剂；PEG可作水溶性基质、润滑剂、增塑剂；SDS为阴离子表面活性剂，可作润湿/增溶剂。",
+          "keyPoints": [
+            "MCC多功能",
+            "HPMC亲水骨架",
+            "EC不溶膜控",
+            "PVPP等崩解剂",
+            "PEG多用途"
+          ],
+          "mistakes": "同一辅料在不同剂型中作用不同，必须结合处方判断。",
+          "mnemonic": "辅料按剂型判作用。",
+          "status": "未学",
+          "reviewCount": 0,
+          "lastReviewDate": "",
+          "nextReviewDate": "",
+          "createdAt": "2026-05-28",
+          "updatedAt": "2026-05-28",
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "chapters": 16,
+    "knowledgePoints": 42
+  }
+}
