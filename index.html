@@ -1030,6 +1030,53 @@ body {
   .app { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
   .modal { border-radius: var(--radius); }
 }
+
+/* ===== White Noise ===== */
+.wn-player {
+  background: var(--bg); border-radius: var(--radius-sm); padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
+}
+.wn-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: none;
+  background: var(--primary); color: #fff; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wn-label { font-size: 0.78rem; color: var(--text-light); flex: 1; }
+.wn-select { font-size: 0.75rem; border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; font-family: var(--font); color: var(--text); background: var(--card); }
+
+/* ===== Badges ===== */
+.badge-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.badge-item {
+  text-align: center; padding: 14px 8px; border-radius: var(--radius-sm);
+  background: var(--card); box-shadow: var(--shadow); transition: transform 0.15s;
+}
+.badge-item .badge-icon { font-size: 1.6rem; margin-bottom: 4px; }
+.badge-item .badge-name { font-size: 0.7rem; color: var(--text); font-weight: 500; }
+.badge-item.locked { opacity: 0.4; filter: grayscale(0.8); }
+.badge-item.unlocked { border: 1.5px solid var(--primary); }
+.badge-toast {
+  position: fixed; top: 15%; left: 50%; transform: translateX(-50%); z-index: 300;
+  background: var(--card); padding: 18px 24px; border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15); text-align: center; animation: badgePop 0.4s ease;
+}
+@keyframes badgePop { from { opacity:0; transform: translateX(-50%) scale(0.7); } to { opacity:1; transform: translateX(-50%) scale(1); } }
+.badge-toast .bt-icon { font-size: 2.5rem; }
+.badge-toast .bt-title { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 6px 0 2px; }
+.badge-toast .bt-desc { font-size: 0.78rem; color: var(--text-light); }
+
+/* ===== Weekly Report ===== */
+.report-card { margin-top: 10px; }
+.report-stat-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.8rem; border-bottom: 1px solid var(--border); }
+.report-stat-row:last-child { border-bottom: none; }
+.report-bar-wrap { background: var(--border); border-radius: 8px; height: 8px; overflow: hidden; margin: 6px 0; }
+.report-bar { height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--primary), var(--mint)); }
+.report-day-grid { display: flex; gap: 4px; margin: 8px 0; }
+.report-day-dot { width: 28px; height: 28px; border-radius: 50%; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.report-day-dot.studied { background: var(--primary-light); color: var(--primary); }
+.report-day-dot.rested { background: var(--bg); color: var(--text-lighter); }
+
+/* ===== Sync ===== */
+.sync-status { font-size: 0.72rem; color: var(--text-lighter); margin-top: 4px; text-align: center; }
 </style>
 </head>
 <body>
@@ -1102,6 +1149,17 @@ body {
         <button class="btn btn-primary" id="btnTimerStart" onclick="App.startTimer()">开始</button>
         <button class="btn btn-outline" id="btnTimerPause" onclick="App.pauseTimer()" style="display:none">暂停</button>
         <button class="btn btn-accent" id="btnTimerStop" onclick="App.stopTimer()" style="display:none">结束</button>
+      </div>
+      <div class="wn-player">
+        <button class="wn-btn" id="wnBtn" onclick="App.toggleWhiteNoise()">▶</button>
+        <span class="wn-label" id="wnLabel">白噪音 · 专注陪伴</span>
+        <select class="wn-select" id="wnSelect" onchange="App.changeWhiteNoise()">
+          <option value="">关闭</option>
+          <option value="rain">雨声</option>
+          <option value="cafe">咖啡馆</option>
+          <option value="forest">森林</option>
+          <option value="lofi">Lo-fi</option>
+        </select>
       </div>
     </div>
 
@@ -1283,6 +1341,28 @@ body {
         </div>
       </div>
       <div class="period-predict" id="periodPredict"></div>
+    </div>
+
+    <!-- Achievement Badges -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">🏅</span>学习成就</div>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+
+    <!-- Weekly Report -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">📊</span>本周学习报告</div>
+      <div id="weeklyReport"><div class="empty-state">点击下方按钮生成报告</div></div>
+      <button class="btn btn-primary btn-sm btn-block" style="margin-top:8px" onclick="App.showWeeklyReport()">生成本周报告</button>
+    </div>
+
+    <!-- Remote Sync -->
+    <div class="card reminder-section">
+      <div class="card-title"><span class="icon">☁️</span>远程同步</div>
+      <div style="font-size:0.78rem;color:var(--text-lighter);margin-bottom:6px">同步学习数据到云端，让陪伴的人可以看到</div>
+      <button class="btn btn-primary btn-sm btn-block" style="margin-bottom:6px" onclick="App.syncUpload()">上传今日数据</button>
+      <button class="btn btn-outline btn-sm btn-block" onclick="App.syncDownload()">查看对方数据</button>
+      <div class="sync-status" id="syncStatus"></div>
     </div>
   </div>
 
@@ -2013,7 +2093,7 @@ const App = {
 
     this._renderProDetail(pointId);
     this.renderToday();
-    this.updateTodayMessage(true);
+    this.updateTodayMessage(true); this.checkBadges();
     this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
   },
 
@@ -2260,7 +2340,7 @@ const App = {
     saveStudyRecords(records);
     this.renderStudyRecords();
     this.toast('学习记录已保存');
-    this.updateTodayMessage(true);
+    this.updateTodayMessage(true); this.checkBadges();
     this.renderToday();
   },
 
@@ -2575,7 +2655,7 @@ const App = {
     this.renderMemoCards();
     this.renderToday();
     this.toast('已标记复习，下次复习: ' + (c ? c.reviewDate : ''));
-    this.updateTodayMessage(true);
+    this.updateTodayMessage(true); this.checkBadges();
   },
 
   // ---- POS Extraction ----
@@ -2792,7 +2872,7 @@ const App = {
     localStorage.removeItem(STORAGE_KEY + 'redbookAutoImported');
     this.initWordView();
     this.renderToday();
-    this.updateTodayMessage(true);
+    this.updateTodayMessage(true); this.checkBadges();
     this.toast('词库已清空');
   },
 
@@ -2928,7 +3008,7 @@ const App = {
 
     const nextDate = target ? target.nextReviewDate : '';
     this.toast('已标记: ' + status + ' · 下次复习: ' + nextDate);
-    this.updateTodayMessage(true);
+    this.updateTodayMessage(true); this.checkBadges();
     this._refreshWordStats();
     this.renderToday();
 
@@ -3097,6 +3177,7 @@ const App = {
     this.renderWaterDots();
     this.renderPeriodPredict();
     this.renderHomeTip();
+    this.renderBadges();
   },
 
   renderHomeTip() {
@@ -3294,6 +3375,291 @@ const App = {
       container.classList.remove('updated');
       void container.offsetWidth; // force reflow
       container.classList.add('updated');
+    }
+  },
+
+  // ---- White Noise ----
+  _wnAudio: null,
+  _wnPlaying: false,
+
+  toggleWhiteNoise() {
+    const sel = document.getElementById('wnSelect');
+    if (!sel.value) { this.toast('请先选择白噪音类型'); return; }
+    if (!this._wnAudio) { this.changeWhiteNoise(); return; }
+    if (this._wnPlaying) { this._wnAudio.pause(); this._wnPlaying = false; document.getElementById('wnBtn').textContent = '▶'; }
+    else { this._wnAudio.play().catch(() => {}); this._wnPlaying = true; document.getElementById('wnBtn').textContent = '⏸'; }
+  },
+
+  changeWhiteNoise() {
+    if (this._wnAudio) { this._wnAudio.pause(); this._wnAudio = null; }
+    const sel = document.getElementById('wnSelect');
+    if (!sel.value) { document.getElementById('wnLabel').textContent = '白噪音 · 专注陪伴'; document.getElementById('wnBtn').textContent = '▶'; this._wnPlaying = false; return; }
+
+    // Free ambient sound URLs (mp3 from mixkit or similar)
+    const tracks = {
+      rain: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8a73467.mp3',
+      cafe: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1c28.mp3',
+      forest: 'https://cdn.pixabay.com/download/audio/2021/10/25/audio_ab2d1d6d9e.mp3',
+      lofi: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808f1157f.mp3'
+    };
+    const labels = { rain: '雨声 · 安静舒缓', cafe: '咖啡馆 · 温暖背景', forest: '森林 · 清晨鸟鸣', lofi: 'Lo-fi · 轻节奏' };
+
+    this._wnAudio = new Audio(tracks[sel.value]);
+    this._wnAudio.loop = true;
+    this._wnAudio.volume = 0.25;
+    this._wnAudio.play().then(() => {
+      this._wnPlaying = true;
+      document.getElementById('wnBtn').textContent = '⏸';
+      document.getElementById('wnLabel').textContent = labels[sel.value] || '白噪音';
+    }).catch(() => {
+      this.toast('白噪音加载失败，请检查网络');
+      this._wnPlaying = false;
+      document.getElementById('wnBtn').textContent = '▶';
+    });
+  },
+
+  // ---- Achievement Badges ----
+  _badges: [
+    { id: 'study_1h', icon: '⏱️', name: '初入研途', desc: '累计学习 1 小时', check: (s) => s.totalStudyMin >= 60 },
+    { id: 'study_10h', icon: '📚', name: '持之以恒', desc: '累计学习 10 小时', check: (s) => s.totalStudyMin >= 600 },
+    { id: 'study_50h', icon: '🎓', name: '学霸之路', desc: '累计学习 50 小时', check: (s) => s.totalStudyMin >= 3000 },
+    { id: 'words_50', icon: '🔤', name: '词汇新手', desc: '背完 50 个单词', check: (s) => s.totalWords >= 50 },
+    { id: 'words_500', icon: '📖', name: '词汇达人', desc: '背完 500 个单词', check: (s) => s.totalWords >= 500 },
+    { id: 'words_2000', icon: '🏆', name: '词汇大师', desc: '背完 2000 个单词', check: (s) => s.totalWords >= 2000 },
+    { id: 'pro_10', icon: '💊', name: '药理入门', desc: '复习 10 个专业课知识点', check: (s) => s.totalProPoints >= 10 },
+    { id: 'pro_50', icon: '🧪', name: '药理小能手', desc: '复习 50 个专业课知识点', check: (s) => s.totalProPoints >= 50 },
+    { id: 'streak_3', icon: '🔥', name: '连续三天', desc: '连续打卡 3 天', check: (s) => s.streak >= 3 },
+    { id: 'streak_7', icon: '⭐', name: '全勤一周', desc: '连续打卡 7 天', check: (s) => s.streak >= 7 },
+    { id: 'streak_30', icon: '👑', name: '月度之星', desc: '连续打卡 30 天', check: (s) => s.streak >= 30 },
+    { id: 'water_goal', icon: '💧', name: '水分充足', desc: '单日喝满目标杯数', check: (s) => s.waterGoalReached },
+  ],
+
+  getBadgeStats() {
+    const allRecords = getStudyRecords();
+    const totalStudyMin = allRecords.reduce((s, r) => s + (r.duration || 0), 0) / 60;
+    const wsc = getWordStudyCount();
+    const totalWords = Object.values(wsc).reduce((s, c) => s + (c || 0), 0);
+    const proCount = load('proReviewCount') || {};
+    const totalProPoints = Object.values(proCount).reduce((s, c) => s + (c || 0), 0);
+    const settings = getSettings();
+    const water = getWater();
+    const today = todayKey();
+    const waterGoalReached = (water[today] || 0) >= (settings.waterGoal || 8);
+
+    // Calculate streak
+    let streak = 0;
+    const d = new Date();
+    for (let i = 0; i < 365; i++) {
+      const dateStr = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      const dayRecords = allRecords.filter(r => r.date === dateStr);
+      const dayWords = wsc[dateStr] || 0;
+      const dayPro = proCount[dateStr] || 0;
+      if (dayRecords.length > 0 || dayWords > 0 || dayPro > 0) { streak++; d.setDate(d.getDate() - 1); }
+      else break;
+    }
+
+    return { totalStudyMin, totalWords, totalProPoints, waterGoalReached, streak };
+  },
+
+  getUnlockedBadges() {
+    return load('unlockedBadges') || [];
+  },
+
+  checkBadges() {
+    const stats = this.getBadgeStats();
+    const unlocked = this.getUnlockedBadges();
+    let newUnlocks = [];
+    for (const badge of this._badges) {
+      if (unlocked.includes(badge.id)) continue;
+      if (badge.check(stats)) { unlocked.push(badge.id); newUnlocks.push(badge); }
+    }
+    save('unlockedBadges', unlocked);
+    if (newUnlocks.length > 0) {
+      const b = newUnlocks[0];
+      this.showBadgeToast(b);
+    }
+    this.renderBadges();
+    return newUnlocks;
+  },
+
+  showBadgeToast(badge) {
+    const div = document.createElement('div');
+    div.className = 'badge-toast';
+    div.innerHTML = '<div class="bt-icon">' + badge.icon + '</div><div class="bt-title">获得徽章：' + badge.name + '</div><div class="bt-desc">' + badge.desc + '</div>';
+    document.body.appendChild(div);
+    setTimeout(() => div.remove(), 3000);
+  },
+
+  renderBadges() {
+    const grid = document.getElementById('badgeGrid');
+    if (!grid) return;
+    const unlocked = this.getUnlockedBadges();
+    grid.innerHTML = this._badges.map(b => {
+      const isUnlocked = unlocked.includes(b.id);
+      return '<div class="badge-item ' + (isUnlocked ? 'unlocked' : 'locked') + '">' +
+        '<div class="badge-icon">' + b.icon + '</div>' +
+        '<div class="badge-name">' + b.name + '</div>' +
+        '</div>';
+    }).join('');
+  },
+
+  // ---- Weekly Report ----
+  showWeeklyReport() {
+    const allRecords = getStudyRecords();
+    const wsc = getWordStudyCount();
+    const proCount = load('proReviewCount') || {};
+    const water = getWater();
+
+    let totalMin = 0, totalWords = 0, totalPro = 0, totalWater = 0, activeDays = 0;
+    const days = [];
+    const dayNames = ['日','一','二','三','四','五','六'];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateStr = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      const dayMin = allRecords.filter(r => r.date === dateStr).reduce((s, r) => s + (r.duration || 0), 0) / 60;
+      const dayWords = wsc[dateStr] || 0;
+      const dayPro = proCount[dateStr] || 0;
+      const dayWater = water[dateStr] || 0;
+      const isActive = dayMin > 0 || dayWords > 0 || dayPro > 0;
+      totalMin += dayMin; totalWords += dayWords; totalPro += dayPro; totalWater += dayWater;
+      if (isActive) activeDays++;
+      days.push({ date: dateStr, weekday: dayNames[d.getDay()], dayMin, dayWords, dayPro, dayWater, isActive });
+    }
+
+    const maxMin = 6 * 60; // 6h target
+
+    const reportsDiv = document.getElementById('weeklyReport');
+    reportsDiv.innerHTML = `
+      <div class="report-stat-row"><span>活跃天数</span><span><strong>${activeDays}</strong> / 7</span></div>
+      <div class="report-stat-row"><span>学习时长</span><span><strong>${Math.round(totalMin)}</strong> 分钟</span></div>
+      <div class="report-bar-wrap"><div class="report-bar" style="width:${Math.min(100, Math.round(totalMin/maxMin*100))}%"></div></div>
+      <div class="report-stat-row"><span>背诵单词</span><span><strong>${totalWords}</strong> 个</span></div>
+      <div class="report-stat-row"><span>专业课复习</span><span><strong>${totalPro}</strong> 次</span></div>
+      <div class="report-stat-row"><span>喝水</span><span><strong>${totalWater}</strong> 杯</span></div>
+      <div class="report-day-grid">
+        ${days.map(d => '<div class="report-day-dot ' + (d.isActive ? 'studied' : 'rested') + '" title="' + d.date + '">' + d.weekday + '</div>').join('')}
+      </div>
+    `;
+    this.toast('本周报告已生成');
+  },
+
+  // ---- GitHub Gist Sync ----
+  _gistId: null,
+  _gistToken: null,
+
+  getGistConfig() {
+    return { gistId: localStorage.getItem(STORAGE_KEY + 'gistId') || '', token: localStorage.getItem(STORAGE_KEY + 'gistToken') || '' };
+  },
+
+  async _ensureGist() {
+    let { gistId, token } = this.getGistConfig();
+    if (!token) {
+      const t = prompt('请输入 GitHub Personal Access Token（需要 gist 权限）：');
+      if (!t) throw new Error('未提供 token');
+      token = t.trim();
+      localStorage.setItem(STORAGE_KEY + 'gistToken', token);
+    }
+    if (!gistId) {
+      // Create new gist
+      const resp = await fetch('https://api.github.com/gists', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ description: '小淇专属药研打卡 - 学习数据', public: false, files: { 'study-data.json': { content: '{}' } } })
+      });
+      if (!resp.ok) { const err = await resp.json(); throw new Error(err.message || '创建 Gist 失败'); }
+      const data = await resp.json();
+      gistId = data.id;
+      localStorage.setItem(STORAGE_KEY + 'gistId', gistId);
+    }
+    return { gistId, token };
+  },
+
+  async syncUpload() {
+    try {
+      const { gistId, token } = await this._ensureGist();
+      const stats = this.getBadgeStats();
+      const today = todayKey();
+      const allRecords = getStudyRecords();
+      const todayRecords = allRecords.filter(r => r.date === today);
+      const wsc = getWordStudyCount();
+      const proCount = load('proReviewCount') || {};
+      const water = getWater();
+
+      const payload = {
+        lastUpdate: new Date().toISOString(),
+        today: {
+          studyMin: todayRecords.reduce((s, r) => s + (r.duration || 0), 0) / 60,
+          words: wsc[today] || 0,
+          proPoints: proCount[today] || 0,
+          water: water[today] || 0,
+          memoReviewed: this.getDueMemoCards ? 0 : 0,
+          todos: (getTodos().filter(t => t.date === today && t.done) || []).length,
+        },
+        total: {
+          studyMin: stats.totalStudyMin,
+          words: stats.totalWords,
+          proPoints: stats.totalProPoints,
+          streak: stats.streak,
+        },
+        unlockedBadges: this.getUnlockedBadges(),
+      };
+
+      const resp = await fetch('https://api.github.com/gists/' + gistId, {
+        method: 'PATCH',
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: { 'study-data.json': { content: JSON.stringify(payload, null, 2) } } })
+      });
+      if (!resp.ok) { const err = await resp.json(); throw new Error(err.message || '上传失败'); }
+      document.getElementById('syncStatus').textContent = '已上传 · ' + new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+      this.toast('今日数据已同步');
+    } catch (err) {
+      document.getElementById('syncStatus').textContent = '失败: ' + err.message;
+      this.toast('同步失败: ' + err.message);
+    }
+  },
+
+  async syncDownload() {
+    try {
+      const { gistId, token } = await this._ensureGist();
+      const resp = await fetch('https://api.github.com/gists/' + gistId, {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (!resp.ok) { const err = await resp.json(); throw new Error(err.message || '获取失败'); }
+      const data = await resp.json();
+      const content = JSON.parse(data.files['study-data.json'].content);
+      document.getElementById('syncStatus').textContent = '已获取 · ' + new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+
+      // Show partner data in a modal
+      const t = content.today || {};
+      const tot = content.total || {};
+      const badges = (content.unlockedBadges || []).map(bid => {
+        const def = this._badges.find(b => b.id === bid);
+        return def ? def.icon + def.name : '';
+      }).filter(Boolean).join(' · ');
+
+      const html = `
+        <div class="modal-overlay" onclick="App.closeModal()">
+          <div class="modal">
+            <h3>小淇的学习数据</h3>
+            <div class="import-summary">更新时间：${content.lastUpdate || '未知'}</div>
+            <div class="report-stat-row"><span>今日学习</span><span><strong>${Math.round(t.studyMin || 0)}</strong> 分钟</span></div>
+            <div class="report-stat-row"><span>今日单词</span><span><strong>${t.words || 0}</strong> 个</span></div>
+            <div class="report-stat-row"><span>今日专业课</span><span><strong>${t.proPoints || 0}</strong> 次</span></div>
+            <div class="report-stat-row"><span>今日喝水</span><span><strong>${t.water || 0}</strong> 杯</span></div>
+            <div class="report-stat-row"><span>连续打卡</span><span><strong>${tot.streak || 0}</strong> 天 🔥</span></div>
+            <div class="report-stat-row"><span>累计学习</span><span><strong>${Math.round(tot.studyMin || 0)}</strong> 分钟</span></div>
+            <div class="report-stat-row"><span>累计单词</span><span><strong>${tot.words || 0}</strong> 个</span></div>
+            ${badges ? '<div class="report-stat-row"><span>已获徽章</span><span>' + badges + '</span></div>' : ''}
+            <div class="btn-row" style="margin-top:12px">
+              <button class="btn btn-primary btn-sm" onclick="App.closeModal()">知道了</button>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalContainer').innerHTML = html;
+    } catch (err) {
+      document.getElementById('syncStatus').textContent = '失败: ' + err.message;
+      this.toast('获取失败: ' + err.message);
     }
   },
 
