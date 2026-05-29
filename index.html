@@ -2097,8 +2097,10 @@ const App = {
     document.querySelectorAll('.nav-item').forEach((el, i) => {
       el.classList.toggle('active', i === tab);
     });
-    document.querySelectorAll('.page').forEach((el, i) => {
-      el.classList.toggle('active', i === tab);
+    // Map tab to page ID (pages are still in original DOM order)
+    const pageIds = ['page-today', 'page-memo', 'page-pro', 'page-reminders'];
+    document.querySelectorAll('.page').forEach(el => {
+      el.classList.toggle('active', el.id === pageIds[tab]);
     });
     const titles = ['今日', '背诵', '专业课', '提醒'];
     document.getElementById('pageTitle').textContent = titles[tab];
