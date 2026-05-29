@@ -172,21 +172,23 @@ body {
 }
 .today-message {
   text-align: center;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   line-height: 1.55;
-  padding: 14px 18px;
-  margin: 10px auto;
+  padding: 22px 20px;
+  margin: 12px 0 16px;
   max-width: var(--max-width);
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(160,147,199,0.12), rgba(245,210,220,0.16));
-  box-shadow: 0 8px 24px rgba(160, 147, 199, 0.1);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(160,147,199,0.18), rgba(245,210,220,0.22));
+  box-shadow: 0 12px 32px rgba(160, 147, 199, 0.14);
   transition: opacity 0.28s ease, transform 0.28s ease;
 }
 .today-message .tm-prefix {
-  font-size: 0.9rem;
-  margin-right: 4px;
-  opacity: 0.7;
+  font-size: 1.1rem;
+  margin-right: 6px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 4px;
 }
 .today-message .tm-text {
   background: linear-gradient(90deg, #8B7BAE, #C58AA0);
@@ -1092,39 +1094,13 @@ body {
 
   <!-- ====== Page 0: 今日 ====== -->
   <div class="page active" id="page-today">
-    <div class="date-display">
-      <div class="date-main" id="todayDate"></div>
-      <div class="date-weekday" id="todayWeekday"></div>
-    </div>
-    <div class="countdown card">
-      <div class="days" id="countdownDays">--</div>
-      <div class="label">距离考研还有</div>
-    </div>
+    <!-- 陪伴语 —— 最大，最醒目 -->
     <div class="today-message" id="todayMessage">
       <span class="tm-prefix" id="tmPrefix"></span>
       <span class="tm-text" id="tmText">每一步都算数，慢慢来</span>
     </div>
 
-    <div class="card">
-      <div class="card-title"><span class="icon">📊</span>今日学习完成度</div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
-      <div class="progress-label" id="progressLabel">0%</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><span class="icon">📝</span>今日数据</div>
-      <div class="stat-grid">
-        <div class="stat-item"><div class="val" id="statPharma">0h</div><div class="lbl">药理学</div></div>
-        <div class="stat-item"><div class="val" id="statPharmaceut">0h</div><div class="lbl">药剂学</div></div>
-        <div class="stat-item"><div class="val" id="statWords">0</div><div class="lbl">英语单词</div></div>
-        <div class="stat-item water"><div class="val" id="statWater">0</div><div class="lbl">今日喝水 / 杯</div></div>
-        <div class="stat-item break"><div class="val" id="statBreak">0</div><div class="lbl">今日休息 / 次</div></div>
-        <div class="stat-item"><div class="val" id="statMemoReview">0</div><div class="lbl">待复习卡片</div></div>
-        <div class="stat-item"><div class="val" id="statProReview">0</div><div class="lbl">专业课待复习</div></div>
-        <div class="stat-item break"><div class="val" id="statProDone">0</div><div class="lbl">今日已复习</div></div>
-      </div>
-    </div>
-
+    <!-- 今日待办 —— 紧跟陪伴语 -->
     <div class="card">
       <div class="card-title"><span class="icon">✅</span>今日待办</div>
       <ul class="todo-list" id="todoList"></ul>
@@ -1132,6 +1108,27 @@ body {
         <input type="text" id="todoInput" placeholder="添加待办..." style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:0.82rem;font-family:var(--font);background:var(--bg);">
         <button class="btn btn-primary btn-sm" onclick="App.addTodo()">添加</button>
       </div>
+    </div>
+
+    <div class="date-display">
+      <div class="date-main" id="todayDate"></div>
+      <div class="date-weekday" id="todayWeekday"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📝</span>今日数据</div>
+      <div class="stat-grid">
+        <div class="stat-item"><div class="val" id="statProReview">0</div><div class="lbl">专业课待复习</div></div>
+        <div class="stat-item break"><div class="val" id="statProDone">0</div><div class="lbl">今日已复习</div></div>
+        <div class="stat-item"><div class="val" id="statMemoReview">0</div><div class="lbl">背诵待复习</div></div>
+        <div class="stat-item water"><div class="val" id="statWater">0</div><div class="lbl">今日喝水 / 杯</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>今日完成度</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
     </div>
   </div>
 
@@ -1366,18 +1363,12 @@ body {
       <span class="nav-icon">🏠</span>今日
     </button>
     <button class="nav-item" data-tab="1">
-      <span class="nav-icon">📚</span>学习
-    </button>
-    <button class="nav-item" data-tab="2">
       <span class="nav-icon">🧠</span>背诵
     </button>
-    <button class="nav-item" data-tab="3">
+    <button class="nav-item" data-tab="2">
       <span class="nav-icon">💊</span>专业课
     </button>
-    <button class="nav-item" data-tab="4">
-      <span class="nav-icon">🔤</span>单词
-    </button>
-    <button class="nav-item" data-tab="5">
+    <button class="nav-item" data-tab="3">
       <span class="nav-icon">🔔</span>提醒
     </button>
   </nav>
@@ -2109,15 +2100,13 @@ const App = {
     document.querySelectorAll('.page').forEach((el, i) => {
       el.classList.toggle('active', i === tab);
     });
-    const titles = ['今日', '学习', '背诵', '专业课', '单词', '提醒'];
+    const titles = ['今日', '背诵', '专业课', '提醒'];
     document.getElementById('pageTitle').textContent = titles[tab];
     // Refresh content on switch
     if (tab === 0) this.renderToday();
-    if (tab === 1) this.renderStudyRecords();
-    if (tab === 2) this.renderMemoCards();
-    if (tab === 3) this.renderProCourse();
-    if (tab === 4) this.initWordView();
-    if (tab === 5) this.renderReminders();
+    if (tab === 1) this.renderMemoCards();
+    if (tab === 2) this.renderProCourse();
+    if (tab === 3) this.renderReminders();
   },
 
   // ---- Today Page ----
@@ -2128,40 +2117,15 @@ const App = {
       now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日';
     document.getElementById('todayWeekday').textContent = '星期' + days[now.getDay()];
 
-    // Countdown
-    const settings = getSettings();
-    const exam = new Date(settings.examDate);
-    const diff = Math.ceil((exam - now) / (1000 * 60 * 60 * 24));
-    document.getElementById('countdownDays').textContent = diff > 0 ? diff : '0';
-
     // Today message
     this.updateTodayMessage(false);
 
-    // Study data
+    // Data
     const today = todayKey();
-    const records = getStudyRecords().filter(r => r.date === today);
-    let pharmaSec = 0, pharmSec = 0;
-    records.forEach(r => {
-      if (r.subject === '药理学') pharmaSec += r.duration;
-      else if (r.subject === '药剂学') pharmSec += r.duration;
-    });
-    document.getElementById('statPharma').textContent = this.fmtHours(pharmaSec);
-    document.getElementById('statPharmaceut').textContent = this.fmtHours(pharmSec);
-
-    // Word stats
-    const allWordCards = getWordCards();
-    const wsc = getWordStudyCount();
-    const wordCount = wsc[today] || 0;
-    const dueWordCards = allWordCards.filter(c => c.nextReviewDate && c.nextReviewDate <= today && c.status !== '熟练');
-    document.getElementById('statWords').textContent = wordCount;
 
     // Water
     const water = getWater();
     document.getElementById('statWater').textContent = water[today] || 0;
-
-    // Breaks
-    const breaks = getBreaks();
-    document.getElementById('statBreak').textContent = breaks[today] || 0;
 
     // Memo review count
     const dueCards = this.getDueMemoCards();
@@ -2184,13 +2148,13 @@ const App = {
     const proCount = load('proReviewCount') || {};
     document.getElementById('statProDone').textContent = proCount[today] || 0;
 
-    // Progress - based on study time (target 6h), words (target 50), water (target from settings)
-    const studyTarget = 6 * 3600;
-    const wordTarget = 50;
-    const studyPct = Math.min(100, Math.round(((pharmaSec + pharmSec) / studyTarget) * 100));
-    const wordPct = Math.min(100, Math.round((wordCount / wordTarget) * 100));
-    const waterPct = Math.min(100, Math.round(((water[today] || 0) / (settings.waterGoal || 8)) * 100));
-    const avgPct = Math.round((studyPct + wordPct + waterPct) / 3);
+    // Progress - based on pro reviews + water + memo
+    const proTarget = 10;
+    const proPct = Math.min(100, Math.round(((proCount[today] || 0) / proTarget) * 100));
+    const dueTotal = dueCards.length + (proReviewState ? Object.values(proReviewState).filter(rs => rs.status !== '已熟练' && rs.status !== '熟练').length : 0);
+    const reviewPct = dueTotal === 0 ? 100 : Math.min(100, Math.round((1 - dueTotal / Math.max(dueTotal + (proCount[today] || 0), 1)) * 100));
+    const waterPct = Math.min(100, Math.round(((water[today] || 0) / (getSettings().waterGoal || 8)) * 100));
+    const avgPct = Math.round((proPct + waterPct + reviewPct) / 3);
     document.getElementById('progressBar').style.width = avgPct + '%';
     document.getElementById('progressLabel').textContent = avgPct + '%';
 
